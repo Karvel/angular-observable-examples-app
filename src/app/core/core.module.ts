@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule }                 from '@angular/common';
 
+import { FormService }                  from './services/form.service';
 import { PipeModule }                   from './pipes/pipe.module';
 import { throwIfAlreadyLoaded }         from './guards/module-import-guard.service';
 
@@ -8,6 +9,9 @@ import { throwIfAlreadyLoaded }         from './guards/module-import-guard.servi
   imports: [
     CommonModule,
     PipeModule,
+  ],
+  providers: [
+    FormService,
   ],
 })
 export class CoreModule {
