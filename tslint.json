@@ -20,7 +20,7 @@
       true,
       "rxjs/Rx"
     ],
-    "import-spacing": true,
+    "import-spacing": false,
     "indent": [
       true,
       "spaces"
@@ -60,7 +60,7 @@
     "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-misused-new": true,
@@ -113,8 +113,21 @@
       "check-branch",
       "check-decl",
       "check-operator",
+      "check-module",
       "check-separator",
       "check-type"
+    ],
+    "directive-selector": [
+      true,
+      "attribute",
+      "app",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "app",
+      "kebab-case"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
