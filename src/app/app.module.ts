@@ -9,11 +9,13 @@ import {
   routedComponents as mainAppRoutedComponents,
 }                              from './app-routing.module';
 import { CoreModule }          from './core/core.module';
+import { NavigationComponent } from './features/navigation/navigation.component';
 import { PipeModule }          from './core/pipes/pipe.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavigationComponent,
     mainAppRoutedComponents,
   ],
   imports: [
