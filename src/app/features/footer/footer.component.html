@@ -1,1 +1,9 @@
+<div class="contact">
+    <ul>
+        <li *ngFor="let contact of contactList; trackBy: trackByName;">
+            <a href="{{ contact.linkPath }}" target="_blank" title="{{ contact.name }}"><i class="{{ contact.icon }}"></i></a>
+        </li>
+    </ul>
+</div>
+
 &copy; Copyright {{ dateYear }}. All rights reserved.
