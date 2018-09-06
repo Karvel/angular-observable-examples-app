@@ -10,6 +10,7 @@ import {
   AppRoutingModule,
   routedComponents as mainAppRoutedComponents,
 }                                  from './app-routing.module';
+import { ControlsModule }          from './core//controls/controls.module';
 import { CoreModule }              from './core/core.module';
 import { FooterComponent }         from './features/footer/footer.component';
 import { NavigationComponent }     from './features/navigation/navigation.component';
@@ -23,8 +24,9 @@ import { PipeModule }              from './core/pipes/pipe.module';
     mainAppRoutedComponents,
   ],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    ControlsModule,
     CoreModule,
     HttpClientModule,
     MaterialModule,
