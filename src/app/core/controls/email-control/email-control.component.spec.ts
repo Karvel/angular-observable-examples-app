@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RequiredInputComponent } from './required-input.component';
+import { EmailControlComponent } from './email-control.component';
 
-describe('RequiredInputComponent', () => {
-  let component: RequiredInputComponent;
-  let fixture: ComponentFixture<RequiredInputComponent>;
+describe('EmailControlComponent', () => {
+  let component: EmailControlComponent;
+  let fixture: ComponentFixture<EmailControlComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RequiredInputComponent],
+      declarations: [EmailControlComponent],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RequiredInputComponent);
+    fixture = TestBed.createComponent(EmailControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

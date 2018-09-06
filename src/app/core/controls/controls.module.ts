@@ -3,6 +3,7 @@ import { CommonModule }           from '@angular/common';
 import { ReactiveFormsModule }    from '@angular/forms';
 
 import { MaterialModule }         from '../imports/material.module';
+import { EmailControlComponent }  from './email-control/email-control.component';
 import { RequiredInputComponent } from './required-input/required-input.component';
 
 @NgModule({
@@ -13,9 +14,11 @@ import { RequiredInputComponent } from './required-input/required-input.componen
   ],
   declarations: [
     RequiredInputComponent,
+    EmailControlComponent,
   ],
   exports: [
     RequiredInputComponent,
+    EmailControlComponent,
   ],
 })
 export class ControlsModule { }
