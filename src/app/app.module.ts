@@ -1,17 +1,19 @@
-import { BrowserModule }       from '@angular/platform-browser';
-import { HttpClientModule }    from '@angular/common/http';
-import { NgModule }            from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule }           from '@angular/platform-browser';
+import { HttpClientModule }        from '@angular/common/http';
+import { MaterialModule }          from './core/imports/material.module';
+import { NgModule }                from '@angular/core';
+import { ReactiveFormsModule }     from '@angular/forms';
 
-import { AppComponent }        from './app.component';
+import { AppComponent }            from './app.component';
 import {
   AppRoutingModule,
   routedComponents as mainAppRoutedComponents,
-}                              from './app-routing.module';
-import { CoreModule }          from './core/core.module';
-import { FooterComponent }     from './features/footer/footer.component';
-import { NavigationComponent } from './features/navigation/navigation.component';
-import { PipeModule }          from './core/pipes/pipe.module';
+}                                  from './app-routing.module';
+import { CoreModule }              from './core/core.module';
+import { FooterComponent }         from './features/footer/footer.component';
+import { NavigationComponent }     from './features/navigation/navigation.component';
+import { PipeModule }              from './core/pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import { PipeModule }          from './core/pipes/pipe.module';
     mainAppRoutedComponents,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
     HttpClientModule,
+    MaterialModule,
     PipeModule.forRoot(),
     ReactiveFormsModule,
     AppRoutingModule,
