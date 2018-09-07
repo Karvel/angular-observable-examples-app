@@ -5,6 +5,7 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { MaterialModule }         from '../imports/material.module';
 import { PipeModule }             from '../pipes/pipe.module';
 import { EmailControlComponent }  from './email-control/email-control.component';
+import { PhoneControlComponent }  from './phone-control/phone-control.component';
 import { RequiredInputComponent } from './required-input/required-input.component';
 
 @NgModule({
@@ -15,12 +16,14 @@ import { RequiredInputComponent } from './required-input/required-input.componen
     ReactiveFormsModule,
   ],
   declarations: [
-    RequiredInputComponent,
     EmailControlComponent,
+    PhoneControlComponent,
+    RequiredInputComponent,
   ],
   exports: [
-    RequiredInputComponent,
     EmailControlComponent,
+    PhoneControlComponent,
+    RequiredInputComponent,
   ],
 })
 export class ControlsModule { }
