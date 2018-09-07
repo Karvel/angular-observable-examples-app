@@ -7,13 +7,13 @@ import {
 import { CONSTANTS } from '../utils/constants';
 
 export class EmailValidation {
-  static email(placeholder: string = 'Email', isRequired?: boolean): ValidatorFn {
+  static validEmail(isRequired?: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      if (isRequired && !control.value && control.value !== 0) {
-        return { 'isRequired' : `${placeholder} is required.` };
+      if (!control.value) {
+        return isRequired ? { 'incorrectEmail' : `Email is required.` } : null;
       }
-      if (control.value && !CONSTANTS.emailPattern.test(control.value)) {
-        return { 'email' : `${placeholder} is invalid.` };
+      if (!CONSTANTS.emailPattern.test(control.value)) {
+        return { 'incorrectEmail' : `Email is invalid.` };
       }
 
       return null;
