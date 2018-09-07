@@ -3,6 +3,7 @@ import { CommonModule }           from '@angular/common';
 import { ReactiveFormsModule }    from '@angular/forms';
 
 import { MaterialModule }         from '../imports/material.module';
+import { PipeModule }             from '../pipes/pipe.module';
 import { EmailControlComponent }  from './email-control/email-control.component';
 import { RequiredInputComponent } from './required-input/required-input.component';
 
@@ -10,6 +11,7 @@ import { RequiredInputComponent } from './required-input/required-input.componen
   imports: [
     CommonModule,
     MaterialModule,
+    PipeModule,
     ReactiveFormsModule,
   ],
   declarations: [

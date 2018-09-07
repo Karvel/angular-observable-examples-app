@@ -1,13 +1,16 @@
-import { NgModule }     from '@angular/core';
+import { NgModule }           from '@angular/core';
 
-import { SafeHTMLPipe } from './safe-html.pipe';
+import { FirstFormErrorPipe } from './first-form-error.pipe';
+import { SafeHTMLPipe }       from './safe-html.pipe';
 
 
 @NgModule({
   declarations: [
+    FirstFormErrorPipe,
     SafeHTMLPipe,
   ],
   exports: [
+    FirstFormErrorPipe,
     SafeHTMLPipe,
   ],
 })
