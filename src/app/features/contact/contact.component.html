@@ -1,1 +1,24 @@
-Contact Me
+<form [formGroup]="contactForm">
+	<div>
+		<app-email-control
+			[form]="contactForm"
+			[formControlTitle]="'email'"
+      [placeholder]="'Email'"
+      [isRequired]="true"
+		></app-email-control>
+		<app-phone-control
+			[form]="contactForm"
+			[formControlTitle]="'phone'"
+      [placeholder]="'Phone'"
+      [isRequired]="true"
+		></app-phone-control>
+	</div>
+	<button
+		class="submit-button"
+		type="submit"
+		mat-raised-button
+		[disabled]="!contactForm.valid"
+	>
+		Submit
+	</button>
+</form>
