@@ -1,7 +1,7 @@
 interface Constants {
-  readonly emailPattern: RegExp;
+  readonly EMAIL_REGEX: RegExp;
 }
 
 export const CONSTANTS: Constants = {
-  emailPattern: /^(?!\.)(?!.*?\.(\.|@))[\w\d.!#$%&'*+\-\/=?^_`{|}~]+@[\w\d.-]+\.[\w\d]{2,}$/,
+  EMAIL_REGEX : /^(?!\.)(?!.*?\.(\.|@))[\w\d.!#$%&'*+\-\/=?^_`{|}~]+@[\w\d.-]+\.[\w\d]{2,}$/,
 };

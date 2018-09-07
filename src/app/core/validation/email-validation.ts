@@ -12,7 +12,7 @@ export class EmailValidation {
       if (!control.value) {
         return isRequired ? { 'invalidEmail' : `Email is required.` } : null;
       }
-      if (!CONSTANTS.emailPattern.test(control.value)) {
+      if (!CONSTANTS.EMAIL_REGEX.test(control.value)) {
         return { 'invalidEmail' : `Email is invalid.` };
       }
 
