@@ -22,6 +22,11 @@ export class ContactComponent {
     this.contactForm = this.formBuilder.group({
       email: '',
       phone: '',
+      firstName: '',
+      lastName: '',
+      message: '',
+      subject: '',
+      contactType: '',
     });
   }
 }
