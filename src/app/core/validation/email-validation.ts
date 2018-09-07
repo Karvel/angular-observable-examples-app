@@ -10,10 +10,10 @@ export class EmailValidation {
   static validEmail(isRequired?: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
-        return isRequired ? { 'incorrectEmail' : `Email is required.` } : null;
+        return isRequired ? { 'invalidEmail' : `Email is required.` } : null;
       }
       if (!CONSTANTS.emailPattern.test(control.value)) {
-        return { 'incorrectEmail' : `Email is invalid.` };
+        return { 'invalidEmail' : `Email is invalid.` };
       }
 
       return null;
