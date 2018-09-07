@@ -1,24 +1,61 @@
 <form [formGroup]="contactForm">
-	<div>
-		<app-email-control
-			[form]="contactForm"
-			[formControlTitle]="'email'"
+  <div>
+    <app-required-input
+      [form]="contactForm"
+      [formControlTitle]="'firstName'"
+      [placeholder]="'First Name'"
+    ></app-required-input>
+    <mat-form-field>
+      <input
+        name="lastName"
+        id="lastName"
+        matInput
+        placeholder="Last Name"
+        formControlName="lastName"
+      >
+    </mat-form-field>
+    <app-required-input
+      [form]="contactForm"
+      [formControlTitle]="'subject'"
+      [placeholder]="'Subject'"
+    ></app-required-input>
+    <mat-form-field>
+      <input
+        name="message"
+        id="message"
+        matInput
+        placeholder="Message"
+        formControlName="message"
+      >
+    </mat-form-field>
+    <div>
+      <mat-radio-group [formControlName]="'contactType'" [required]="true">
+        <mat-radio-button [value]="'e'">Email</mat-radio-button>
+        <mat-radio-button [value]="'p'">Phone Number</mat-radio-button>
+        <mat-error *ngIf="contactType.errors?.required && contactType.touched">
+          This value is required.
+        </mat-error>
+      </mat-radio-group>
+    </div>
+    <app-email-control
+      [form]="contactForm"
+      [formControlTitle]="'email'"
       [placeholder]="'Email'"
       [isRequired]="true"
-		></app-email-control>
-		<app-phone-control
-			[form]="contactForm"
-			[formControlTitle]="'phone'"
+    ></app-email-control>
+    <app-phone-control
+      [form]="contactForm"
+      [formControlTitle]="'phone'"
       [placeholder]="'Phone'"
       [isRequired]="true"
-		></app-phone-control>
-	</div>
-	<button
-		class="submit-button"
-		type="submit"
-		mat-raised-button
-		[disabled]="!contactForm.valid"
-	>
-		Submit
-	</button>
+    ></app-phone-control>
+  </div>
+  <button
+    class="submit-button"
+    type="submit"
+    mat-raised-button
+    [disabled]="!contactForm.valid"
+  >
+    Submit
+  </button>
 </form>
