@@ -29,4 +29,8 @@ export class ContactComponent {
       contactType: '',
     });
   }
+
+  public get contactType(): AbstractControl {
+    return this.contactForm.get('contactType');
+  }
 }
