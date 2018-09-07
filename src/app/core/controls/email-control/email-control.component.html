@@ -5,10 +5,10 @@
       matInput
       [formControlName]="formControlTitle"
       [placeholder]="placeholder"
-      required
+      [required]="isRequired"
     >
     <mat-error *ngIf="form.get(formControlTitle).errors">
-      {{ form.get(formControlTitle).errors.email }}
+      {{ form.get(formControlTitle).errors | firstFormError }}
     </mat-error>
   </mat-form-field>
 </form>
