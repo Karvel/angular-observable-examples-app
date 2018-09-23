@@ -3,14 +3,15 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   OnInit,
-}                       from '@angular/core';
+}                          from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-}                       from '@angular/forms';
+}                          from '@angular/forms';
 
-import { Subscription } from 'rxjs';
+import { Subscription }    from 'rxjs';
+
 import { EmailValidation } from '../../core/validation/email-validation';
 import { PhoneValidation } from '../../core/validation/phone-validation';
 
