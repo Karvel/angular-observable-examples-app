@@ -25,6 +25,10 @@ export class NavigationComponent {
       name  : 'Contact',
       route : '/contact',
     },
+    {
+      name  : 'Register',
+      route : '/register',
+    },
   ];
 
   constructor() { }
