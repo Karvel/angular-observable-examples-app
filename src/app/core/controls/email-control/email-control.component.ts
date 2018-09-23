@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
@@ -8,9 +9,10 @@ import { FormGroup }       from '@angular/forms';
 import { EmailValidation } from '../../validation/email-validation';
 
 @Component({
-  selector    : 'app-email-control',
-  templateUrl : './email-control.component.html',
-  styleUrls   : ['./email-control.component.scss'],
+  selector        : 'app-email-control',
+  templateUrl     : './email-control.component.html',
+  styleUrls       : ['./email-control.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class EmailControlComponent implements OnInit {
   @Input() public form: FormGroup;

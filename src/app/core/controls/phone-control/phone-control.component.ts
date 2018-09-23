@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
@@ -8,9 +9,10 @@ import { FormGroup }       from '@angular/forms';
 import { PhoneValidation } from '../../validation/phone-validation';
 
 @Component({
-  selector    : 'app-phone-control',
-  templateUrl : './phone-control.component.html',
-  styleUrls   : ['./phone-control.component.scss'],
+  selector        : 'app-phone-control',
+  templateUrl     : './phone-control.component.html',
+  styleUrls       : ['./phone-control.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PhoneControlComponent implements OnInit {
   @Input() public form: FormGroup;

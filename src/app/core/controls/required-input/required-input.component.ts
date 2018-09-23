@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
@@ -8,9 +9,10 @@ import { FormGroup }          from '@angular/forms';
 import { RequiredValidation } from '../../validation/required-validation';
 
 @Component({
-  selector    : 'app-required-input',
-  templateUrl : './required-input.component.html',
-  styleUrls   : ['./required-input.component.scss'],
+  selector        : 'app-required-input',
+  templateUrl     : './required-input.component.html',
+  styleUrls       : ['./required-input.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class RequiredInputComponent implements OnInit {
   @Input() public form: FormGroup;
