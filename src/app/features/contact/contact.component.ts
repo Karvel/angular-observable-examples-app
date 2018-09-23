@@ -69,7 +69,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   private setupConditionalValidators(): void {
     const contactFormSubscription: Subscription = this.contactForm.valueChanges.subscribe(form => {
-      console.log('setupConditionalValidators form', form);
       if (form.contactType === 'email') {
         this.phone.setValidators([]);
         this.email.setValidators([EmailValidation.validEmail(true)]);
