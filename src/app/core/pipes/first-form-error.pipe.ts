@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'firstFormError' })
 export class FirstFormErrorPipe implements PipeTransform {
- public transform(value: Object): string {
+ public transform(value: object): string {
    if (!value) { return ''; }
    if (typeof value !== 'object') { return value; }
 
