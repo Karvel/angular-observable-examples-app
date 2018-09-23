@@ -12,6 +12,8 @@ import {
 }                             from '@angular/forms';
 
 import { Subscription }       from 'rxjs';
+
+import { CONSTANTS }          from '../../core/utils/constants';
 import { EmailValidation }    from '../../core/validation/email-validation';
 import { PasswordValidation } from '../../core/validation/password-validation';
 
@@ -81,6 +83,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
       (formChanges.length >= 8)
         ? this.passwordMin.setValue(true, { onlySelf: true })
         : this.passwordMin.setValue(false, { onlySelf: true });
+      (CONSTANTS.SYMBOL_REGEX.test(formChanges))
+        ? this.passwordSpecial.setValue(true, { onlySelf: true })
+        : this.passwordSpecial.setValue(false, { onlySelf: true });
+      (CONSTANTS.DIGIT_REGEX.test(formChanges))
+        ? this.passwordDigit.setValue(true, { onlySelf: true })
+        : this.passwordDigit.setValue(false, { onlySelf: true });
     });
 
     this.subscriptions.push(passwordControlSubscription);
