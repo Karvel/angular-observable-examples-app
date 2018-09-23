@@ -79,16 +79,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   private setupConditionalValidators(): void {
-    const passwordControlSubscription: Subscription = this.password.valueChanges.subscribe((formChanges: string) => {
-      (formChanges.length >= 8)
-        ? this.passwordMin.setValue(true, { onlySelf: true })
-        : this.passwordMin.setValue(false, { onlySelf: true });
-      (CONSTANTS.SYMBOL_REGEX.test(formChanges))
-        ? this.passwordSpecial.setValue(true, { onlySelf: true })
-        : this.passwordSpecial.setValue(false, { onlySelf: true });
-      (CONSTANTS.DIGIT_REGEX.test(formChanges))
-        ? this.passwordDigit.setValue(true, { onlySelf: true })
-        : this.passwordDigit.setValue(false, { onlySelf: true });
+    const passwordControlSubscription: Subscription = this.password.valueChanges.subscribe((controlValue: string) => {
+      (controlValue.length >= 8)
+        ? this.passwordMin.setValue(true)
+        : this.passwordMin.setValue(false);
+      (CONSTANTS.SYMBOL_REGEX.test(controlValue))
+        ? this.passwordSpecial.setValue(true)
+        : this.passwordSpecial.setValue(false);
+      (CONSTANTS.DIGIT_REGEX.test(controlValue))
+        ? this.passwordDigit.setValue(true)
+        : this.passwordDigit.setValue(false);
     });
 
     this.subscriptions.push(passwordControlSubscription);
