@@ -3,11 +3,9 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export class RequiredValidation {
   static required(placeholder: string = 'This field'): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      if (!control.value) {
-        return { 'isRequired': `${placeholder} is required.` };
-      }
+      const condition: boolean = !control.value && control.value !== 0;
 
-      return null;
+      return condition ? { 'isRequired': `${placeholder} is required.` } : null ;
     };
   }
 }

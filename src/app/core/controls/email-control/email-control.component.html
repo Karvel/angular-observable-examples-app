@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+  <mat-form-field>
+    <input
+      type="email"
+      matInput
+      [formControlName]="formControlTitle"
+      [placeholder]="placeholder"
+      [required]="isRequired"
+    >
+    <mat-error *ngIf="form.get(formControlTitle).errors">
+      {{ form.get(formControlTitle).errors | firstFormError }}
+    </mat-error>
+  </mat-form-field>
+</form>

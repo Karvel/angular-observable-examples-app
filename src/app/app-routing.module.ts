@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent }       from './features/about/about.component';
 import { ContactComponent }     from './features/contact/contact.component';
 import { HomeComponent }        from './features/home/home.component';
+import { RegisterComponent }    from './features/register/register.component';
 import { ResourcesComponent }   from './features/resources/resources.component';
 import { NotFoundComponent }    from './features/not-found/not-found.component';
 
@@ -29,6 +30,11 @@ const routes: Routes = [
    data      : { title: 'Resources' },
  },
  {
+   path      : 'register',
+   component : RegisterComponent,
+   data      : { title: 'Register' },
+ },
+ {
    path      : '**',
    component : NotFoundComponent,
    data      : { title: 'Not Found' },
@@ -46,5 +52,6 @@ export const routedComponents = [
   HomeComponent,
   ContactComponent,
   NotFoundComponent,
+  RegisterComponent,
   ResourcesComponent,
 ];
