@@ -19,4 +19,8 @@ export class TodoService {
   public getTodoByID(id: number): Observable<Todo> {
     return this.apiService.todo.getTodoByID(id).pipe(map((response: Todo) => response));
   }
+
+  public createTodo(payload: Todo): Observable<Todo> {
+    return this.apiService.todo.createTodo(payload).pipe(map((response: Todo) => response));
+  }
 }
