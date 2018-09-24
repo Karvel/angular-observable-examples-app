@@ -1,8 +1,15 @@
-import { Injectable }          from '@angular/core';
+import { Injectable }     from '@angular/core';
+
+import { ApiTodoService } from './endpoints/todo/api-todo.service';
 
 @Injectable()
 export class ApiService {
-  constructor() { }
+  constructor(
+    public todo: ApiTodoService,
+  ) { }
 }
 
-export const apiProviders = [];
+export const apiProviders = [
+  ApiService,
+  ApiTodoService,
+];

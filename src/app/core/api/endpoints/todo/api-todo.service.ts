@@ -1,0 +1,21 @@
+import { HttpClient }  from '@angular/common/http';
+import { Injectable }  from '@angular/core';
+
+import { Observable }  from 'rxjs';
+
+import { environment } from '../../../../../environments/environment';
+
+@Injectable()
+export class ApiTodoService {
+  public url: string = environment.apiRoute;
+
+  constructor(private http: HttpClient) { }
+
+  public getTodos(): Observable<Object> {
+    return this.http.get(`${this.url}/todo/`);
+  }
+
+  public getTodoByID(id: number): Observable<Object> {
+    return this.http.get(`${this.url}/todo/${id}`);
+  }
+}
