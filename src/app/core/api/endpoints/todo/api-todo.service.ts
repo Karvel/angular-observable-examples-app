@@ -23,4 +23,12 @@ export class ApiTodoService {
   public createTodo(todo: Todo): Observable<Object> {
     return this.http.post(`${this.url}/todo/`, todo);
   }
+
+  public updateTodo(id: number, todo: Todo): Observable<Object> {
+    return this.http.put(`${this.url}/todo/${id}`, todo);
+  }
+
+  public deleteTodo(id: number): Observable<Object> {
+    return this.http.delete(`${this.url}/todo/${id}`);
+  }
 }

@@ -23,4 +23,12 @@ export class TodoService {
   public createTodo(payload: Todo): Observable<Todo> {
     return this.apiService.todo.createTodo(payload).pipe(map((response: Todo) => response));
   }
+
+  public updateTodo(id: number, todo: Todo): Observable<void> {
+    return this.apiService.todo.updateTodo(id, todo).pipe(map((response: never) => response));
+  }
+
+  public deleteTodo(id: number): Observable<void> {
+    return this.apiService.todo.deleteTodo(id).pipe(map((response: never) => response));
+  }
 }
