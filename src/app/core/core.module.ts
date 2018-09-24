@@ -9,6 +9,7 @@ import { ApiModule }            from './api/api.module';
 import { FormService }          from './services/form.service';
 import { PipeModule }           from './pipes/pipe.module';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
+import { TodoService }          from './services/todo.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
   ],
   providers: [
     FormService,
+    TodoService,
   ],
 })
 export class CoreModule {
