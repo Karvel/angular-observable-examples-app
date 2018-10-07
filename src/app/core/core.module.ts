@@ -9,6 +9,7 @@ import { ApiModule }            from './api/api.module';
 import { FormService }          from './services/form.service';
 import { PipeModule }           from './pipes/pipe.module';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
+import { ScheduleService }      from './services/schedule.service';
 import { TodoService }          from './services/todo.service';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TodoService }          from './services/todo.service';
   ],
   providers: [
     FormService,
+    ScheduleService,
     TodoService,
   ],
 })

@@ -10,7 +10,9 @@ import { Todo }        from '../../../models/todo';
 export class ApiTodoService {
   public url: string = environment.apiRoute;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   public getTodos(): Observable<Object> {
     return this.http.get(`${this.url}/todo/`);
