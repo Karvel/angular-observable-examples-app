@@ -16,6 +16,7 @@ import {
 import { ControlsModule }            from './core//controls/controls.module';
 import { CoreModule }                from './core/core.module';
 import { environment }               from '../environments/environment';
+import { ExamplesModule }            from './features/examples/examples.module';
 import { FooterComponent }           from './features/footer/footer.component';
 import { NavigationComponent }       from './features/navigation/navigation.component';
 import { PipeModule }                from './core/pipes/pipe.module';
@@ -38,6 +39,7 @@ import { PipeModule }                from './core/pipes/pipe.module';
     MaterialModule,
     PipeModule.forRoot(),
     ReactiveFormsModule,
+    ExamplesModule,
     AppRoutingModule,
   ],
   providers: [],

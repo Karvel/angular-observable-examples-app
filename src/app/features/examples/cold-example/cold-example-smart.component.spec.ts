@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExamplesSmartComponent } from './examples-smart.component';
+import { ColdExampleSmartComponent } from './cold-example-smart.component';
 
-describe('ExamplesSmartComponent', () => {
-  let component: ExamplesSmartComponent;
-  let fixture: ComponentFixture<ExamplesSmartComponent>;
+describe('ColdExampleSmartComponent', () => {
+  let component: ColdExampleSmartComponent;
+  let fixture: ComponentFixture<ColdExampleSmartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExamplesSmartComponent ]
+      declarations: [ ColdExampleSmartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExamplesSmartComponent);
+    fixture = TestBed.createComponent(ColdExampleSmartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
