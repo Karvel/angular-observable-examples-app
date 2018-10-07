@@ -1,20 +1,34 @@
-import { Injectable }          from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable }          from 'rxjs';
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject,
+}                     from '@angular/fire/database';
 
 @Injectable()
 export class ApiScheduleService {
+  public scheduleRef: AngularFireList<string> = null;
+
+  private dbPath: string = '/schedule';
 
   constructor(
     private rtdb: AngularFireDatabase,
-  ) { }
-
-  public getSchedule(): Observable<Object> {
-    return this.rtdb.list('schedule').valueChanges();
+  ) {
+    this.scheduleRef = rtdb.list(this.dbPath);
   }
 
-  public addScheduleItem(event): firebase.database.ThenableReference {
-    return this.rtdb.list(`schedule`).push(event);
+  public getSchedule(): AngularFireList<string> {
+    return this.scheduleRef;
+  }
+
+  public getScheduleByID(key: string): AngularFireObject<string> {
+    const itemPath =  `${this.dbPath}/${key}`;
+
+    return this.rtdb.object(itemPath);
+  }
+
+  public addScheduleItem(event): void {
+    this.scheduleRef.push(event);
   }
 }

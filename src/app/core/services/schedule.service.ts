@@ -12,11 +12,12 @@ export class ScheduleService {
   ) { }
 
   public getSchedule(): Observable<any> {
-    return this.apiService.schedule.getSchedule().pipe(map((response) => response));
+    return this.apiService.schedule.getSchedule()
+      .valueChanges()
+      .pipe(map((response) => response));
   }
 
   public addScheduleItem(event): any {
-    return this.apiService.schedule.addScheduleItem(event)
-      .then((response) => response);
+    return this.apiService.schedule.addScheduleItem(event);
   }
 }
