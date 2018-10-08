@@ -22,6 +22,10 @@ export class NavigationComponent {
       route : '/about',
     },
     {
+      name  : 'Examples',
+      route : '/examples',
+    },
+    {
       name  : 'Resources',
       route : '/resources',
     },

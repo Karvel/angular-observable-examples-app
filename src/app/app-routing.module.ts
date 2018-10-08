@@ -49,8 +49,8 @@ export class AppRoutingModule {}
 
 export const routedComponents = [
   AboutComponent,
-  HomeComponent,
   ContactComponent,
+  HomeComponent,
   NotFoundComponent,
   RegisterComponent,
   ResourcesComponent,

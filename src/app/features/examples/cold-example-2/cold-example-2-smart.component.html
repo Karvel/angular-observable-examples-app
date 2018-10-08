@@ -1,0 +1,6 @@
+<app-cold-example-2-presentation
+  [todoList]="todoList$ | async"
+  [todo]="todo$ | async"
+  (emitGetTodos)="getTodos()"
+  (emitGetTodoByID)="getTodoByID()"
+></app-cold-example-2-presentation>
