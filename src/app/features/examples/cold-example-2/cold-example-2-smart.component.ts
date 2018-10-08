@@ -1,8 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
 }                      from '@angular/core';
 
 import { Observable }  from 'rxjs';
@@ -16,15 +14,13 @@ import { TodoService } from '../../../core/services/todo.service';
   styleUrls       : ['./cold-example-2-smart.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class ColdExample2SmartComponent implements OnInit {
+export class ColdExample2SmartComponent {
   public todoList$: Observable<Todo[]>;
   public todo$: Observable<Todo>;
 
   constructor(
     private todoService: TodoService,
   ) { }
-
-  ngOnInit(): void { }
 
   public getTodos(): void {
     this.todoList$ = this.todoService.getTodos();

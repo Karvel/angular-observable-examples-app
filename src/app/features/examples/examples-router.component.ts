@@ -22,6 +22,10 @@ export class ExamplesRouterComponent {
       route : 'hot-1',
       label : 'Hot Observables 1',
     },
+    {
+      route : 'higher-order',
+      label : 'Higher Order Operators',
+    },
   ];
   constructor() { }
 }

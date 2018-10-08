@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 }                      from '@angular/core';
 
 import { Observable }  from 'rxjs';
@@ -16,7 +15,7 @@ import { TodoService } from '../../../core/services/todo.service';
   styleUrls       : ['./cold-example-1.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class ColdExample1Component implements OnInit {
+export class ColdExample1Component {
   public todoList$: Observable<Todo[]>;
   public todo$: Observable<Todo>;
   public todoName$: Observable<string>;
@@ -26,8 +25,6 @@ export class ColdExample1Component implements OnInit {
   constructor(
     private todoService: TodoService,
   ) { }
-
-  ngOnInit(): void { }
 
   public getTodos(): void {
     this.todoList$ = this.todoService.getTodos();
