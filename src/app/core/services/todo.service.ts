@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of as observableOf,
+}                     from 'rxjs';
 import {
   map,
   shareReplay,
 }                     from 'rxjs/operators';
 
 import { ApiService } from '../api/api.service';
-import { Todo }       from '../models/todo';
+import {
+  mockTodoList,
+  Todo,
+}                     from '../models/todo';
 
 @Injectable()
 export class TodoService {
@@ -17,6 +23,10 @@ export class TodoService {
 
   public getTodos(): Observable<Todo[]> {
     return this.apiService.todo.getTodos().pipe(map((response: Todo[]) => response));
+  }
+
+  public getTodosCreate(): Observable<Todo[]> {
+    return observableOf(mockTodoList);
   }
 
   public getTodoByID(id: number): Observable<Todo> {

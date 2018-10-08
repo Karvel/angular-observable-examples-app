@@ -17,10 +17,16 @@
   >
     Get Todo Details
   </button>
+  <button
+    mat-raised-button
+    (click)="getTodosCold()"
+  >
+    Get Todo List - correct cold example
+  </button>
 </div>
 
 <div>
-  <!-- getTodos -->
+  <!-- getTodos/getTodosCold -->
   <div>
     <ul *ngIf="(todoList$ | async) as todoList">
       <li *ngFor="let todo of todoList">

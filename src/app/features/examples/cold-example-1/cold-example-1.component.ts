@@ -33,6 +33,10 @@ export class ColdExample1Component implements OnInit {
     this.todoList$ = this.todoService.getTodos();
   }
 
+  public getTodosCold(): void {
+    this.todoList$ = this.todoService.getTodosCreate();
+  }
+
   public getTodoByID(): void {
     const payload: number = 1;
     this.todo$ = this.todoService.getTodoByID(payload);
