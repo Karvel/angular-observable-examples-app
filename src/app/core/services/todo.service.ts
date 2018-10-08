@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map }        from 'rxjs/operators';
+import {
+  map,
+  shareReplay,
+}                     from 'rxjs/operators';
 
 import { ApiService } from '../api/api.service';
 import { Todo }       from '../models/todo';
@@ -18,6 +21,13 @@ export class TodoService {
 
   public getTodoByID(id: number): Observable<Todo> {
     return this.apiService.todo.getTodoByID(id).pipe(map((response: Todo) => response));
+  }
+
+  public getTodoByIDHot(id: number): Observable<Todo> {
+    return this.apiService.todo.getTodoByID(id).pipe(
+      shareReplay(),
+      map((response: Todo) => response),
+    );
   }
 
   public createTodo(payload: Todo): Observable<Todo> {
