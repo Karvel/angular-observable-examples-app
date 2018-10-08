@@ -18,6 +18,10 @@ export class ExamplesRouterComponent {
       route : 'cold-2',
       label : 'Cold Observables 2',
     },
+    {
+      route : 'hot-1',
+      label : 'Hot Observables 1',
+    },
   ];
   constructor() { }
 }
