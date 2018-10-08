@@ -29,4 +29,9 @@ export class ColdExample2SmartComponent implements OnInit {
   public getTodos(): void {
     this.todoList$ = this.todoService.getTodos();
   }
+
+  public getTodoByID(): void {
+    const payload: number = 1;
+    this.todo$ = this.todoService.getTodoByID(payload);
+  }
 }

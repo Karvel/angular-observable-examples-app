@@ -1,13 +1,28 @@
-<button
-  mat-raised-button
-  (click)="getTodos()"
->
-  Get Todo List
-</button>
+<div>
+  <button
+    mat-raised-button
+    (click)="getTodos()"
+  >
+    Get Todo List
+  </button>
+  <button
+    mat-raised-button
+    (click)="getTodoByID()"
+  >
+    Get Todo
+  </button>
+</div>
 
-<ul>
-  <li *ngFor="let todo of todoList">
-    {{ todo.name }}
-    {{ todo.timeCreated | date:'medium'}}
-  </li>
-</ul>
+<div>
+  <ul>
+    <li *ngFor="let todo of todoList">
+      {{ todo.name }}
+      {{ todo.timeCreated | date:'medium'}}
+    </li>
+  </ul>
+
+  <div *ngIf="todo">
+      {{ todo.name }}
+      {{ todo.timeCreated | date:'medium'}}
+  </div>
+</div>

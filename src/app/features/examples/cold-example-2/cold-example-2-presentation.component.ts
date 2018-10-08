@@ -15,13 +15,19 @@ import { Todo } from '../../../core/models/todo';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class ColdExample2PresentationComponent {
+  @Input() public todo: Todo;
   @Input() public todoList: Todo[];
 
-  @Output() public emitGetTodos: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public emitGetTodos: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public emitGetTodoByID: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
   public getTodos(): void {
     this.emitGetTodos.emit();
+  }
+
+  public getTodoByID(): void {
+    this.emitGetTodoByID.emit();
   }
 }
