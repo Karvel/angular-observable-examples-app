@@ -1,9 +1,10 @@
-import { NgModule }                         from '@angular/core';
-import { RouterModule, Routes }             from '@angular/router';
+import { NgModule }                          from '@angular/core';
+import { RouterModule, Routes }              from '@angular/router';
 
-import { ColdExamplePresentationComponent } from './cold-example/cold-example-presentation.component';
-import { ColdExampleSmartComponent }        from './cold-example/cold-example-smart.component';
-import { ExamplesRouterComponent }          from './examples-router.component';
+import { ColdExample1Component }             from './cold-example-1/cold-example-1.component';
+import { ColdExample2PresentationComponent } from './cold-example-2/cold-example-2-presentation.component';
+import { ColdExample2SmartComponent }        from './cold-example-2/cold-example-2-smart.component';
+import { ExamplesRouterComponent }           from './examples-router.component';
 
 const routes: Routes = [
  {
@@ -12,9 +13,14 @@ const routes: Routes = [
    data      : { title: 'Examples' },
    children  : [
     {
-      path       : 'cold',
-      component : ColdExampleSmartComponent,
-      data      : { title: 'Cold' },
+      path       : 'cold-1',
+      component : ColdExample1Component,
+      data      : { title: 'Cold Example 1' },
+    },
+    {
+      path       : 'cold-2',
+      component : ColdExample2SmartComponent,
+      data      : { title: 'Cold Example 2' },
     },
    ],
  },
@@ -28,6 +34,7 @@ export class ExamplesRoutingModule {}
 
 export const routedComponents = [
   ExamplesRouterComponent,
-  ColdExamplePresentationComponent,
-  ColdExampleSmartComponent,
+  ColdExample1Component,
+  ColdExample2PresentationComponent,
+  ColdExample2SmartComponent,
 ];

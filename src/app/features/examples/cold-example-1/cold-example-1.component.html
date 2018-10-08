@@ -1,0 +1,40 @@
+<button
+  mat-raised-button
+  (click)="getTodos()"
+>
+  Get Todo List
+</button>
+<button
+  mat-raised-button
+  (click)="getTodoByID()"
+>
+  Get Todo
+</button>
+<button
+  mat-raised-button
+  (click)="getTodoDetailsByID()"
+>
+  Get Todo Details
+</button>
+
+<div>
+  <ul *ngIf="(todoList$ | async) as todoList">
+    <li *ngFor="let todo of todoList">
+      {{ todo.name }}
+      <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
+    </li>
+  </ul>
+</div>
+
+<div>
+  {{ (todo$ | async)?.name }}
+  {{ (todo$ | async)?.timeCreated | date:'medium' }}
+  <span *ngIf="(todo$ | async) as todo">
+    <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
+  </span>
+</div>
+
+<div>
+  {{ (todoName$ | async) }}
+  {{ (todoTimeCreated$ | async) | date:'medium' }}
+</div>

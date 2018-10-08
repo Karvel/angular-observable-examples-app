@@ -1,0 +1,13 @@
+<button
+  mat-raised-button
+  (click)="getTodos()"
+>
+  Get Todo List
+</button>
+
+<ul>
+  <li *ngFor="let todo of todoList">
+    {{ todo.name }}
+    {{ todo.timeCreated | date:'medium'}}
+  </li>
+</ul>

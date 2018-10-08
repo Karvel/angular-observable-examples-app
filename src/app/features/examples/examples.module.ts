@@ -1,5 +1,6 @@
 import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
+import { FormsModule }         from '@angular/forms';
 
 import {
   ExamplesRoutingModule,
@@ -16,6 +17,7 @@ import { PipeModule }          from '../../core/pipes/pipe.module';
     CommonModule,
     PipeModule.forRoot(),
     MaterialModule,
+    FormsModule,
     ExamplesRoutingModule,
   ],
 })

@@ -11,8 +11,12 @@ import {
 export class ExamplesRouterComponent {
   public navLinks = [
     {
-      route : 'cold',
-      label : 'Cold Observables',
+      route : 'cold-1',
+      label : 'Cold Observables 1',
+    },
+    {
+      route : 'cold-2',
+      label : 'Cold Observables 2',
     },
   ];
   constructor() { }
