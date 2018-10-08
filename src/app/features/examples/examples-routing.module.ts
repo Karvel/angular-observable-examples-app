@@ -5,6 +5,7 @@ import { ColdExample1Component }             from './cold-example-1/cold-example
 import { ColdExample2PresentationComponent } from './cold-example-2/cold-example-2-presentation.component';
 import { ColdExample2SmartComponent }        from './cold-example-2/cold-example-2-smart.component';
 import { ExamplesRouterComponent }           from './examples-router.component';
+import { HigherOrderObservablesComponent }   from './higher-order-observables/higher-order-observables.component';
 import { HotExample1Component }              from './hot-example-1/hot-example-1.component';
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
       component : HotExample1Component,
       data      : { title: 'Hot Example 1' },
     },
+    {
+      path       : 'higher-order',
+      component : HigherOrderObservablesComponent,
+      data      : { title: 'Higher Order Operators' },
+    },
    ],
  },
 ];
@@ -43,5 +49,6 @@ export const routedComponents = [
   ColdExample1Component,
   ColdExample2PresentationComponent,
   ColdExample2SmartComponent,
+  HigherOrderObservablesComponent,
   HotExample1Component,
 ];
