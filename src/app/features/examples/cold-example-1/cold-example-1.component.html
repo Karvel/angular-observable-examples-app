@@ -20,6 +20,7 @@
 </div>
 
 <div>
+  <!-- getTodos -->
   <div>
     <ul *ngIf="(todoList$ | async) as todoList">
       <li *ngFor="let todo of todoList">
@@ -28,7 +29,7 @@
       </li>
     </ul>
   </div>
-
+  <!-- getTodoByID -->
   <div>
     {{ (todo$ | async)?.name }}
     {{ (todo$ | async)?.timeCreated | date:'medium' }}
@@ -36,7 +37,7 @@
       <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
     </span>
   </div>
-
+  <!-- getTodoDetailsByID -->
   <div>
     {{ (todoName$ | async) }}
     {{ (todoTimeCreated$ | async) | date:'medium' }}
