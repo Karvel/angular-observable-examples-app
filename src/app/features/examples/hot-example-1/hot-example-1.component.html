@@ -19,7 +19,7 @@
     <ul *ngIf="(todoList$ | async) as todoList">
       <li *ngFor="let todo of todoList">
         <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
-        {{ todo.name }}
+        {{ todo.name }} - {{ todo.timeCreated | date:'medium'}}
       </li>
     </ul>
   </div>
@@ -28,7 +28,6 @@
     <span *ngIf="(todo$ | async) as todo">
       <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
     </span>
-    {{ (todo$ | async)?.name }}
-    {{ (todo$ | async)?.timeCreated | date:'medium' }}
+    {{ (todo$ | async)?.name }} <span *ngIf="(todo$ | async)">-</span> {{ (todo$ | async)?.timeCreated | date:'medium' }}
   </div>
 </div>
