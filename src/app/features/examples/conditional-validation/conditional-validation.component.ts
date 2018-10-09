@@ -12,16 +12,16 @@ import {
 
 import { Subscription }    from 'rxjs';
 
-import { EmailValidation } from '../../core/validation/email-validation';
-import { PhoneValidation } from '../../core/validation/phone-validation';
+import { EmailValidation } from '../../../core/validation/email-validation';
+import { PhoneValidation } from '../../../core/validation/phone-validation';
 
 @Component({
-  selector        : 'app-contact',
-  templateUrl     : './contact.component.html',
-  styleUrls       : ['./contact.component.scss'],
+  selector        : 'app-conditional-validation',
+  templateUrl     : './conditional-validation.component.html',
+  styleUrls       : ['./conditional-validation.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent implements OnInit, OnDestroy {
+export class ConditionalValidationComponent implements OnInit, OnDestroy {
   public contactForm: FormGroup;
 
   private subscriptions: Subscription[] = [];

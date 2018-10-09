@@ -2,9 +2,7 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AboutComponent }       from './features/about/about.component';
-import { ContactComponent }     from './features/contact/contact.component';
 import { HomeComponent }        from './features/home/home.component';
-import { RegisterComponent }    from './features/register/register.component';
 import { ResourcesComponent }   from './features/resources/resources.component';
 import { NotFoundComponent }    from './features/not-found/not-found.component';
 
@@ -20,19 +18,9 @@ const routes: Routes = [
    data      : { title: 'About' },
  },
  {
-   path      : 'contact',
-   component : ContactComponent,
-   data      : { title: 'Contact' },
- },
- {
    path      : 'resources',
    component : ResourcesComponent,
    data      : { title: 'Resources' },
- },
- {
-   path      : 'register',
-   component : RegisterComponent,
-   data      : { title: 'Register' },
  },
  {
    path      : '**',
@@ -49,9 +37,7 @@ export class AppRoutingModule {}
 
 export const routedComponents = [
   AboutComponent,
-  ContactComponent,
   HomeComponent,
   NotFoundComponent,
-  RegisterComponent,
   ResourcesComponent,
 ];

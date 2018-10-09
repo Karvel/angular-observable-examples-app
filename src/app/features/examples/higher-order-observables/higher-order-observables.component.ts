@@ -2,14 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
-}                       from '@angular/core';
+}                           from '@angular/core';
 
 import {
   Observable,
   forkJoin,
   combineLatest,
   Subscription,
-}                       from 'rxjs';
+}                           from 'rxjs';
 import {
   concatMap,
   exhaustMap,
@@ -17,7 +17,7 @@ import {
   pairwise,
   switchMap,
   tap,
-}                       from 'rxjs/operators';
+}                           from 'rxjs/operators';
 
 import { OperatorsService } from '../../../core/services/operators.service';
 
@@ -41,6 +41,28 @@ export class HigherOrderObservablesComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  public getForkJoin(): void {
+    console.log('~~~getForkJoin~~~');
+    const forkJoinExample$ = forkJoin(this.colorList$, this.numberList$)
+      .subscribe(result => console.log('forkJoin result', result));
+    this.subscriptions.push(forkJoinExample$);
+  }
+
+  public getCombineLatest(): void {
+    console.log('~~~getCombineLatest~~~');
+    const combineLatestExample$ = combineLatest(this.colorList$, this.numberList$)
+      .subscribe(result => console.log('combineLatest result', result));
+    this.subscriptions.push(combineLatestExample$);
+  }
+
+  public getPairwise(): void {
+    console.log('~~~getPairwise~~~');
+    const pairwiseExample$ = this.colorList$
+      .pipe(pairwise())
+      .subscribe(result => console.log('pairwise result', result));
+    this.subscriptions.push(pairwiseExample$);
   }
 
   public getConcatMap(): void {
@@ -73,28 +95,6 @@ export class HigherOrderObservablesComponent implements OnDestroy {
       .pipe(exhaustMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('exhaustMap result', result));
     this.subscriptions.push(exhaustMapExample$);
-  }
-
-  public getPairwise(): void {
-    console.log('~~~getPairwise~~~');
-    const pairwiseExample$ = this.colorList$
-      .pipe(pairwise())
-      .subscribe(result => console.log('pairwise result', result));
-    this.subscriptions.push(pairwiseExample$);
-  }
-
-  public getCombineLatest(): void {
-    console.log('~~~getCombineLatest~~~');
-    const combineLatestExample$ = combineLatest(this.colorList$, this.numberList$)
-      .subscribe(result => console.log('combineLatest result', result));
-    this.subscriptions.push(combineLatestExample$);
-  }
-
-  public getForkJoin(): void {
-    console.log('~~~getForkJoin~~~');
-    const forkJoinExample$ = forkJoin(this.colorList$, this.numberList$)
-      .subscribe(result => console.log('forkJoin result', result));
-    this.subscriptions.push(forkJoinExample$);
   }
 
   private initializeStreams(): void {

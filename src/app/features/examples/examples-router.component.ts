@@ -26,6 +26,14 @@ export class ExamplesRouterComponent {
       route : 'higher-order',
       label : 'Higher Order Operators',
     },
+    {
+      route : 'conditional-validation',
+      label : 'Conditional Validation',
+    },
+    {
+      route : 'dynamic-form',
+      label : 'Dynamic Form Subscription',
+    },
   ];
   constructor() { }
 }

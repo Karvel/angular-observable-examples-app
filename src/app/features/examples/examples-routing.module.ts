@@ -4,9 +4,11 @@ import { RouterModule, Routes }              from '@angular/router';
 import { ColdExample1Component }             from './cold-example-1/cold-example-1.component';
 import { ColdExample2PresentationComponent } from './cold-example-2/cold-example-2-presentation.component';
 import { ColdExample2SmartComponent }        from './cold-example-2/cold-example-2-smart.component';
+import { ConditionalValidationComponent }    from './conditional-validation/conditional-validation.component';
 import { ExamplesRouterComponent }           from './examples-router.component';
 import { HigherOrderObservablesComponent }   from './higher-order-observables/higher-order-observables.component';
 import { HotExample1Component }              from './hot-example-1/hot-example-1.component';
+import { DynamicFormSubscriptionComponent }  from './dynamic-form-subscription/dynamic-form-subscription.component';
 
 const routes: Routes = [
  {
@@ -34,6 +36,16 @@ const routes: Routes = [
       component : HigherOrderObservablesComponent,
       data      : { title: 'Higher Order Operators' },
     },
+    {
+      path       : 'conditional-validation',
+      component : ConditionalValidationComponent,
+      data      : { title: 'Conditional Validation' },
+    },
+    {
+      path       : 'dynamic-form',
+      component : DynamicFormSubscriptionComponent,
+      data      : { title: 'Dynamic Form' },
+    },
    ],
  },
 ];
@@ -49,6 +61,8 @@ export const routedComponents = [
   ColdExample1Component,
   ColdExample2PresentationComponent,
   ColdExample2SmartComponent,
+  ConditionalValidationComponent,
+  DynamicFormSubscriptionComponent,
   HigherOrderObservablesComponent,
   HotExample1Component,
 ];
