@@ -44,6 +44,9 @@
   </div>
   <!-- getTodoDetailsByID -->
   <div>
+    <span *ngIf="(todoIsComplete$ | async) as todoIsComplete">
+      <mat-checkbox disabled [(ngModel)]="todoIsComplete.isComplete"></mat-checkbox>
+    </span>
     {{ (todoName$ | async) }} <span *ngIf="(todoName$ | async)">-</span> {{ (todoTimeCreated$ | async) | date:'medium' }}
   </div>
 </div>
