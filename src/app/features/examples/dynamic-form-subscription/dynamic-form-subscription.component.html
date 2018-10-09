@@ -1,47 +1,53 @@
 <form [formGroup]="registerForm">
   <div>
-    <mat-form-field>
-      <input
-        name="email"
-        id="email"
-        type="text"
-        matInput
-        placeholder="Email"
-        formControlName="email"
-        required
-      >
-      <mat-error *ngIf="email.errors">
-        {{ email.errors | firstFormError }}
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        name="confirmEmail"
-        id="confirmEmail"
-        type="text"
-        matInput
-        placeholder="Confirm Email"
-        formControlName="confirmEmail"
-        required
-      >
-      <mat-error *ngIf="confirmEmail.errors">
-        {{ confirmEmail.errors | firstFormError }}
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        name="password"
-        id="password"
-        type="password"
-        matInput
-        placeholder="Password"
-        formControlName="password"
-        required
-      >
-      <mat-error *ngIf="password.errors">
-        {{ password.errors | firstFormError }}
-      </mat-error>
-    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <input
+          name="email"
+          id="email"
+          type="text"
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          required
+        >
+        <mat-error *ngIf="email.errors">
+          {{ email.errors | firstFormError }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          name="confirmEmail"
+          id="confirmEmail"
+          type="text"
+          matInput
+          placeholder="Confirm Email"
+          formControlName="confirmEmail"
+          required
+        >
+        <mat-error *ngIf="confirmEmail.errors">
+          {{ confirmEmail.errors | firstFormError }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          required
+        >
+        <mat-error *ngIf="password.errors">
+          {{ password.errors | firstFormError }}
+        </mat-error>
+      </mat-form-field>
+    </div>
   </div>
   <button
     class="submit-button"
