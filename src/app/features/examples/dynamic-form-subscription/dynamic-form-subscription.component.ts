@@ -13,17 +13,17 @@ import {
 
 import { Subscription }       from 'rxjs';
 
-import { CONSTANTS }          from '../../core/utils/constants';
-import { EmailValidation }    from '../../core/validation/email-validation';
-import { PasswordValidation } from '../../core/validation/password-validation';
+import { CONSTANTS }          from '../../../core/utils/constants';
+import { EmailValidation }    from '../../../core/validation/email-validation';
+import { PasswordValidation } from '../../../core/validation/password-validation';
 
 @Component({
-  selector        : 'app-register',
-  templateUrl     : './register.component.html',
-  styleUrls       : ['./register.component.scss'],
+  selector        : 'app-dynamic-form-subscription',
+  templateUrl     : './dynamic-form-subscription.component.html',
+  styleUrls       : ['./dynamic-form-subscription.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class DynamicFormSubscriptionComponent implements OnInit, OnDestroy {
   public registerForm: FormGroup;
 
   private subscriptions: Subscription[] = [];

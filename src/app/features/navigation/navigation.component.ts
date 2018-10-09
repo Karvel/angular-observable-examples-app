@@ -18,20 +18,16 @@ export class NavigationComponent {
       route : '',
     },
     {
-      name  : 'About',
-      route : '/about',
-    },
-    {
       name  : 'Examples',
       route : '/examples',
     },
     {
-      name  : 'Resources',
-      route : '/resources',
+      name  : 'About',
+      route : '/about',
     },
     {
-      name  : 'Register',
-      route : '/register',
+      name  : 'Resources',
+      route : '/resources',
     },
   ];
 

@@ -30,6 +30,10 @@ export class ExamplesRouterComponent {
       route : 'conditional-validation',
       label : 'Conditional Validation',
     },
+    {
+      route : 'dynamic-form',
+      label : 'Dynamic Form Subscription',
+    },
   ];
   constructor() { }
 }

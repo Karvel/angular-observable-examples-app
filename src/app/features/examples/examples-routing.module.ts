@@ -8,6 +8,7 @@ import { ConditionalValidationComponent }    from './conditional-validation/cond
 import { ExamplesRouterComponent }           from './examples-router.component';
 import { HigherOrderObservablesComponent }   from './higher-order-observables/higher-order-observables.component';
 import { HotExample1Component }              from './hot-example-1/hot-example-1.component';
+import { DynamicFormSubscriptionComponent }  from './dynamic-form-subscription/dynamic-form-subscription.component';
 
 const routes: Routes = [
  {
@@ -41,9 +42,9 @@ const routes: Routes = [
       data      : { title: 'Conditional Validation' },
     },
     {
-      path       : 'higher-order',
-      component : HigherOrderObservablesComponent,
-      data      : { title: 'Higher Order Operators' },
+      path       : 'dynamic-form',
+      component : DynamicFormSubscriptionComponent,
+      data      : { title: 'Dynamic Form' },
     },
    ],
  },
@@ -61,6 +62,7 @@ export const routedComponents = [
   ColdExample2PresentationComponent,
   ColdExample2SmartComponent,
   ConditionalValidationComponent,
+  DynamicFormSubscriptionComponent,
   HigherOrderObservablesComponent,
   HotExample1Component,
 ];
