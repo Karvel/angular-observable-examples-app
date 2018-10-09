@@ -52,16 +52,20 @@
     Register
   </button>
 
-  <div>Password Requirements</div>
   <div>
-    <mat-checkbox formControlName="passwordMin">
-      Password length
-    </mat-checkbox>
-    <mat-checkbox formControlName="passwordDigit">
-      Contains at least 1 digit
-    </mat-checkbox>
-    <mat-checkbox formControlName="passwordSpecial">
-      Contains at least 1 symbol
-    </mat-checkbox>
+    <div class="password-container">
+      <h2>Password Requirements</h2>
+      <div class="password-requirements-row">
+        <mat-checkbox formControlName="passwordMin">
+          Password length
+        </mat-checkbox>
+        <mat-checkbox formControlName="passwordDigit">
+          Contains at least 1 digit
+        </mat-checkbox>
+        <mat-checkbox formControlName="passwordSpecial">
+          Contains at least 1 symbol
+        </mat-checkbox>
+      </div>
+    </div>
   </div>
 </form>
