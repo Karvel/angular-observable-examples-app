@@ -20,13 +20,13 @@
       [placeholder]="'Subject'"
     ></app-required-input>
     <mat-form-field>
-      <input
+      <textarea
         name="message"
         id="message"
         matInput
         placeholder="Message"
         formControlName="message"
-      >
+      ></textarea>
     </mat-form-field>
     <div>
       <mat-radio-group [formControlName]="'contactType'" [required]="true">
