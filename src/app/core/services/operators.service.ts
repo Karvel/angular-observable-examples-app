@@ -10,7 +10,7 @@ export class OperatorsService {
   public getExample$(exampleList: string[], intervalTime: number): Observable<string> {
     return interval(intervalTime).pipe(
       map(index => exampleList[index]),
-      take(3),
+      take(exampleList.length),
     );
   }
 
