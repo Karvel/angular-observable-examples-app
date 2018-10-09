@@ -8,6 +8,7 @@
         matInput
         placeholder="Email"
         formControlName="email"
+        required
       >
       <mat-error *ngIf="email.errors">
         {{ email.errors | firstFormError }}
