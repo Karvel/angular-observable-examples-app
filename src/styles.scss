@@ -3,7 +3,42 @@
 @import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'app/features/navigation/navigation.component';
+@import 'app/features/home/home.component';
+@import 'app/features/about/about.component';
+@import 'app/features/not-found/not-found.component';
+
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+.view-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
+  }
+}
 
 .routed-tab-container {
-  padding: 20px 0;
+  padding: 20px;
 }
