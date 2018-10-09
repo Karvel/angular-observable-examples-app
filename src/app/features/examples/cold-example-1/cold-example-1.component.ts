@@ -18,9 +18,9 @@ import { TodoService } from '../../../core/services/todo.service';
 export class ColdExample1Component {
   public todoList$: Observable<Todo[]>;
   public todo$: Observable<Todo>;
+  public todoIsComplete$: Observable<{ 'isComplete': boolean; }>;
   public todoName$: Observable<string>;
   public todoTimeCreated$: Observable<string>;
-  public todoIsComplete$: Observable<boolean>;
 
   constructor(
     private todoService: TodoService,
@@ -40,8 +40,18 @@ export class ColdExample1Component {
   }
 
   public getTodoDetailsByID(): void {
+    this.getTodoIsCompleteByID();
     this.getTodoNameByID();
     this.getTodoTimeCreatedByID();
+  }
+
+  private getTodoIsCompleteByID(): void {
+    const payload: number = 1;
+    this.todoIsComplete$ = this.todoService.getTodoByID(payload).pipe(
+      map(response => {
+        return { 'isComplete': response.isComplete };
+      }),
+    );
   }
 
   private getTodoNameByID(): void {

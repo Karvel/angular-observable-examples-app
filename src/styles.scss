@@ -3,7 +3,78 @@
 @import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'app/features/navigation/navigation.component';
+@import 'app/features/home/home.component';
+@import 'app/features/about/about.component';
+@import 'app/features/not-found/not-found.component';
+
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+.view-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
+  }
+}
+
+// GLOBAL STYLES
+html {
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: .05vw;
+  font-weight: 500;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+  letter-spacing: 0.025vw;
+  line-height: 1.2;
+}
+a, button {
+  font: inherit;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+mat-form-field {
+  width: 500px;
+}
 
 .routed-tab-container {
-  padding: 20px 0;
+  padding: 20px;
+}
+
+.button-row {
+  button {
+    margin: 0 20px 20px 0;
+  }
 }

@@ -1,4 +1,4 @@
-<div>
+<div class="button-row">
   <button
     mat-raised-button
     (click)="getTodos()"
@@ -16,13 +16,13 @@
 <div>
   <ul>
     <li *ngFor="let todo of todoList">
-      {{ todo.name }}
-      {{ todo.timeCreated | date:'medium'}}
+      <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
+      {{ todo.name }} - {{ todo.timeCreated | date:'medium'}}
     </li>
   </ul>
 
   <div *ngIf="todo">
-      {{ todo.name }}
-      {{ todo.timeCreated | date:'medium'}}
+      <mat-checkbox disabled [(ngModel)]="todo.isComplete"></mat-checkbox>
+      {{ todo.name }} - {{ todo.timeCreated | date:'medium'}}
   </div>
 </div>

@@ -1,0 +1,23 @@
+@import '../../../variables';
+
+#footer {
+  background-color: $black;
+  color: $white;
+  ul {
+    display: flex;
+    width: 500px;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  .copyright {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  a:hover {
+    color: $accent;
+  }
+}

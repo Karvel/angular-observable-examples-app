@@ -33,8 +33,8 @@ export class DynamicFormSubscriptionComponent implements OnInit, OnDestroy {
   ) {
     this.registerForm = this.formBuilder.group(
       {
-        email: ['', Validators.compose([EmailValidation.validEmail()])],
-        confirmEmail: ['', Validators.compose([])],
+        email: ['', Validators.compose([EmailValidation.validEmail(true)])],
+        confirmEmail: ['', Validators.compose([EmailValidation.validEmail(true)])],
         password: ['', Validators.compose([PasswordValidation.validPassword(true)])],
         passwordMin: { value: false, disabled: true, },
         passwordDigit: { value: false, disabled: true, },
