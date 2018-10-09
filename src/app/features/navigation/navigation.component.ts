@@ -30,10 +30,6 @@ export class NavigationComponent {
       route : '/resources',
     },
     {
-      name  : 'Contact',
-      route : '/contact',
-    },
-    {
       name  : 'Register',
       route : '/register',
     },
