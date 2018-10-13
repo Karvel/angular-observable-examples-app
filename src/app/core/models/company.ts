@@ -18,4 +18,4 @@ export class Company implements Company {
   }
 }
 
-export const newMockCompanyList: Company[] = [];
+export const pristineCompanyList: Company[] = [
