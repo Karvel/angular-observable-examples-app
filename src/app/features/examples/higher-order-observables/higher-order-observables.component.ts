@@ -66,21 +66,21 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
 
   public getForkJoin(): void {
     console.log('~~~getForkJoin~~~');
-    const forkJoinExample$ = forkJoin(this.colorList$, this.numberList$)
+    const forkJoinExample$: Subscription = forkJoin(this.colorList$, this.numberList$)
       .subscribe(result => console.log('forkJoin result', result));
     this.subscriptions.push(forkJoinExample$);
   }
 
   public getCombineLatest(): void {
     console.log('~~~getCombineLatest~~~');
-    const combineLatestExample$ = combineLatest(this.colorList$, this.numberList$)
+    const combineLatestExample$: Subscription = combineLatest(this.colorList$, this.numberList$)
       .subscribe(result => console.log('combineLatest result', result));
     this.subscriptions.push(combineLatestExample$);
   }
 
   public getPairwise(): void {
     console.log('~~~getPairwise~~~');
-    const pairwiseExample$ = this.colorList$
+    const pairwiseExample$: Subscription = this.colorList$
       .pipe(pairwise())
       .subscribe(result => console.log('pairwise result', result));
     this.subscriptions.push(pairwiseExample$);
@@ -88,7 +88,7 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
 
   public getConcatMap(): void {
     console.log('~~~getConcatMap~~~');
-    const concatMapExample$ = this.colorList$
+    const concatMapExample$: Subscription = this.colorList$
       .pipe(concatMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('concatMap result', result));
     this.subscriptions.push(concatMapExample$);
@@ -96,7 +96,7 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
 
   public getMergeMap(): void {
     console.log('~~~getMergeMap~~~');
-    const mergeMapExample$ = this.colorList$
+    const mergeMapExample$: Subscription = this.colorList$
       .pipe(mergeMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('mergeMap result', result));
     this.subscriptions.push(mergeMapExample$);
@@ -104,7 +104,7 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
 
   public getSwitchMap(): void {
     console.log('~~~getSwitchMap~~~');
-    const switchMapExample$ = this.colorList$
+    const switchMapExample$: Subscription = this.colorList$
       .pipe(switchMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('switchMap result', result));
     this.subscriptions.push(switchMapExample$);
@@ -112,7 +112,7 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
 
   public getExhaustMap(): void {
     console.log('~~~getExhaustMap~~~');
-    const exhaustMapExample$ = this.colorList$
+    const exhaustMapExample$: Subscription = this.colorList$
       .pipe(exhaustMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('exhaustMap result', result));
     this.subscriptions.push(exhaustMapExample$);
