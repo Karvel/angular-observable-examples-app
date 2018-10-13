@@ -17,6 +17,11 @@ const routes: Routes = [
    data      : { title: 'Examples' },
    children  : [
     {
+      path       : '',
+      redirectTo : 'cold-1',
+      pathMatch  : 'full',
+    },
+    {
       path       : 'cold-1',
       component : ColdExample1Component,
       data      : { title: 'Cold Example 1' },

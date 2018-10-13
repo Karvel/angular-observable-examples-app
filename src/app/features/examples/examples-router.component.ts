@@ -9,29 +9,30 @@ import {
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class ExamplesRouterComponent {
+  private parentRoute: string = '/examples/';
   public navLinks = [
     {
-      route : 'cold-1',
+      path  : `${this.parentRoute}cold-1`,
       label : 'Cold Observables 1',
     },
     {
-      route : 'cold-2',
+      path  : `${this.parentRoute}cold-2`,
       label : 'Cold Observables 2',
     },
     {
-      route : 'hot-1',
+      path  : `${this.parentRoute}hot-1`,
       label : 'Hot Observables 1',
     },
     {
-      route : 'higher-order',
+      path  : `${this.parentRoute}higher-order`,
       label : 'Higher Order Operators',
     },
     {
-      route : 'conditional-validation',
+      path  : `${this.parentRoute}conditional-validation`,
       label : 'Conditional Validation',
     },
     {
-      route : 'dynamic-form',
+      path  : `${this.parentRoute}dynamic-form`,
       label : 'Dynamic Form Subscription',
     },
   ];
