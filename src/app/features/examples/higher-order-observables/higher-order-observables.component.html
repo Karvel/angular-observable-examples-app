@@ -42,3 +42,11 @@
     See exhaustMap
   </button>
 </div>
+<div *ngIf="companyList">
+	<ul>
+		<li *ngFor="let company of companyList">
+			<mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>
+			{{ company.companyName }}
+		</li>
+	</ul>
+</div>

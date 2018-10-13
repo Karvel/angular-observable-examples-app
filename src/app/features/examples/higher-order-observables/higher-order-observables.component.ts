@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
+  OnInit,
+  ChangeDetectorRef,
 }                           from '@angular/core';
 
 import {
@@ -19,6 +21,10 @@ import {
   tap,
 }                           from 'rxjs/operators';
 
+import { CompanyService }   from 'src/app/core/services/company.service';
+import {
+  Company,
+}                           from 'src/app/core/models/company';
 import { OperatorsService } from '../../../core/services/operators.service';
 
 @Component({
@@ -27,20 +33,35 @@ import { OperatorsService } from '../../../core/services/operators.service';
   styleUrls       : ['./higher-order-observables.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservablesComponent implements OnDestroy {
+export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
+  public companyList: Company[] = [];
   public colorList$: Observable<string>;
   public numberList$: Observable<string>;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
+    private cd: ChangeDetectorRef,
+    private companyService: CompanyService,
     private operatorsService: OperatorsService,
   ) {
     this.initializeStreams();
   }
 
+  ngOnInit(): void {
+    this.getCompany();
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  public getCompany(): void {
+    const getCompany$: Subscription = this.companyService.getCompany().subscribe(response => {
+      this.companyList = response;
+      this.cd.detectChanges();
+    });
+    this.subscriptions.push(getCompany$);
   }
 
   public getForkJoin(): void {
