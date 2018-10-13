@@ -76,19 +76,19 @@
     </mat-form-field>
   </div>
 </form>
-<div *ngIf="(companyListExhaust$ | async) as companyListExhaust">
+<div *ngIf="companyListExhaust">
   companyListExhaust:
     <div *ngFor="let company of companyListExhaust">
       {{ company.companyName }}
     </div>
 </div>
-<div *ngIf="(companyListSwitch$ | async) as companyListSwitch">
+<div *ngIf="companyListSwitch">
   companyListSwitch:
   <div *ngFor="let company of companyListSwitch">
     {{ company.companyName }}
   </div>
 </div>
-<div *ngIf="companyList">
+<div>
 	<ul>
 		<li *ngFor="let company of companyList">
 			<mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>

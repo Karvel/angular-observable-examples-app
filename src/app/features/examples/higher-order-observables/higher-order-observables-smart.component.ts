@@ -36,12 +36,12 @@ import {
 import { OperatorsService } from '../../../core/services/operators.service';
 
 @Component({
-  selector        : 'app-higher-order-observables',
-  templateUrl     : './higher-order-observables.component.html',
-  styleUrls       : ['./higher-order-observables.component.scss'],
+  selector        : 'app-higher-order-observables-smart',
+  templateUrl     : './higher-order-observables-smart.component.html',
+  styleUrls       : ['./higher-order-observables-smart.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
+export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
   public companyList: Company[] = [];
   public companyListSwitch$: Observable<Company[]>;
   public colorList$: Observable<string>;
