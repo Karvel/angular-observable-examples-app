@@ -42,6 +42,18 @@
     Log exhaustMap
   </button>
 </div>
+<div class="button-row">
+  <button mat-raised-button (click)="updateCompanyConcat()">
+		Update Company - concatMap
+	</button>
+	<button mat-raised-button (click)="updateCompanyMerge()">
+		Update Company - mergeMap
+	</button>
+	<button mat-raised-button color="warn" (click)="resetCompanyNames()">
+		Reset
+	</button>
+</div>
+
 <form autocomplete="off" [formGroup]="form">
   <div>
     <mat-form-field>

@@ -14,6 +14,7 @@ import {
 import {
   Observable,
   forkJoin,
+  from,
   combineLatest,
   Subscription,
 }                           from 'rxjs';
@@ -30,6 +31,7 @@ import {
 import { CompanyService }   from 'src/app/core/services/company.service';
 import {
   Company,
+  pristineCompanyList,
 }                           from 'src/app/core/models/company';
 import { OperatorsService } from '../../../core/services/operators.service';
 
@@ -128,6 +130,33 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
       .pipe(exhaustMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('exhaustMap result', result));
     this.subscriptions.push(exhaustMapExample$);
+  }
+
+  public updateCompanyConcat(): void {
+    const concatMapControlSubscription: Subscription = from(this.companyList)
+      .pipe(concatMap(company => {
+        company.isSelected = true;
+        return this.companyService.updateCompanyList(company);
+      }))
+      .subscribe();
+    this.subscriptions.push(concatMapControlSubscription);
+  }
+
+  public updateCompanyMerge(): void {
+    const mergeMapControlSubscription: Subscription = from(this.companyList)
+      .pipe(mergeMap(company => {
+        company.companyName = company.companyName + ' foo';
+        return this.companyService.updateCompanyList(company);
+      }))
+      .subscribe();
+    this.subscriptions.push(mergeMapControlSubscription);
+  }
+
+  public resetCompanyNames(): void {
+    const companyNamesSubscription: Subscription = from(pristineCompanyList)
+      .pipe(mergeMap(company => this.companyService.updateCompanyList(company)))
+      .subscribe();
+    this.subscriptions.push(companyNamesSubscription);
   }
 
   private initializeStreams(): void {
