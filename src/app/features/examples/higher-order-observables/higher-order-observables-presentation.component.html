@@ -54,9 +54,11 @@
 	</button>
 </div>
 
-<form autocomplete="off" [formGroup]="form">
+<div class="container">
   <div>
-    <mat-form-field>
+    <form autocomplete="off" [formGroup]="form">
+      <div>
+        <mat-form-field>
       <input
         name="switchMap"
         placeholder="switchMap search"
@@ -85,14 +87,16 @@
 <div *ngIf="companyListSwitch">
   companyListSwitch:
   <div *ngFor="let company of companyListSwitch">
-    {{ company.companyName }}
+        {{ company.companyName }}
+      </div>
+    </div>
   </div>
-</div>
-<div>
-	<ul>
-		<li *ngFor="let company of companyList">
-			<mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>
-			{{ company.companyName }}
-		</li>
-	</ul>
+  <div class="company-container">
+    <ul>
+      <li *ngFor="let company of companyList">
+        <mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>
+        {{ company.companyName }}
+      </li>
+    </ul>
+  </div>
 </div>
