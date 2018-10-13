@@ -5,6 +5,11 @@ import {
   OnInit,
   ChangeDetectorRef,
 }                           from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  AbstractControl,
+}                           from '@angular/forms';
 
 import {
   Observable,
@@ -36,16 +41,19 @@ import { OperatorsService } from '../../../core/services/operators.service';
 export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
   public companyList: Company[] = [];
   public colorList$: Observable<string>;
+  public form: FormGroup;
   public numberList$: Observable<string>;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private cd: ChangeDetectorRef,
+    private fb: FormBuilder,
     private companyService: CompanyService,
     private operatorsService: OperatorsService,
   ) {
     this.initializeStreams();
+    this.buildForm();
   }
 
   ngOnInit(): void {
@@ -126,4 +134,11 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
       tap(response => console.log(`~~~ ${response} ~~~`)),
     );
   }
+
+  private buildForm(): void {
+    this.form = this.fb.group({
+      switchMap: '',
+      exhaustMap: '',
+    });
 }
+}
