@@ -91,7 +91,8 @@
       </div>
     </div>
   </div>
-  <div class="company-container">
+  <div class="company-container" *ngIf="companyList.length">
+    <h2>Companies:</h2>
     <ul>
       <li *ngFor="let company of companyList">
         <mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>
