@@ -42,6 +42,40 @@
     Log exhaustMap
   </button>
 </div>
+<form autocomplete="off" [formGroup]="form">
+  <div>
+    <mat-form-field>
+      <input
+        name="switchMap"
+        placeholder="switchMap search"
+        matInput
+        formControlName="switchMap"
+      >
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input
+        name="exhaustMap"
+        placeholder="exhaustMap search"
+        matInput
+        formControlName="exhaustMap"
+      >
+    </mat-form-field>
+  </div>
+</form>
+<div *ngIf="(companyListExhaust$ | async) as companyListExhaust">
+  companyListExhaust:
+    <div *ngFor="let company of companyListExhaust">
+      {{ company.companyName }}
+    </div>
+</div>
+<div *ngIf="(companyListSwitch$ | async) as companyListSwitch">
+  companyListSwitch:
+  <div *ngFor="let company of companyListSwitch">
+    {{ company.companyName }}
+  </div>
+</div>
 <div *ngIf="companyList">
 	<ul>
 		<li *ngFor="let company of companyList">

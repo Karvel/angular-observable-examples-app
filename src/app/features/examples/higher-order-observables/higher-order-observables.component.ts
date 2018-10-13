@@ -19,6 +19,7 @@ import {
 }                           from 'rxjs';
 import {
   concatMap,
+  debounceTime,
   exhaustMap,
   mergeMap,
   pairwise,
@@ -40,7 +41,9 @@ import { OperatorsService } from '../../../core/services/operators.service';
 })
 export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
   public companyList: Company[] = [];
+  public companyListSwitch$: Observable<Company[]>;
   public colorList$: Observable<string>;
+  public companyListExhaust$: Observable<Company[]>;
   public form: FormGroup;
   public numberList$: Observable<string>;
 
@@ -54,6 +57,7 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
   ) {
     this.initializeStreams();
     this.buildForm();
+    this.initializeFormSubscriptions();
   }
 
   ngOnInit(): void {
@@ -140,5 +144,26 @@ export class HigherOrderObservablesComponent implements OnInit, OnDestroy {
       switchMap: '',
       exhaustMap: '',
     });
+  }
+
+  private get switchMapControl(): AbstractControl {
+    return this.form.get('switchMap');
+  }
+
+  private get exhaustMapControl(): AbstractControl {
+    return this.form.get('exhaustMap');
+  }
+
+  private initializeFormSubscriptions(): void {
+    this.companyListExhaust$ = this.exhaustMapControl.valueChanges
+      .pipe(
+        debounceTime(1000),
+        exhaustMap((input: string) => this.companyService.searchCompanyByNameRestful(input)),
+      );
+    this.companyListSwitch$ = this.switchMapControl.valueChanges
+      .pipe(
+        debounceTime(1000),
+        switchMap((input: string) => this.companyService.searchCompanyByNameRestful(input)),
+      );
+  }
 }
-}
