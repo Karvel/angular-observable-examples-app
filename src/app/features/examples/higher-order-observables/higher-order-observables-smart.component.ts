@@ -63,19 +63,19 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getCompany();
+    this.getCompanyList();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  public getCompany(): void {
-    const getCompany$: Subscription = this.companyService.getCompany().subscribe(response => {
+  public getCompanyList(): void {
+    const companyList$: Subscription = this.companyService.getCompanyList().subscribe(response => {
       this.companyList = response;
       this.cd.detectChanges();
     });
-    this.subscriptions.push(getCompany$);
+    this.subscriptions.push(companyList$);
   }
 
   public getForkJoin(): void {

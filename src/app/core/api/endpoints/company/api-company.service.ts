@@ -28,7 +28,7 @@ export class ApiCompanyService {
     this.companyRef = rtdb.list(this.dbPath2);
   }
 
-  public getCompany(): Observable<any> {
+  public getCompanyList(): Observable<Company[]> {
     return this.companyRef.snapshotChanges().pipe(
       map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
     );

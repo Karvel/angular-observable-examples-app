@@ -14,8 +14,8 @@ export class CompanyService {
     private apiService: ApiService,
   ) { }
 
-  public getCompany(): Observable<Company[]> {
-    return this.apiService.company.getCompany();
+  public getCompanyList(): Observable<Company[]> {
+    return this.apiService.company.getCompanyList();
   }
 
   public searchCompanyByName(companyName: string): Observable<Company[]> {
