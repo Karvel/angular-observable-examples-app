@@ -49,13 +49,13 @@ export class ApiCompanyService {
     );
   }
 
-  public updateCompanyList(company: Company): Observable<any> {
+  public updateCompanyList(company: Company): Observable<Company> {
     const restfulDBPathWithQueries = `${environment.firebase.databaseURL}${this.dbPath2}/${company.key}.json`;
     const payload: Company = {
       companyName: company.companyName,
       address: company.address,
       isSelected: company.isSelected,
     };
-    return this.httpClient.patch(restfulDBPathWithQueries, payload);
+    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Company) => response),);
   }
 }
