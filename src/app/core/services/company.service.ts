@@ -28,7 +28,7 @@ export class CompanyService {
     return (companyName) ? this.apiService.company.searchCompanyByNameRestful(payload) : observableOf(null);
   }
 
-  public updateCompanyList(company: Company): Observable<any> {
+  public updateCompanyList(company: Company): Observable<Company> {
     return this.apiService.company.updateCompanyList(company);
   }
 }
