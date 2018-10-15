@@ -1,0 +1,16 @@
+<app-higher-order-observables-presentation
+  [form]="form"
+  [companyList]="companyList"
+  [companyListSwitch]="companyListSwitch$ | async"
+  [companyListExhaust]="companyListExhaust$ | async"
+  (emitForkJoin)="getForkJoin()"
+  (emitCombineLatest)="getCombineLatest()"
+  (emitPairwise)="getPairwise()"
+  (emitConcatMap)="getConcatMap()"
+  (emitMergeMap)="getMergeMap()"
+  (emitSwitchMap)="getSwitchMap()"
+  (emitExhaustMap)="getExhaustMap()"
+  (emitCompanyConcat)="updateCompanyConcat()"
+  (emitCompanyMerge)="updateCompanyMerge()"
+  (emitReset)="resetCompanyNames()"
+></app-higher-order-observables-presentation>

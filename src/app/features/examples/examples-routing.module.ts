@@ -1,14 +1,15 @@
-import { NgModule }                          from '@angular/core';
-import { RouterModule, Routes }              from '@angular/router';
+import { NgModule }                                    from '@angular/core';
+import { RouterModule, Routes }                        from '@angular/router';
 
-import { ColdExample1Component }             from './cold-example-1/cold-example-1.component';
-import { ColdExample2PresentationComponent } from './cold-example-2/cold-example-2-presentation.component';
-import { ColdExample2SmartComponent }        from './cold-example-2/cold-example-2-smart.component';
-import { ConditionalValidationComponent }    from './conditional-validation/conditional-validation.component';
-import { ExamplesRouterComponent }           from './examples-router.component';
-import { HigherOrderObservablesComponent }   from './higher-order-observables/higher-order-observables.component';
-import { HotExample1Component }              from './hot-example-1/hot-example-1.component';
-import { DynamicFormSubscriptionComponent }  from './dynamic-form-subscription/dynamic-form-subscription.component';
+import { ColdExample1Component }                       from './cold-example-1/cold-example-1.component';
+import { ColdExample2PresentationComponent }           from './cold-example-2/cold-example-2-presentation.component';
+import { ColdExample2SmartComponent }                  from './cold-example-2/cold-example-2-smart.component';
+import { ConditionalValidationComponent }              from './conditional-validation/conditional-validation.component';
+import { ExamplesRouterComponent }                     from './examples-router.component';
+import { HigherOrderObservablesSmartComponent }        from './higher-order-observables/higher-order-observables-smart.component';
+import { HigherOrderObservablesPresentationComponent } from './higher-order-observables/higher-order-observables-presentation.component';
+import { HotExample1Component }                        from './hot-example-1/hot-example-1.component';
+import { DynamicFormSubscriptionComponent }            from './dynamic-form-subscription/dynamic-form-subscription.component';
 
 const routes: Routes = [
  {
@@ -16,6 +17,11 @@ const routes: Routes = [
    component : ExamplesRouterComponent,
    data      : { title: 'Examples' },
    children  : [
+    {
+      path       : '',
+      redirectTo : 'cold-1',
+      pathMatch  : 'full',
+    },
     {
       path       : 'cold-1',
       component : ColdExample1Component,
@@ -33,7 +39,7 @@ const routes: Routes = [
     },
     {
       path       : 'higher-order',
-      component : HigherOrderObservablesComponent,
+      component : HigherOrderObservablesSmartComponent,
       data      : { title: 'Higher Order Operators' },
     },
     {
@@ -63,6 +69,7 @@ export const routedComponents = [
   ColdExample2SmartComponent,
   ConditionalValidationComponent,
   DynamicFormSubscriptionComponent,
-  HigherOrderObservablesComponent,
+  HigherOrderObservablesPresentationComponent,
+  HigherOrderObservablesSmartComponent,
   HotExample1Component,
 ];
