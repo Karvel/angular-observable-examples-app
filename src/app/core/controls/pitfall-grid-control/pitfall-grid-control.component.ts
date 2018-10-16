@@ -5,6 +5,7 @@ import {
   OnInit,
 }                       from '@angular/core';
 import { TableColumns } from '../../models/table-columns';
+import { Utils }        from '../../services/utils';
 
 @Component({
   selector        : 'app-pitfall-grid-control',
@@ -21,16 +22,6 @@ export class PitfallGridControlComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.filterTableColumns(this.displayedColumns);
-  }
-
-  private filterTableColumns(data: TableColumns[]): string[] {
-    data.forEach(datum => {
-      if (this.columnIdList.indexOf(datum.columnId) === -1) {
-        this.columnIdList.push(datum.columnId);
-      }
-    });
-
-    return this.columnIdList;
+    this.columnIdList = Utils.filterTableColumns(this.displayedColumns);
   }
 }
