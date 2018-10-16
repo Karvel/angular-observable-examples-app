@@ -26,7 +26,6 @@ import { TableColumns }    from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallsSmartComponent implements OnInit, OnDestroy {
-  public columnIdList: string[] = [];
   public companyList: Company[];
   public displayedColumns: TableColumns[] = [
     {
@@ -55,7 +54,6 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getEmployeesByCompanyKey();
-    this.filterTableColumns(this.displayedColumns);
   }
 
   ngOnDestroy(): void {
@@ -89,16 +87,6 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
     const filteredEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
 
     return filteredEmployees;
-  }
-
-  private filterTableColumns(data: TableColumns[]): string[] {
-    data.forEach(datum => {
-      if (this.columnIdList.indexOf(datum.columnId) === -1) {
-        this.columnIdList.push(datum.columnId);
-      }
-    });
-
-    return this.columnIdList;
   }
 
   private displayFooToast(isFooAmount: number): void {

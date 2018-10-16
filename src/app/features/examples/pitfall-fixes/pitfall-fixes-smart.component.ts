@@ -31,7 +31,6 @@ import { TableColumns }    from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallFixesSmartComponent implements OnInit {
-  public columnIdList: string[] = [];
   public displayedColumns: TableColumns[] = [
     {
       columnId: 'firstName',
@@ -60,7 +59,6 @@ export class PitfallFixesSmartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployeesByCompanyKey();
-    this.filterTableColumns(this.displayedColumns);
   }
 
   public updateCompanyConcat(): void {
@@ -93,16 +91,6 @@ export class PitfallFixesSmartComponent implements OnInit {
     const filteredEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
 
     return filteredEmployees;
-  }
-
-  private filterTableColumns(data: TableColumns[]): string[] {
-    data.forEach(datum => {
-      if (this.columnIdList.indexOf(datum.columnId) === -1) {
-        this.columnIdList.push(datum.columnId);
-      }
-    });
-
-    return this.columnIdList;
   }
 
   private displayFooToast(isFooAmount: number): void {
