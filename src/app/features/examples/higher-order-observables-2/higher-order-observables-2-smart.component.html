@@ -1,0 +1,6 @@
+<app-higher-order-observables-2-presentation
+  [companyList]="(companyList$ | async)"
+  (emitCompanyConcat)="updateCompanyConcat()"
+  (emitCompanyMerge)="updateCompanyMerge()"
+  (emitReset)="resetCompanyNames()"
+></app-higher-order-observables-2-presentation>

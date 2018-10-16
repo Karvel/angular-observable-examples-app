@@ -9,6 +9,8 @@ import { DynamicFormSubscriptionComponent }            from './dynamic-form-subs
 import { ExamplesRouterComponent }                     from './examples-router.component';
 import { HigherOrderObservablesSmartComponent }        from './higher-order-observables/higher-order-observables-smart.component';
 import { HigherOrderObservablesPresentationComponent } from './higher-order-observables/higher-order-observables-presentation.component';
+import { HigherOrderObservables2SmartComponent }        from './higher-order-observables-2/higher-order-observables-2-smart.component';
+import { HigherOrderObservables2PresentationComponent } from './higher-order-observables-2/higher-order-observables-2-presentation.component';
 import { HotExample1Component }                        from './hot-example-1/hot-example-1.component';
 import { PitfallFixesPresentationComponent }           from './pitfall-fixes/pitfall-fixes-presentation.component';
 import { PitfallFixesSmartComponent }                  from './pitfall-fixes/pitfall-fixes-smart.component';
@@ -45,6 +47,11 @@ const routes: Routes = [
       path      : 'higher-order',
       component : HigherOrderObservablesSmartComponent,
       data      : { title: 'Higher Order Operators' },
+    },
+    {
+      path      : 'higher-order-2',
+      component : HigherOrderObservables2SmartComponent,
+      data      : { title: 'Higher Order Operators 2' },
     },
     {
       path      : 'conditional-validation',
@@ -85,6 +92,8 @@ export const routedComponents = [
   DynamicFormSubscriptionComponent,
   HigherOrderObservablesPresentationComponent,
   HigherOrderObservablesSmartComponent,
+  HigherOrderObservables2PresentationComponent,
+  HigherOrderObservables2SmartComponent,
   HotExample1Component,
   PitfallsPresentationComponent,
   PitfallsSmartComponent,

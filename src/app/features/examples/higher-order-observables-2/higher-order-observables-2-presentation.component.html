@@ -1,0 +1,23 @@
+<div class="button-row">
+  <button mat-raised-button (click)="updateCompanyConcat()">
+		concatMap Update
+	</button>
+	<button mat-raised-button (click)="updateCompanyMerge()">
+		mergeMap Update
+	</button>
+	<button mat-raised-button color="warn" (click)="resetCompanyNames()">
+		Reset
+	</button>
+</div>
+
+<div class="container">
+  <div class="company-container" *ngIf="companyList?.length">
+    <h3>Companies:</h3>
+    <ul>
+      <li *ngFor="let company of companyList">
+        <mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>
+        <span [style.color]="company.color">{{ company.companyName }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
