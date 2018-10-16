@@ -67,7 +67,7 @@ export class PitfallFixesSmartComponent implements OnInit {
     const concatMapControlSubscription: Subscription = from(this.companyList)
       .pipe(concatMap((company: Company) => {
         const payload = { ...company };
-        payload.isSelected = true;
+        payload.isSelected = !(payload.isSelected);
         return this.companyService.updateCompanyList(payload);
       }))
       .subscribe();
