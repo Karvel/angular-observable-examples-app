@@ -7,6 +7,7 @@ import { CommonModule }         from '@angular/common';
 
 import { ApiModule }            from './api/api.module';
 import { CompanyService }       from './services/company.service';
+import { EmployeeService }      from './services/employee.service';
 import { FormService }          from './services/form.service';
 import { PipeModule }           from './pipes/pipe.module';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
@@ -23,6 +24,7 @@ import { TodoService }          from './services/todo.service';
   ],
   providers: [
     CompanyService,
+    EmployeeService,
     FormService,
     ScheduleService,
     OperatorsService,
