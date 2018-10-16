@@ -35,6 +35,10 @@ export class ExamplesRouterComponent {
       path  : `${this.parentRoute}dynamic-form`,
       label : 'Dynamic Form Subscription',
     },
+    {
+      path  : `${this.parentRoute}pitfalls`,
+      label : 'Pitfalls',
+    },
   ];
   constructor() { }
 }

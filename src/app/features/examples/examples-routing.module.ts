@@ -10,6 +10,8 @@ import { HigherOrderObservablesSmartComponent }        from './higher-order-obse
 import { HigherOrderObservablesPresentationComponent } from './higher-order-observables/higher-order-observables-presentation.component';
 import { HotExample1Component }                        from './hot-example-1/hot-example-1.component';
 import { DynamicFormSubscriptionComponent }            from './dynamic-form-subscription/dynamic-form-subscription.component';
+import { PitfallsPresentationComponent }               from './pitfalls/pitfalls-presentation.component';
+import { PitfallsSmartComponent }                      from './pitfalls/pitfalls-smart.component';
 
 const routes: Routes = [
  {
@@ -23,34 +25,39 @@ const routes: Routes = [
       pathMatch  : 'full',
     },
     {
-      path       : 'cold-1',
+      path      : 'cold-1',
       component : ColdExample1Component,
       data      : { title: 'Cold Example 1' },
     },
     {
-      path       : 'cold-2',
+      path      : 'cold-2',
       component : ColdExample2SmartComponent,
       data      : { title: 'Cold Example 2' },
     },
     {
-      path       : 'hot-1',
+      path      : 'hot-1',
       component : HotExample1Component,
       data      : { title: 'Hot Example 1' },
     },
     {
-      path       : 'higher-order',
+      path      : 'higher-order',
       component : HigherOrderObservablesSmartComponent,
       data      : { title: 'Higher Order Operators' },
     },
     {
-      path       : 'conditional-validation',
+      path      : 'conditional-validation',
       component : ConditionalValidationComponent,
       data      : { title: 'Conditional Validation' },
     },
     {
-      path       : 'dynamic-form',
+      path      : 'dynamic-form',
       component : DynamicFormSubscriptionComponent,
       data      : { title: 'Dynamic Form' },
+    },
+    {
+      path      : 'pitfalls',
+      component : PitfallsSmartComponent,
+      data      : { title: 'Pitfalls' },
     },
    ],
  },
@@ -72,4 +79,6 @@ export const routedComponents = [
   HigherOrderObservablesPresentationComponent,
   HigherOrderObservablesSmartComponent,
   HotExample1Component,
+  PitfallsPresentationComponent,
+  PitfallsSmartComponent,
 ];
