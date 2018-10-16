@@ -10,12 +10,12 @@ import { FormGroup } from '@angular/forms';
 import { Company }   from 'src/app/core/models/company';
 
 @Component({
-  selector        : 'app-higher-order-observables-presentation',
-  templateUrl     : './higher-order-observables-presentation.component.html',
-  styleUrls       : ['./higher-order-observables-presentation.component.scss'],
+  selector        : 'app-higher-order-presentation',
+  templateUrl     : './higher-order-presentation.component.html',
+  styleUrls       : ['./higher-order-presentation.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservablesPresentationComponent {
+export class HigherOrderOperatorsPresentationComponent {
   @Input() public companyListSwitch: Company[];
   @Input() public companyListExhaust: Company[];
   @Input() public form: FormGroup;

@@ -9,12 +9,12 @@ import {
 import { Company }   from 'src/app/core/models/company';
 
 @Component({
-  selector        : 'app-higher-order-observables-2-presentation',
-  templateUrl     : './higher-order-observables-2-presentation.component.html',
-  styleUrls       : ['./higher-order-observables-2-presentation.component.scss'],
+  selector        : 'app-higher-order-2-presentation',
+  templateUrl     : './higher-order-2-presentation.component.html',
+  styleUrls       : ['./higher-order-2-presentation.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservables2PresentationComponent {
+export class HigherOrderOperators2PresentationComponent {
   @Input() public companyList: Company[];
 
   @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();

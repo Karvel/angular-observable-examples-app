@@ -23,12 +23,12 @@ import {
 }                           from 'src/app/core/models/company';
 
 @Component({
-  selector        : 'app-higher-order-observables-2-smart',
-  templateUrl     : './higher-order-observables-2-smart.component.html',
-  styleUrls       : ['./higher-order-observables-2-smart.component.scss'],
+  selector        : 'app-higher-order-2-smart',
+  templateUrl     : './higher-order-2-smart.component.html',
+  styleUrls       : ['./higher-order-2-smart.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservables2SmartComponent implements OnInit, OnDestroy {
+export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
   public companyList: Company[] = [];
   public companyList$: Observable<Company[]>;
 

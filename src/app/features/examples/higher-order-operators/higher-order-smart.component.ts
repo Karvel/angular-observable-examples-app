@@ -31,12 +31,12 @@ import { CompanyService }   from 'src/app/core/services/company.service';
 import { OperatorsService } from '../../../core/services/operators.service';
 
 @Component({
-  selector        : 'app-higher-order-observables-smart',
-  templateUrl     : './higher-order-observables-smart.component.html',
-  styleUrls       : ['./higher-order-observables-smart.component.scss'],
+  selector        : 'app-higher-order-smart',
+  templateUrl     : './higher-order-smart.component.html',
+  styleUrls       : ['./higher-order-smart.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
+export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
   public companyListSwitch$: Observable<Company[]>;
   public colorList$: Observable<string>;
   public companyListExhaust$: Observable<Company[]>;
