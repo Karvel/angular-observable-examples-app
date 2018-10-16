@@ -4,9 +4,10 @@ import {
   EventEmitter,
   Input,
   Output,
-}                    from '@angular/core';
+}                       from '@angular/core';
 
-import { Company }   from 'src/app/core/models/company';
+import { Company }      from 'src/app/core/models/company';
+import { TableColumns } from 'src/app/core/models/table-columns';
 
 @Component({
   selector        : 'app-higher-order-2-presentation',
@@ -15,7 +16,9 @@ import { Company }   from 'src/app/core/models/company';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperators2PresentationComponent {
+  @Input() public columnIdList: string[];
   @Input() public companyList: Company[];
+  @Input() public displayedColumns: TableColumns[];
 
   @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitCompanyMerge: EventEmitter<void> = new EventEmitter<void>();

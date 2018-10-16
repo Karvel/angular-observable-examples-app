@@ -21,6 +21,8 @@ import {
   Company,
   pristineCompanyList,
 }                           from 'src/app/core/models/company';
+import { TableColumns }     from 'src/app/core/models/table-columns';
+import { Utils }            from 'src/app/core/services/utils';
 
 @Component({
   selector        : 'app-higher-order-2-smart',
@@ -29,8 +31,23 @@ import {
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
+  public columnIdList: string[] = [];
   public companyList: Company[] = [];
   public companyList$: Observable<Company[]>;
+  public displayedColumns: TableColumns[] = [
+    {
+      columnId: 'companyName',
+      columnName: 'Company Name',
+    },
+    {
+      columnId: 'address',
+      columnName: 'Address',
+    },
+    {
+      columnId: 'isSelected',
+      columnName: 'Selected',
+    },
+  ];
 
   private subscriptions: Subscription[] = [];
 
@@ -40,6 +57,7 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCompanyList();
+    this.columnIdList = Utils.filterTableColumns(this.displayedColumns);
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,7 @@
 <app-higher-order-2-presentation
+  [columnIdList]="columnIdList"
   [companyList]="(companyList$ | async)"
+  [displayedColumns]="displayedColumns"
   (emitCompanyConcat)="updateCompanyConcat()"
   (emitCompanyMerge)="updateCompanyMerge()"
   (emitReset)="resetCompanyNames()"
