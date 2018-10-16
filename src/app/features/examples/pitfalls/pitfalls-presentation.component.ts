@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
 }                       from '@angular/core';
 
 import { Employee }     from '../../../core/models/employee';
@@ -17,4 +19,10 @@ export class PitfallsPresentationComponent {
   @Input() public columnIdList: string[];
   @Input() public displayedColumns: TableColumns[];
   @Input() public employeeList: Employee[];
+
+  @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();
+
+  public updateCompanyConcat(): void {
+    this.emitCompanyConcat.emit();
+  }
 }
