@@ -39,6 +39,10 @@ export class ExamplesRouterComponent {
       path  : `${this.parentRoute}pitfalls`,
       label : 'Pitfalls',
     },
+    {
+      path  : `${this.parentRoute}pitfall-fixes`,
+      label : 'Pitfall Fixes',
+    },
   ];
   constructor() { }
 }

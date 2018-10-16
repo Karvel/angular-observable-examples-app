@@ -5,11 +5,13 @@ import { ColdExample1Component }                       from './cold-example-1/co
 import { ColdExample2PresentationComponent }           from './cold-example-2/cold-example-2-presentation.component';
 import { ColdExample2SmartComponent }                  from './cold-example-2/cold-example-2-smart.component';
 import { ConditionalValidationComponent }              from './conditional-validation/conditional-validation.component';
+import { DynamicFormSubscriptionComponent }            from './dynamic-form-subscription/dynamic-form-subscription.component';
 import { ExamplesRouterComponent }                     from './examples-router.component';
 import { HigherOrderObservablesSmartComponent }        from './higher-order-observables/higher-order-observables-smart.component';
 import { HigherOrderObservablesPresentationComponent } from './higher-order-observables/higher-order-observables-presentation.component';
 import { HotExample1Component }                        from './hot-example-1/hot-example-1.component';
-import { DynamicFormSubscriptionComponent }            from './dynamic-form-subscription/dynamic-form-subscription.component';
+import { PitfallFixesPresentationComponent }           from './pitfall-fixes/pitfall-fixes-presentation.component';
+import { PitfallFixesSmartComponent }                  from './pitfall-fixes/pitfall-fixes-smart.component';
 import { PitfallsPresentationComponent }               from './pitfalls/pitfalls-presentation.component';
 import { PitfallsSmartComponent }                      from './pitfalls/pitfalls-smart.component';
 
@@ -59,6 +61,11 @@ const routes: Routes = [
       component : PitfallsSmartComponent,
       data      : { title: 'Pitfalls' },
     },
+    {
+      path      : 'pitfall-fixes',
+      component : PitfallFixesSmartComponent,
+      data      : { title: 'Pitfall Fixes' },
+    },
    ],
  },
 ];
@@ -81,4 +88,6 @@ export const routedComponents = [
   HotExample1Component,
   PitfallsPresentationComponent,
   PitfallsSmartComponent,
+  PitfallFixesPresentationComponent,
+  PitfallFixesSmartComponent,
 ];
