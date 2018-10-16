@@ -12,6 +12,7 @@ import { PipeModule }           from './pipes/pipe.module';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
 import { ScheduleService }      from './services/schedule.service';
 import { OperatorsService }     from './services/operators.service';
+import { ToastService }         from './services/toast.service';
 import { TodoService }          from './services/todo.service';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { TodoService }          from './services/todo.service';
     FormService,
     ScheduleService,
     OperatorsService,
+    ToastService,
     TodoService,
   ],
 })
