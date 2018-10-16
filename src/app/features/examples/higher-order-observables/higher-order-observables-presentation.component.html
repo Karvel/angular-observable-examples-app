@@ -75,7 +75,7 @@
     <ul>
       <li *ngFor="let company of companyList">
         <mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox>
-        {{ company.companyName }}
+        <span [style.color]="company.color">{{ company.companyName }}</span>
       </li>
     </ul>
   </div>

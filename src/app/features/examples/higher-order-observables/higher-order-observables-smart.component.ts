@@ -139,7 +139,7 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
     const concatMapControlSubscription: Subscription = from(this.companyList)
       .pipe(concatMap(company => {
         const payload = { ...company };
-        payload.isSelected = true;
+        payload.isSelected = !(payload.isSelected);
         return this.companyService.updateCompanyList(payload);
       }))
       .subscribe();
@@ -150,7 +150,7 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
     const mergeMapControlSubscription: Subscription = from(this.companyList)
       .pipe(mergeMap(company => {
         const payload = { ...company };
-        payload.companyName = payload.companyName + ' foo';
+        (payload.color === 'red') ? payload.color = 'blue' : payload.color = 'red';
         return this.companyService.updateCompanyList(payload);
       }))
       .subscribe();
