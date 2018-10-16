@@ -13,7 +13,6 @@ import {
 import {
   Observable,
   forkJoin,
-  from,
   combineLatest,
   Subscription,
 }                           from 'rxjs';
@@ -25,14 +24,10 @@ import {
   pairwise,
   switchMap,
   tap,
-  map,
 }                           from 'rxjs/operators';
 
+import { Company }          from 'src/app/core/models/company';
 import { CompanyService }   from 'src/app/core/services/company.service';
-import {
-  Company,
-  pristineCompanyList,
-}                           from 'src/app/core/models/company';
 import { OperatorsService } from '../../../core/services/operators.service';
 
 @Component({
@@ -42,8 +37,6 @@ import { OperatorsService } from '../../../core/services/operators.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
-  public companyList: Company[] = [];
-  public companyList$: Observable<Company[]>;
   public companyListSwitch$: Observable<Company[]>;
   public colorList$: Observable<string>;
   public companyListExhaust$: Observable<Company[]>;
@@ -56,27 +49,16 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private companyService: CompanyService,
     private operatorsService: OperatorsService,
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.initializeStreams();
     this.buildForm();
     this.initializeFormSubscriptions();
   }
 
-  ngOnInit(): void {
-    this.getCompanyList();
-  }
-
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  public getCompanyList(): void {
-    this.companyList$ = this.companyService.getCompanyList().pipe(
-      map(response => {
-        this.companyList = response;
-        return response;
-      }),
-    );
   }
 
   public getForkJoin(): void {
@@ -131,35 +113,6 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
       .pipe(exhaustMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('exhaustMap result', result));
     this.subscriptions.push(exhaustMapExample$);
-  }
-
-  public updateCompanyConcat(): void {
-    const concatMapControlSubscription: Subscription = from(this.companyList)
-      .pipe(concatMap(company => {
-        const payload = { ...company };
-        payload.isSelected = !(payload.isSelected);
-        return this.companyService.updateCompanyList(payload);
-      }))
-      .subscribe();
-    this.subscriptions.push(concatMapControlSubscription);
-  }
-
-  public updateCompanyMerge(): void {
-    const mergeMapControlSubscription: Subscription = from(this.companyList)
-      .pipe(mergeMap(company => {
-        const payload = { ...company };
-        (payload.color === 'red') ? payload.color = 'blue' : payload.color = 'red';
-        return this.companyService.updateCompanyList(payload);
-      }))
-      .subscribe();
-    this.subscriptions.push(mergeMapControlSubscription);
-  }
-
-  public resetCompanyNames(): void {
-    const companyNamesSubscription: Subscription = from(pristineCompanyList)
-      .pipe(mergeMap(company => this.companyService.updateCompanyList(company)))
-      .subscribe();
-    this.subscriptions.push(companyNamesSubscription);
   }
 
   private initializeStreams(): void {

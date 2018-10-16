@@ -16,7 +16,6 @@ import { Company }   from 'src/app/core/models/company';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderObservablesPresentationComponent {
-  @Input() public companyList: Company[];
   @Input() public companyListSwitch: Company[];
   @Input() public companyListExhaust: Company[];
   @Input() public form: FormGroup;
@@ -28,9 +27,6 @@ export class HigherOrderObservablesPresentationComponent {
   @Output() public emitMergeMap: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitSwitchMap: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitExhaustMap: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitCompanyMerge: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitReset: EventEmitter<void> = new EventEmitter<void>();
 
   public getForkJoin(): void {
     this.emitForkJoin.emit();
@@ -58,17 +54,5 @@ export class HigherOrderObservablesPresentationComponent {
 
   public getExhaustMap(): void {
     this.emitExhaustMap.emit();
-  }
-
-  public updateCompanyConcat(): void {
-    this.emitCompanyConcat.emit();
-  }
-
-  public updateCompanyMerge(): void {
-    this.emitCompanyMerge.emit();
-  }
-
-  public resetCompanyNames(): void {
-    this.emitReset.emit();
   }
 }
