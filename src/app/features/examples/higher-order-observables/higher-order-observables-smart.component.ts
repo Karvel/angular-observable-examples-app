@@ -26,6 +26,7 @@ import {
   pairwise,
   switchMap,
   tap,
+  map,
 }                           from 'rxjs/operators';
 
 import { CompanyService }   from 'src/app/core/services/company.service';
@@ -43,6 +44,7 @@ import { OperatorsService } from '../../../core/services/operators.service';
 })
 export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
   public companyList: Company[] = [];
+  public companyList$: Observable<Company[]>;
   public companyListSwitch$: Observable<Company[]>;
   public colorList$: Observable<string>;
   public companyListExhaust$: Observable<Company[]>;
@@ -71,11 +73,12 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
   }
 
   public getCompanyList(): void {
-    const companyList$: Subscription = this.companyService.getCompanyList().subscribe(response => {
-      this.companyList = response;
-      this.cd.detectChanges();
-    });
-    this.subscriptions.push(companyList$);
+    this.companyList$ = this.companyService.getCompanyList().pipe(
+      map(response => {
+        this.companyList = response;
+        return response;
+      }),
+    );
   }
 
   public getForkJoin(): void {

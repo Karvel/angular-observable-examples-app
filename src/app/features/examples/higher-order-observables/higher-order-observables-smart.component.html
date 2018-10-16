@@ -1,6 +1,6 @@
 <app-higher-order-observables-presentation
   [form]="form"
-  [companyList]="companyList"
+  [companyList]="(companyList$ | async)"
   [companyListSwitch]="companyListSwitch$ | async"
   [companyListExhaust]="companyListExhaust$ | async"
   (emitForkJoin)="getForkJoin()"
