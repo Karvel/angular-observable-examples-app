@@ -3,7 +3,6 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ChangeDetectorRef,
 }                           from '@angular/core';
 import {
   FormGroup,
@@ -54,7 +53,6 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private cd: ChangeDetectorRef,
     private fb: FormBuilder,
     private companyService: CompanyService,
     private operatorsService: OperatorsService,
