@@ -56,6 +56,6 @@ export class ApiCompanyService {
       address: company.address,
       isSelected: company.isSelected,
     };
-    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Company) => response),);
+    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Company) => response));
   }
 }
