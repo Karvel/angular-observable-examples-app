@@ -18,6 +18,10 @@ export class CompanyService {
     return this.apiService.company.getCompanyList();
   }
 
+  public getCompanyByID(key: string): Observable<Company> {
+    return this.apiService.company.getCompanyByID(key);
+  }
+
   public searchCompanyByName(companyName: string): Observable<Company[]> {
     const payload: string = companyName.charAt(0).toUpperCase() + companyName.slice(1);
     return this.apiService.company.searchCompanyByName(payload).valueChanges();

@@ -3,6 +3,8 @@ import { HttpClient }  from '@angular/common/http';
 import {
   AngularFireDatabase,
   AngularFireList,
+  AngularFireAction,
+  DatabaseSnapshot,
 }                      from '@angular/fire/database';
 
 import { Observable }  from 'rxjs';
@@ -31,6 +33,15 @@ export class ApiCompanyService {
   public getCompanyList(): Observable<Company[]> {
     return this.companyRef.snapshotChanges().pipe(
       map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
+    );
+  }
+
+  public getCompanyByID(key: string): Observable<Company> {
+    const itemPath =  `${this.dbPath2}/${key}`;
+
+    return this.rtdb.object(itemPath).snapshotChanges().pipe(
+      map((company: AngularFireAction<DatabaseSnapshot<Company>>) => company),
+      map(change => ({ key: change.payload.key, ...change.payload.val() })),
     );
   }
 
