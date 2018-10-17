@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
-  OnDestroy,
 }                          from '@angular/core';
 import {
   FormGroup,
@@ -11,10 +10,7 @@ import {
   AbstractControl,
 }                          from '@angular/forms';
 
-import {
-  from,
-  Subscription,
-}                          from 'rxjs';
+import { from }            from 'rxjs';
 import { concatMap, map }  from 'rxjs/operators';
 
 import { Company }         from 'src/app/core/models/company';
@@ -30,7 +26,7 @@ import { TableColumns }    from '../../../core/models/table-columns';
   styleUrls       : ['./pitfalls-smart.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class PitfallsSmartComponent implements OnInit, OnDestroy {
+export class PitfallsSmartComponent implements OnInit {
   public companyList: Company[];
   public displayedColumns: TableColumns[] = [
     {
@@ -49,8 +45,6 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
   public employeeList: Employee[] = [];
   public form: FormGroup;
 
-  private subscriptions: Subscription[] = [];
-
   constructor(
     private cd: ChangeDetectorRef,
     private companyService: CompanyService,
@@ -65,12 +59,8 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
     this.getCompanyList();
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
   public updateCompanyConcat(): void {
-    const concatMapControlSubscription: Subscription = from(this.companyList)
+    from(this.companyList)
       .pipe(concatMap((company: Company) => {
         const payload = { ...company };
         payload.isSelected = !(payload.isSelected);
@@ -82,11 +72,11 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
   public toggleEmployeeState(employee: Employee): void {
     const payload = { ...employee };
     payload.isFoo = !(payload.isFoo);
-    const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
+    this.employeeService.updateEmployee(payload).subscribe();
   }
 
   private getCompanyList(): void {
-    const companyList$: Subscription = this.companyService.getCompanyList().pipe(
+    this.companyService.getCompanyList().pipe(
       map(response => {
         this.companyList = response;
         this.cd.detectChanges();
