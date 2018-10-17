@@ -41,7 +41,7 @@ export class ApiEmployeeService {
       );
   }
 
-  public updateEmployeeList(employee: Employee): Observable<Employee> {
+  public updateEmployee(employee: Employee): Observable<Employee> {
     const restfulDBPathWithQueries = `${environment.firebase.databaseURL}${this.dbPath}/${employee.key}.json`;
     const payload: Employee = {
       companyName: employee.companyName,

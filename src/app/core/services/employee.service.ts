@@ -19,7 +19,7 @@ export class EmployeeService {
     return this.apiService.employee.getEmployeesByCompanyKey(companyKey);
   }
 
-  public updateEmployeeList(employee: Employee): Observable<Employee> {
-    return this.apiService.employee.updateEmployeeList(employee);
+  public updateEmployee(employee: Employee): Observable<Employee> {
+    return this.apiService.employee.updateEmployee(employee);
   }
 }

@@ -81,7 +81,7 @@ export class PitfallFixesSmartComponent implements OnInit {
       .pipe(concatMap((company: Company) => {
         const payload = { ...company };
         payload.isSelected = !(payload.isSelected);
-        return this.companyService.updateCompanyList(payload);
+        return this.companyService.updateCompany(payload);
       }))
       .subscribe();
     this.subscriptions.push(concatMapControlSubscription);
@@ -90,7 +90,7 @@ export class PitfallFixesSmartComponent implements OnInit {
   public toggleEmployeeState(employee: Employee) {
     const payload = { ...employee };
     payload.isFoo = !(payload.isFoo);
-    const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployeeList(payload).subscribe();
+    const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
     this.subscriptions.push(toggleEmployeSubscription);
   }
 
