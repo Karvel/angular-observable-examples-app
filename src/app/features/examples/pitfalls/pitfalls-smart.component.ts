@@ -77,14 +77,12 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
         return this.companyService.updateCompany(payload);
       }))
       .subscribe();
-    this.subscriptions.push(concatMapControlSubscription);
   }
 
   public toggleEmployeeState(employee: Employee): void {
     const payload = { ...employee };
     payload.isFoo = !(payload.isFoo);
     const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
-    this.subscriptions.push(toggleEmployeSubscription);
   }
 
   private getCompanyList(): void {
@@ -94,32 +92,29 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
         this.cd.detectChanges();
       }),
     ).subscribe();
-    this.subscriptions.push(companyList$);
   }
 
   private initializeFormSubscription(): void {
     this.selectedCompanyControl.valueChanges.subscribe((companyKey: string) => {
-      return this.employeeService.getEmployeesByCompanyKey(companyKey)
-      .pipe(
-        map(employees => {
-          return { companyKey, employees };
-        }),
-      )
-      .subscribe((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
-        this.employeeList = companyAndEmployees.employees;
-        const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
-        const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
-        if (employeeCount) {
-          this.displayActiveToast(employeeCount);
-          if (company && company.employeeCount !== employeeCount) {
-            company.employeeCount = employeeCount;
-            const updateCompanySubscription: Subscription = this.companyService.updateCompany(company).subscribe();
-            this.subscriptions.push(updateCompanySubscription);
+      this.companyService.getCompanyList().subscribe((companyList: Company[]) => {
+        const company: Company = companyList.find(foundCompany => foundCompany.key === companyKey);
+        this.employeeService.getEmployeesByCompanyKey(companyKey).subscribe((employees: Employee[]) => {
+          this.employeeList = employees;
+          const employeeCount: number = this.checkNumberOfIsActive(employees).length;
+          if (employeeCount) {
+            this.updateCompanyAndToast(company, employeeCount);
           }
-        }
-        return companyAndEmployees.employees;
+        });
       });
     });
+  }
+
+  private updateCompanyAndToast(company: Company, employeeCount: number): void {
+    this.displayActiveToast(employeeCount, company.companyName);
+    if (company && company.employeeCount !== employeeCount) {
+      company.employeeCount = employeeCount;
+      this.companyService.updateCompany(company).subscribe();
+    }
   }
 
   private buildForm(): void {
@@ -134,10 +129,10 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
     return filteredEmployees;
   }
 
-  private displayActiveToast(isActiveAmount: number): void {
+  private displayActiveToast(isActiveAmount: number, companyName: string): void {
     const description: string = (isActiveAmount > 1)
-      ? `There are ${isActiveAmount} active employees.`
-      : `There is ${isActiveAmount} active employee`;
+      ? `There are ${isActiveAmount} active employees for ${companyName}.`
+      : `There is ${isActiveAmount} active employee for ${companyName}`;
     const message = {
       header: 'Attention',
       description,
