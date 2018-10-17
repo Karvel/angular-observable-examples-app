@@ -7,6 +7,7 @@ import { ReactiveFormsModule }       from '@angular/forms';
 
 import { AngularFireModule }         from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ToastrModule }              from 'ngx-toastr';
 
 import { AppComponent }              from './app.component';
 import {
@@ -39,6 +40,7 @@ import { PipeModule }                from './core/pipes/pipe.module';
     MaterialModule,
     PipeModule.forRoot(),
     ReactiveFormsModule,
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-left' }),
     ExamplesModule,
     AppRoutingModule,
   ],

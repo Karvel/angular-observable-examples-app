@@ -1,0 +1,64 @@
+<div class="button-row">
+  <button mat-raised-button (click)="getForkJoin()">
+    forkJoin
+  </button>
+  <button mat-raised-button (click)="getCombineLatest()">
+    combineLatest
+  </button>
+  <button mat-raised-button (click)="getPairwise()">
+    pairwise
+  </button>
+  <button mat-raised-button (click)="getConcatMap()">
+    concatMap
+  </button>
+  <button mat-raised-button (click)="getMergeMap()">
+    mergeMap
+  </button>
+  <button mat-raised-button (click)="getSwitchMap()">
+    switchMap
+  </button>
+  <button mat-raised-button (click)="getExhaustMap()">
+    exhaustMap
+  </button>
+</div>
+
+<div class="container">
+  <div>
+    <form autocomplete="off" [formGroup]="form">
+      <div class="container">
+        <div class="search-container">
+          <mat-form-field>
+            <input
+              name="switchMap"
+              placeholder="switchMap Search"
+              matInput
+              formControlName="switchMap"
+            >
+          </mat-form-field>
+          <div *ngIf="companyListSwitch">
+            companyListSwitch:
+            <div *ngFor="let company of companyListSwitch">
+              {{ company.companyName }}
+            </div>
+          </div>
+        </div>
+        <div class="search-container">
+          <mat-form-field>
+            <input
+              name="exhaustMap"
+              placeholder="exhaustMap Search"
+              matInput
+              formControlName="exhaustMap"
+            >
+          </mat-form-field>
+          <div *ngIf="companyListExhaust">
+            companyListExhaust:
+              <div *ngFor="let company of companyListExhaust">
+                {{ company.companyName }}
+              </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

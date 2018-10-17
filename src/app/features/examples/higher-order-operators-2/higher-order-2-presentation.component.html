@@ -1,0 +1,38 @@
+<div class="button-row">
+  <button mat-raised-button (click)="updateCompanyConcat()">
+		concatMap Update
+	</button>
+	<button mat-raised-button (click)="updateCompanyMerge()">
+		mergeMap Update
+	</button>
+	<button mat-raised-button color="warn" (click)="resetCompanyNames()">
+		Reset
+	</button>
+</div>
+
+<div *ngIf="companyList?.length">
+  <h3>Companies:</h3>
+  <div *ngIf="companyList?.length">
+    <table mat-table [dataSource]="companyList" *ngIf="columnIdList.length">
+      <tr mat-header-row *matHeaderRowDef="columnIdList"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnIdList;"></tr>
+
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef> Company Name </th>
+            <td mat-cell *matCellDef="let company" [style.color]="company.color"> {{ company.companyName }} </td>
+      </ng-container>
+      <ng-container matColumnDef="address"}>
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let company" [style.color]="company.color"> {{ company.address }} </td>
+      </ng-container>
+      <ng-container matColumnDef="isSelected">
+        <th mat-header-cell *matHeaderCellDef> Selected </th>
+            <td mat-cell *matCellDef="let company"> <mat-checkbox disabled [(ngModel)]="company.isSelected"></mat-checkbox> </td>
+      </ng-container>
+      <ng-container matColumnDef="employeeCount">
+        <th mat-header-cell *matHeaderCellDef> Active Employees </th>
+            <td mat-cell *matCellDef="let company"> {{ company.employeeCount }} </td>
+      </ng-container>
+    </table>
+  </div>
+</div>

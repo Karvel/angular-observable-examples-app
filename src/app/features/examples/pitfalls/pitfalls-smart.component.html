@@ -1,0 +1,10 @@
+<app-pitfalls-presentation
+  [columnIdList]="columnIdList"
+  [companyList]="companyList"
+  [displayedColumns]="displayedColumns"
+  [employeeList]="employeeList"
+  [form]="form"
+  (emitCompanyConcat)="updateCompanyConcat()"
+  (emitEmployee)="toggleEmployeeState($event)"
+></app-pitfalls-presentation>
+

@@ -1,6 +1,5 @@
-<app-higher-order-observables-presentation
+<app-higher-order-presentation
   [form]="form"
-  [companyList]="companyList"
   [companyListSwitch]="companyListSwitch$ | async"
   [companyListExhaust]="companyListExhaust$ | async"
   (emitForkJoin)="getForkJoin()"
@@ -10,7 +9,4 @@
   (emitMergeMap)="getMergeMap()"
   (emitSwitchMap)="getSwitchMap()"
   (emitExhaustMap)="getExhaustMap()"
-  (emitCompanyConcat)="updateCompanyConcat()"
-  (emitCompanyMerge)="updateCompanyMerge()"
-  (emitReset)="resetCompanyNames()"
-></app-higher-order-observables-presentation>
+></app-higher-order-presentation>

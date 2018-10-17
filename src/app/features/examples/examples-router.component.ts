@@ -25,7 +25,19 @@ export class ExamplesRouterComponent {
     },
     {
       path  : `${this.parentRoute}higher-order`,
-      label : 'Higher Order Operators',
+      label : 'Higher Order',
+    },
+    {
+      path  : `${this.parentRoute}higher-order-2`,
+      label : 'Higher Order 2',
+    },
+    {
+      path  : `${this.parentRoute}pitfalls`,
+      label : 'Pitfalls',
+    },
+    {
+      path  : `${this.parentRoute}pitfall-fixes`,
+      label : 'Pitfall Fixes',
     },
     {
       path  : `${this.parentRoute}conditional-validation`,
@@ -33,7 +45,7 @@ export class ExamplesRouterComponent {
     },
     {
       path  : `${this.parentRoute}dynamic-form`,
-      label : 'Dynamic Form Subscription',
+      label : 'Dynamic Forms',
     },
   ];
   constructor() { }

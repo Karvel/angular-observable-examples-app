@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HigherOrderObservablesPresentationComponent } from './higher-order-observables-presentation.component';
+import { HigherOrderOperatorsPresentationComponent } from './higher-order-presentation.component';
 
 describe('HigherOrderObservablesPresentationComponent', () => {
-  let component: HigherOrderObservablesPresentationComponent;
-  let fixture: ComponentFixture<HigherOrderObservablesPresentationComponent>;
+  let component: HigherOrderOperatorsPresentationComponent;
+  let fixture: ComponentFixture<HigherOrderOperatorsPresentationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HigherOrderObservablesPresentationComponent ]
+      declarations: [ HigherOrderOperatorsPresentationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HigherOrderObservablesPresentationComponent);
+    fixture = TestBed.createComponent(HigherOrderOperatorsPresentationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

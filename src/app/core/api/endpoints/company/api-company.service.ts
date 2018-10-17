@@ -3,6 +3,8 @@ import { HttpClient }  from '@angular/common/http';
 import {
   AngularFireDatabase,
   AngularFireList,
+  AngularFireAction,
+  DatabaseSnapshot,
 }                      from '@angular/fire/database';
 
 import { Observable }  from 'rxjs';
@@ -34,6 +36,15 @@ export class ApiCompanyService {
     );
   }
 
+  public getCompanyByID(key: string): Observable<Company> {
+    const itemPath =  `${this.dbPath2}/${key}`;
+
+    return this.rtdb.object(itemPath).snapshotChanges().pipe(
+      map((company: AngularFireAction<DatabaseSnapshot<Company>>) => company),
+      map(change => ({ key: change.payload.key, ...change.payload.val() })),
+    );
+  }
+
   public searchCompanyByName(companyName: string): AngularFireList<Company> {
     return this.rtdb.list(this.dbPath, ref => ref
       .orderByChild('companyName')
@@ -49,13 +60,15 @@ export class ApiCompanyService {
     );
   }
 
-  public updateCompanyList(company: Company): Observable<Company> {
+  public updateCompany(company: Company): Observable<Company> {
     const restfulDBPathWithQueries = `${environment.firebase.databaseURL}${this.dbPath2}/${company.key}.json`;
     const payload: Company = {
       companyName: company.companyName,
       address: company.address,
       isSelected: company.isSelected,
+      color: company.color,
+      employeeCount: company.employeeCount,
     };
-    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Company) => response),);
+    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Company) => response));
   }
 }

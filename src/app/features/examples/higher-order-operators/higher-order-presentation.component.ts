@@ -10,13 +10,12 @@ import { FormGroup } from '@angular/forms';
 import { Company }   from 'src/app/core/models/company';
 
 @Component({
-  selector        : 'app-higher-order-observables-presentation',
-  templateUrl     : './higher-order-observables-presentation.component.html',
-  styleUrls       : ['./higher-order-observables-presentation.component.scss'],
+  selector        : 'app-higher-order-presentation',
+  templateUrl     : './higher-order-presentation.component.html',
+  styleUrls       : ['./higher-order-presentation.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservablesPresentationComponent {
-  @Input() public companyList: Company[];
+export class HigherOrderOperatorsPresentationComponent {
   @Input() public companyListSwitch: Company[];
   @Input() public companyListExhaust: Company[];
   @Input() public form: FormGroup;
@@ -28,9 +27,6 @@ export class HigherOrderObservablesPresentationComponent {
   @Output() public emitMergeMap: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitSwitchMap: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitExhaustMap: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitCompanyMerge: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitReset: EventEmitter<void> = new EventEmitter<void>();
 
   public getForkJoin(): void {
     this.emitForkJoin.emit();
@@ -58,17 +54,5 @@ export class HigherOrderObservablesPresentationComponent {
 
   public getExhaustMap(): void {
     this.emitExhaustMap.emit();
-  }
-
-  public updateCompanyConcat(): void {
-    this.emitCompanyConcat.emit();
-  }
-
-  public updateCompanyMerge(): void {
-    this.emitCompanyMerge.emit();
-  }
-
-  public resetCompanyNames(): void {
-    this.emitReset.emit();
   }
 }

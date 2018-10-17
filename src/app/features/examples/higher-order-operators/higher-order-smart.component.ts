@@ -3,7 +3,6 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ChangeDetectorRef,
 }                           from '@angular/core';
 import {
   FormGroup,
@@ -14,7 +13,6 @@ import {
 import {
   Observable,
   forkJoin,
-  from,
   combineLatest,
   Subscription,
 }                           from 'rxjs';
@@ -28,21 +26,17 @@ import {
   tap,
 }                           from 'rxjs/operators';
 
+import { Company }          from 'src/app/core/models/company';
 import { CompanyService }   from 'src/app/core/services/company.service';
-import {
-  Company,
-  pristineCompanyList,
-}                           from 'src/app/core/models/company';
 import { OperatorsService } from '../../../core/services/operators.service';
 
 @Component({
-  selector        : 'app-higher-order-observables-smart',
-  templateUrl     : './higher-order-observables-smart.component.html',
-  styleUrls       : ['./higher-order-observables-smart.component.scss'],
+  selector        : 'app-higher-order-smart',
+  templateUrl     : './higher-order-smart.component.html',
+  styleUrls       : ['./higher-order-smart.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
-  public companyList: Company[] = [];
+export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
   public companyListSwitch$: Observable<Company[]>;
   public colorList$: Observable<string>;
   public companyListExhaust$: Observable<Company[]>;
@@ -52,30 +46,19 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private cd: ChangeDetectorRef,
     private fb: FormBuilder,
     private companyService: CompanyService,
     private operatorsService: OperatorsService,
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.initializeStreams();
     this.buildForm();
     this.initializeFormSubscriptions();
   }
 
-  ngOnInit(): void {
-    this.getCompanyList();
-  }
-
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  public getCompanyList(): void {
-    const companyList$: Subscription = this.companyService.getCompanyList().subscribe(response => {
-      this.companyList = response;
-      this.cd.detectChanges();
-    });
-    this.subscriptions.push(companyList$);
   }
 
   public getForkJoin(): void {
@@ -130,35 +113,6 @@ export class HigherOrderObservablesSmartComponent implements OnInit, OnDestroy {
       .pipe(exhaustMap(example => this.operatorsService.getColor(example)))
       .subscribe(result => console.log('exhaustMap result', result));
     this.subscriptions.push(exhaustMapExample$);
-  }
-
-  public updateCompanyConcat(): void {
-    const concatMapControlSubscription: Subscription = from(this.companyList)
-      .pipe(concatMap(company => {
-        const payload = { ...company };
-        payload.isSelected = true;
-        return this.companyService.updateCompanyList(payload);
-      }))
-      .subscribe();
-    this.subscriptions.push(concatMapControlSubscription);
-  }
-
-  public updateCompanyMerge(): void {
-    const mergeMapControlSubscription: Subscription = from(this.companyList)
-      .pipe(mergeMap(company => {
-        const payload = { ...company };
-        payload.companyName = payload.companyName + ' foo';
-        return this.companyService.updateCompanyList(payload);
-      }))
-      .subscribe();
-    this.subscriptions.push(mergeMapControlSubscription);
-  }
-
-  public resetCompanyNames(): void {
-    const companyNamesSubscription: Subscription = from(pristineCompanyList)
-      .pipe(mergeMap(company => this.companyService.updateCompanyList(company)))
-      .subscribe();
-    this.subscriptions.push(companyNamesSubscription);
   }
 
   private initializeStreams(): void {
