@@ -32,20 +32,20 @@ export class ExamplesRouterComponent {
       label : 'Higher Order 2',
     },
     {
-      path  : `${this.parentRoute}conditional-validation`,
-      label : 'Conditional Validation',
-    },
-    {
-      path  : `${this.parentRoute}dynamic-form`,
-      label : 'Dynamic Forms',
-    },
-    {
       path  : `${this.parentRoute}pitfalls`,
       label : 'Pitfalls',
     },
     {
       path  : `${this.parentRoute}pitfall-fixes`,
       label : 'Pitfall Fixes',
+    },
+    {
+      path  : `${this.parentRoute}conditional-validation`,
+      label : 'Conditional Validation',
+    },
+    {
+      path  : `${this.parentRoute}dynamic-form`,
+      label : 'Dynamic Forms',
     },
   ];
   constructor() { }
