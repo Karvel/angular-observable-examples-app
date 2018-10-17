@@ -3,6 +3,8 @@ export interface Company {
   companyName: string;
   address: string;
   isSelected: boolean;
+  color: string;
+  employeeCount?: number;
 }
 
 export class Company implements Company {
@@ -11,12 +13,14 @@ export class Company implements Company {
   address: string;
   isSelected: boolean;
   color: string;
+  employeeCount?: number;
 
   constructor() {
     this.companyName = '';
     this.address = '';
     this.isSelected = false;
     this.color = 'black';
+    this.employeeCount = 0;
   }
 }
 

@@ -56,6 +56,7 @@ export class ApiCompanyService {
       address: company.address,
       isSelected: company.isSelected,
       color: company.color,
+      employeeCount: company.employeeCount,
     };
     return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Company) => response));
   }

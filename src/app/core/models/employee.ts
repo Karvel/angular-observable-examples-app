@@ -1,9 +1,29 @@
-export class Employee {
+export interface Employee {
+  key?: string;
   companyKey?: string;
+  companyName?: string;
   firstName: string;
   lastName: string;
   jobTitle: string;
-  isFoo: boolean;
+  isFoo?: boolean;
+}
+
+export class Employee {
+  key?: string;
+  companyKey?: string;
+  companyName?: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  isFoo?: boolean;
+
+  constructor() {
+    this.companyName = '';
+    this.firstName = '';
+    this.lastName = '';
+    this.jobTitle = '';
+    this.isFoo = false;
+}
 }
 
 export const mockEmployeeList: Employee[] = [

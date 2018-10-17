@@ -1,9 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 }                       from '@angular/core';
+
+import { Employee }     from '../../models/employee';
 import { TableColumns } from '../../models/table-columns';
 import { Utils }        from '../../services/utils';
 
@@ -17,11 +21,22 @@ export class PitfallGridControlComponent implements OnInit {
   @Input() public dataSource: any[];
   @Input() public displayedColumns: TableColumns[];
 
+  @Output() public emitEmployee: EventEmitter<Employee> = new EventEmitter<Employee>();
+
   public columnIdList: string[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
     this.columnIdList = Utils.filterTableColumns(this.displayedColumns);
+    this.columnIdList.push('isFoo');
+  }
+
+  public checkIfActive(isActive: boolean): string {
+    return (isActive) ? 'Deactivate' : 'Activate' ;
+  }
+
+  public toggleEmployeeState(employee: Employee): void {
+    this.emitEmployee.emit(employee);
   }
 }
