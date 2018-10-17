@@ -5,12 +5,17 @@ import {
   OnInit,
   OnDestroy,
 }                          from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  AbstractControl,
+}                          from '@angular/forms';
 
 import {
   from,
   Subscription,
 }                          from 'rxjs';
-import { concatMap }       from 'rxjs/operators';
+import { concatMap, map }  from 'rxjs/operators';
 
 import { Company }         from 'src/app/core/models/company';
 import { CompanyService }  from 'src/app/core/services/company.service';
@@ -42,6 +47,7 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
     },
   ];
   public employeeList: Employee[] = [];
+  public form: FormGroup;
 
   private subscriptions: Subscription[] = [];
 
@@ -49,11 +55,14 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private companyService: CompanyService,
     private employeeService: EmployeeService,
+    private fb: FormBuilder,
     private toastService: ToastService,
   ) { }
 
   ngOnInit(): void {
-    this.getEmployeesByCompanyKey();
+    this.buildForm();
+    this.initializeFormSubscription();
+    this.getCompanyList();
   }
 
   ngOnDestroy(): void {
@@ -65,38 +74,78 @@ export class PitfallsSmartComponent implements OnInit, OnDestroy {
       .pipe(concatMap((company: Company) => {
         const payload = { ...company };
         payload.isSelected = !(payload.isSelected);
-        return this.companyService.updateCompanyList(payload);
+        return this.companyService.updateCompany(payload);
       }))
       .subscribe();
     this.subscriptions.push(concatMapControlSubscription);
   }
 
-  private getEmployeesByCompanyKey(): void {
-    this.companyService.getCompanyList().subscribe((companyList) => {
-      this.companyList = companyList;
-      this.employeeService.getEmployeesByCompanyKey(companyList[9].key).subscribe(results => {
-        this.employeeList = results;
-        const employeeNumber: number = this.checkNumberOfIsFoo(results).length;
-        if (employeeNumber) { this.displayFooToast(employeeNumber); }
+  public toggleEmployeeState(employee: Employee): void {
+    const payload = { ...employee };
+    payload.isFoo = !(payload.isFoo);
+    const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
+    this.subscriptions.push(toggleEmployeSubscription);
+  }
+
+  private getCompanyList(): void {
+    const companyList$: Subscription = this.companyService.getCompanyList().pipe(
+      map(response => {
+        this.companyList = response;
         this.cd.detectChanges();
+      }),
+    ).subscribe();
+    this.subscriptions.push(companyList$);
+  }
+
+  private initializeFormSubscription(): void {
+    this.selectedCompanyControl.valueChanges.subscribe((companyKey: string) => {
+      return this.employeeService.getEmployeesByCompanyKey(companyKey)
+      .pipe(
+        map(employees => {
+          return { companyKey, employees };
+        }),
+      )
+      .subscribe((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
+        this.employeeList = companyAndEmployees.employees;
+        const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
+        const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
+        if (employeeCount) {
+          this.displayActiveToast(employeeCount);
+          if (company && company.employeeCount !== employeeCount) {
+            company.employeeCount = employeeCount;
+            const updateCompanySubscription: Subscription = this.companyService.updateCompany(company).subscribe();
+            this.subscriptions.push(updateCompanySubscription);
+          }
+        }
+        return companyAndEmployees.employees;
       });
     });
   }
 
-  private checkNumberOfIsFoo(employeeList: Employee[]): Employee[] {
+  private buildForm(): void {
+    this.form = this.fb.group({
+      selectedCompany: '',
+    });
+  }
+
+  private checkNumberOfIsActive(employeeList: Employee[]): Employee[] {
     const filteredEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
 
     return filteredEmployees;
   }
 
-  private displayFooToast(isFooAmount: number): void {
-    const description: string = (isFooAmount > 1)
-      ? `There are ${isFooAmount} employees ready for Foo.`
-      : `There is ${isFooAmount} employee ready for Foo.`;
+  private displayActiveToast(isActiveAmount: number): void {
+    const description: string = (isActiveAmount > 1)
+      ? `There are ${isActiveAmount} active employees.`
+      : `There is ${isActiveAmount} active employee`;
     const message = {
       header: 'Attention',
       description,
     };
     this.toastService.showToastInfo(message);
+  }
+
+  private get selectedCompanyControl(): AbstractControl {
+    return this.form.get('selectedCompany');
   }
 }

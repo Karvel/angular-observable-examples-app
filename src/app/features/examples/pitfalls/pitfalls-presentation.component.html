@@ -1,9 +1,16 @@
-<button mat-raised-button (click)="updateCompanyConcat()">
-  updateCompanyConcat
-</button>
-<div>
-    <app-pitfall-grid-control
-      [dataSource]="employeeList"
-      [displayedColumns]="displayedColumns"
-    ></app-pitfall-grid-control>
-</div>
+<form [formGroup]="form">
+  <mat-form-field *ngIf="companyList">
+    <mat-select formControlName="selectedCompany" placeholder="Select Company">
+      <mat-option *ngFor="let company of companyList" [value]="company.key">
+        {{ company.companyName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+      <app-pitfall-grid-control
+        [dataSource]="employeeList"
+        [displayedColumns]="displayedColumns"
+        (emitEmployee)="toggleEmployeeState($event)"
+      ></app-pitfall-grid-control>
+  </div>
+</form>
