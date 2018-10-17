@@ -40,7 +40,7 @@ import { PipeModule }                from './core/pipes/pipe.module';
     MaterialModule,
     PipeModule.forRoot(),
     ReactiveFormsModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-left' }),
     ExamplesModule,
     AppRoutingModule,
   ],
