@@ -113,7 +113,7 @@ export class PitfallFixesSmartComponent implements OnInit {
         const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
         const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
         if (employeeCount) {
-          this.displayActiveToast(employeeCount);
+          this.displayActiveToast(employeeCount, company.companyName);
           if (company && company.employeeCount !== employeeCount) {
             company.employeeCount = employeeCount;
             const updateCompanySubscription: Subscription = this.companyService.updateCompany(company).subscribe();
@@ -137,10 +137,10 @@ export class PitfallFixesSmartComponent implements OnInit {
     return filteredEmployees;
   }
 
-  private displayActiveToast(isActiveAmount: number): void {
+  private displayActiveToast(isActiveAmount: number, companyName: string): void {
     const description: string = (isActiveAmount > 1)
-      ? `There are ${isActiveAmount} active employees.`
-      : `There is ${isActiveAmount} active employee`;
+      ? `There are ${isActiveAmount} active employees for ${companyName}.`
+      : `There is ${isActiveAmount} active employee for ${companyName}`;
     const message = {
       header: 'Attention',
       description,
