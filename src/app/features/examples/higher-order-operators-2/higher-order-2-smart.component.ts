@@ -82,7 +82,7 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
       .pipe(concatMap(company => {
         const payload = { ...company };
         payload.isSelected = !(payload.isSelected);
-        return this.companyService.updateCompanyList(payload);
+        return this.companyService.updateCompany(payload);
       }))
       .subscribe();
     this.subscriptions.push(concatMapControlSubscription);
@@ -93,7 +93,7 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
       .pipe(mergeMap(company => {
         const payload = { ...company };
         (payload.color === 'red') ? payload.color = 'blue' : payload.color = 'red';
-        return this.companyService.updateCompanyList(payload);
+        return this.companyService.updateCompany(payload);
       }))
       .subscribe();
     this.subscriptions.push(mergeMapControlSubscription);
@@ -101,7 +101,7 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
 
   public resetCompanyNames(): void {
     const companyNamesSubscription: Subscription = from(pristineCompanyList)
-      .pipe(mergeMap(company => this.companyService.updateCompanyList(company)))
+      .pipe(mergeMap(company => this.companyService.updateCompany(company)))
       .subscribe();
     this.subscriptions.push(companyNamesSubscription);
   }

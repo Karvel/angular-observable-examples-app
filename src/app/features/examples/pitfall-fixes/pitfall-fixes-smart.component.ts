@@ -87,7 +87,7 @@ export class PitfallFixesSmartComponent implements OnInit {
     this.subscriptions.push(concatMapControlSubscription);
   }
 
-  public toggleEmployeeState(employee: Employee) {
+  public toggleEmployeeState(employee: Employee): void {
     const payload = { ...employee };
     payload.isFoo = !(payload.isFoo);
     const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
@@ -96,9 +96,31 @@ export class PitfallFixesSmartComponent implements OnInit {
 
   private getCompanyList(): void {
     this.companyList$ = this.companyService.getCompanyList().pipe(
-      map(response => {
-        this.companyList = response;
-        return response;
+      map(response => this.companyList = response),
+    );
+  }
+
+  private initializeFormSubscription(): void {
+    this.employeeList$ = this.selectedCompanyControl.valueChanges.pipe(
+      switchMap((companyKey: string) => {
+        return this.employeeService.getEmployeesByCompanyKey(companyKey).pipe(
+          map(employees => {
+            return { companyKey, employees };
+          })
+        );
+      }),
+      map((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
+        const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
+        const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
+        if (employeeCount) {
+          this.displayActiveToast(employeeCount);
+          if (company && company.employeeCount !== employeeCount) {
+            company.employeeCount = employeeCount;
+            const updateCompanySubscription: Subscription = this.companyService.updateCompany(company).subscribe();
+            this.subscriptions.push(updateCompanySubscription);
+          }
+        }
+        return companyAndEmployees.employees;
       }),
     );
   }
@@ -128,30 +150,5 @@ export class PitfallFixesSmartComponent implements OnInit {
 
   private get selectedCompanyControl(): AbstractControl {
     return this.form.get('selectedCompany');
-  }
-
-  private initializeFormSubscription(): void {
-    this.employeeList$ = this.selectedCompanyControl.valueChanges.pipe(
-      switchMap((companyKey: string) => {
-        return this.employeeService.getEmployeesByCompanyKey(companyKey).pipe(
-          map(employees => {
-            return { companyKey, employees };
-          })
-        );
-      }),
-      map((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
-        const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
-        const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
-        if (employeeCount) {
-          this.displayActiveToast(employeeCount);
-          if (company && company.employeeCount !== employeeCount) {
-            company.employeeCount = employeeCount;
-            const updateCompanySubscription: Subscription = this.companyService.updateCompanyList(company).subscribe();
-            this.subscriptions.push(updateCompanySubscription);
-          }
-        }
-        return companyAndEmployees.employees;
-      }),
-    );
   }
 }
