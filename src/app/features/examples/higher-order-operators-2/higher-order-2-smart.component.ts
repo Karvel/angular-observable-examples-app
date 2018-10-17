@@ -47,6 +47,10 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
       columnId: 'isSelected',
       columnName: 'Selected',
     },
+    {
+      columnId: 'employeeCount',
+      columnName: 'Active Employees',
+    },
   ];
 
   private subscriptions: Subscription[] = [];
@@ -64,7 +68,7 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  public getCompanyList(): void {
+  private getCompanyList(): void {
     this.companyList$ = this.companyService.getCompanyList().pipe(
       map(response => {
         this.companyList = response;
