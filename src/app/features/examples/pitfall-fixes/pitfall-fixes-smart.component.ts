@@ -3,23 +3,30 @@ import {
   Component,
   OnInit,
 }                          from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  AbstractControl,
+}                          from '@angular/forms';
 
 import {
   Observable,
   Subscription,
   from,
 }                          from 'rxjs';
-
 import {
-  map,
-  switchMap,
   concatMap,
-  take,
+  map,
+  mergeMap,
+  switchMap,
 }                          from 'rxjs/operators';
 
 import { Company }         from '../../../core/models/company';
 import { CompanyService }  from 'src/app/core/services/company.service';
-import { Employee }        from '../../../core/models/employee';
+import {
+  Employee,
+  mockEmployeeList,
+}                          from '../../../core/models/employee';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { ToastService }    from '../../../core/services/toast.service';
 import { TableColumns }    from '../../../core/models/table-columns';
@@ -31,6 +38,8 @@ import { TableColumns }    from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallFixesSmartComponent implements OnInit {
+  public companyList: Company[];
+  public companyList$: Observable<Company[]>;
   public displayedColumns: TableColumns[] = [
     {
       columnId: 'firstName',
@@ -44,21 +53,27 @@ export class PitfallFixesSmartComponent implements OnInit {
       columnId: 'jobTitle',
       columnName: 'Job Title',
     },
+    {
+      columnId: 'companyName',
+      columnName: 'Employed at',
+    },
   ];
-  public companyList: Company[];
   public employeeList$: Observable<Employee[]>;
+  public form: FormGroup;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private companyService: CompanyService,
     private employeeService: EmployeeService,
+    private fb: FormBuilder,
     private toastService: ToastService,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.getEmployeesByCompanyKey();
+    this.buildForm();
+    this.initializeFormSubscription();
+    this.getCompanyList();
   }
 
   public updateCompanyConcat(): void {
@@ -72,35 +87,71 @@ export class PitfallFixesSmartComponent implements OnInit {
     this.subscriptions.push(concatMapControlSubscription);
   }
 
-  private getEmployeesByCompanyKey(): void {
-    this.employeeList$ = this.companyService.getCompanyList().pipe(
-      take(1),
-      switchMap(companyList => {
-        this.companyList = companyList;
-        return this.employeeService.getEmployeesByCompanyKey(companyList[9].key);
-      }),
-      map(employeeList => {
-        const employeeNumber: number = this.checkNumberOfIsFoo(employeeList).length;
-        if (employeeNumber) { this.displayFooToast(employeeNumber); }
-        return employeeList;
+  public toggleEmployeeState(employee: Employee) {
+    const payload = { ...employee };
+    payload.isFoo = !(payload.isFoo);
+    const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployeeList(payload).subscribe();
+    this.subscriptions.push(toggleEmployeSubscription);
+  }
+
+  private getCompanyList(): void {
+    this.companyList$ = this.companyService.getCompanyList().pipe(
+      map(response => {
+        this.companyList = response;
+        return response;
       }),
     );
   }
 
-  private checkNumberOfIsFoo(employeeList: Employee[]): Employee[] {
+  private buildForm(): void {
+    this.form = this.fb.group({
+      selectedCompany: '',
+    });
+  }
+
+  private checkNumberOfIsActive(employeeList: Employee[]): Employee[] {
     const filteredEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
 
     return filteredEmployees;
   }
 
-  private displayFooToast(isFooAmount: number): void {
-    const description: string = (isFooAmount > 1)
-      ? `There are ${isFooAmount} employees ready for Foo.`
-      : `There is ${isFooAmount} employee ready for Foo.`;
+  private displayActiveToast(isActiveAmount: number): void {
+    const description: string = (isActiveAmount > 1)
+      ? `There are ${isActiveAmount} active employees.`
+      : `There is ${isActiveAmount} active employee`;
     const message = {
       header: 'Attention',
       description,
     };
     this.toastService.showToastSuccess(message);
+  }
+
+  private get selectedCompanyControl(): AbstractControl {
+    return this.form.get('selectedCompany');
+  }
+
+  private initializeFormSubscription(): void {
+    this.employeeList$ = this.selectedCompanyControl.valueChanges.pipe(
+      switchMap((companyKey: string) => {
+        return this.employeeService.getEmployeesByCompanyKey(companyKey).pipe(
+          map(employees => {
+            return { companyKey, employees };
+          })
+        );
+      }),
+      map((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
+        const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
+        const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
+        if (employeeCount) {
+          this.displayActiveToast(employeeCount);
+          if (company && company.employeeCount !== employeeCount) {
+            company.employeeCount = employeeCount;
+            const updateCompanySubscription: Subscription = this.companyService.updateCompanyList(company).subscribe();
+            this.subscriptions.push(updateCompanySubscription);
+          }
+        }
+        return companyAndEmployees.employees;
+      }),
+    );
   }
 }

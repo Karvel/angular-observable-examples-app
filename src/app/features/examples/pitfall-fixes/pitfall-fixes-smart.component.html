@@ -1,7 +1,10 @@
 <app-pitfall-fixes-presentation
-	[columnIdList]="columnIdList"
-	[displayedColumns]="displayedColumns"
-	[employeeList]="employeeList$ | async"
-	(emitCompanyConcat)="updateCompanyConcat()"
+  [columnIdList]="columnIdList"
+  [companyList]="(companyList$ | async)"
+  [displayedColumns]="displayedColumns"
+  [employeeList]="employeeList$ | async"
+  [form]="form"
+  (emitCompanyConcat)="updateCompanyConcat()"
+  (emitEmployee)="toggleEmployeeState($event)"
 ></app-pitfall-fixes-presentation>
 
