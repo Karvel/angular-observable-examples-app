@@ -25,38 +25,40 @@
 <div class="container">
   <div>
     <form autocomplete="off" [formGroup]="form">
-      <div>
-        <mat-form-field>
-          <input
-            name="switchMap"
-            placeholder="switchMap Search"
-            matInput
-            formControlName="switchMap"
-          >
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <input
-            name="exhaustMap"
-            placeholder="exhaustMap Search"
-            matInput
-            formControlName="exhaustMap"
-          >
-        </mat-form-field>
+      <div class="container">
+        <div class="search-container">
+          <mat-form-field>
+            <input
+              name="switchMap"
+              placeholder="switchMap Search"
+              matInput
+              formControlName="switchMap"
+            >
+          </mat-form-field>
+          <div *ngIf="companyListSwitch">
+            companyListSwitch:
+            <div *ngFor="let company of companyListSwitch">
+              {{ company.companyName }}
+            </div>
+          </div>
+        </div>
+        <div class="search-container">
+          <mat-form-field>
+            <input
+              name="exhaustMap"
+              placeholder="exhaustMap Search"
+              matInput
+              formControlName="exhaustMap"
+            >
+          </mat-form-field>
+          <div *ngIf="companyListExhaust">
+            companyListExhaust:
+              <div *ngFor="let company of companyListExhaust">
+                {{ company.companyName }}
+              </div>
+          </div>
+        </div>
       </div>
     </form>
-    <div *ngIf="companyListExhaust">
-      companyListExhaust:
-        <div *ngFor="let company of companyListExhaust">
-          {{ company.companyName }}
-        </div>
-    </div>
-    <div *ngIf="companyListSwitch">
-      companyListSwitch:
-      <div *ngFor="let company of companyListSwitch">
-        {{ company.companyName }}
-      </div>
-    </div>
   </div>
 </div>
