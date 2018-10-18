@@ -14,16 +14,8 @@ import { RoutedLink } from '../../core/models/routed-link';
 export class NavigationComponent {
   public linkList: RoutedLink[] = [
     {
-      name  : 'Home',
-      route : '',
-    },
-    {
       name  : 'Examples',
       route : '/examples',
-    },
-    {
-      name  : 'About',
-      route : '/about',
     },
     {
       name  : 'Resources',

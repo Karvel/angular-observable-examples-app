@@ -4,8 +4,6 @@
 @import '../node_modules/font-awesome/scss/font-awesome';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'app/features/navigation/navigation.component';
-@import 'app/features/home/home.component';
-@import 'app/features/about/about.component';
 @import 'app/features/not-found/not-found.component';
 
 body,html {
@@ -69,7 +67,7 @@ mat-form-field {
   width: 500px;
 }
 
-.routed-tab-container {
+.content-container {
   padding: 20px;
 }
 

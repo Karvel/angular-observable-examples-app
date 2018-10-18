@@ -24,11 +24,6 @@ export class FooterComponent {
       icon     : 'fa fa-github-square',
     },
     {
-      linkPath : 'https://medium.com/@elanna.grossman',
-      name     : 'Medium',
-      icon     : 'fa fa-medium',
-    },
-    {
       linkPath : 'https://www.linkedin.com/in/elannagrossman',
       name     : 'LinkedIn',
       icon     : 'fa fa-linkedin',
