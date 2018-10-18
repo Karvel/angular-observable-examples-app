@@ -3,7 +3,10 @@ import {
   Component,
 }                      from '@angular/core';
 
-import { Observable }  from 'rxjs';
+import {
+  Observable,
+  of as observableOf,
+}                      from 'rxjs';
 import { map }         from 'rxjs/operators';
 
 import { Todo }        from '../../../core/models/todo';
@@ -27,19 +30,23 @@ export class ColdExample1Component {
   ) { }
 
   public getTodos(): void {
+    this.resetTodos();
     this.todoList$ = this.todoService.getTodos();
   }
 
   public getTodosCold(): void {
+    this.resetTodos();
     this.todoList$ = this.todoService.getTodosCreate();
   }
 
   public getTodoByID(): void {
+    this.resetTodos();
     const payload: number = 1;
     this.todo$ = this.todoService.getTodoByID(payload);
   }
 
   public getTodoDetailsByID(): void {
+    this.resetTodos();
     this.getTodoIsCompleteByID();
     this.getTodoNameByID();
     this.getTodoTimeCreatedByID();
@@ -66,5 +73,13 @@ export class ColdExample1Component {
     this.todoTimeCreated$ = this.todoService.getTodoByID(payload).pipe(
       map(response => response.timeCreated),
     );
+  }
+
+  private resetTodos(): void {
+    this.todoList$ = observableOf(null);
+    this.todo$ = observableOf(null);
+    this.todoIsComplete$ = observableOf(null);
+    this.todoName$ = observableOf(null);
+    this.todoTimeCreated$ = observableOf(null);
   }
 }

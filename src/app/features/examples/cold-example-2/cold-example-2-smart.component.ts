@@ -3,7 +3,10 @@ import {
   Component,
 }                      from '@angular/core';
 
-import { Observable }  from 'rxjs';
+import {
+  Observable,
+  of as observableOf,
+}                      from 'rxjs';
 
 import { Todo }        from '../../../core/models/todo';
 import { TodoService } from '../../../core/services/todo.service';
@@ -23,11 +26,18 @@ export class ColdExample2SmartComponent {
   ) { }
 
   public getTodos(): void {
+    this.resetTodos();
     this.todoList$ = this.todoService.getTodos();
   }
 
   public getTodoByID(): void {
+    this.resetTodos();
     const payload: number = 1;
     this.todo$ = this.todoService.getTodoByID(payload);
+  }
+
+  private resetTodos(): void {
+    this.todo$ = observableOf(null);
+    this.todoList$ = observableOf(null);
   }
 }
