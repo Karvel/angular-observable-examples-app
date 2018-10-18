@@ -18,7 +18,6 @@ import { TableColumns } from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallsPresentationComponent {
-  @Input() public columnIdList: string[];
   @Input() public companyList: Company[];
   @Input() public displayedColumns: TableColumns[];
   @Input() public employeeList: Employee[];
