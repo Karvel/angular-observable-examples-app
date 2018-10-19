@@ -5,7 +5,7 @@ export interface IEmployee {
   firstName: string;
   lastName: string;
   jobTitle: string;
-  isFoo?: boolean;
+  isActive?: boolean;
 }
 
 export class Employee implements IEmployee {
@@ -15,14 +15,14 @@ export class Employee implements IEmployee {
   firstName: string;
   lastName: string;
   jobTitle: string;
-  isFoo?: boolean;
+  isActive?: boolean;
 
   constructor() {
     this.companyName = '';
     this.firstName = '';
     this.lastName = '';
     this.jobTitle = '';
-    this.isFoo = false;
+    this.isActive = false;
   }
 }
 

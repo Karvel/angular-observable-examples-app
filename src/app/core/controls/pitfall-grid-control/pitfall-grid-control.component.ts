@@ -29,7 +29,7 @@ export class PitfallGridControlComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnIdList = Utils.filterTableColumns(this.displayedColumns);
-    this.columnIdList.push('isFoo');
+    this.columnIdList.push('isActive');
   }
 
   public checkIfActive(isActive: boolean): string {

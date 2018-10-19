@@ -49,7 +49,7 @@ export class ApiEmployeeService {
       firstName: employee.firstName,
       lastName: employee.lastName,
       jobTitle: employee.jobTitle,
-      isFoo: employee.isFoo,
+      isActive: employee.isActive,
     };
     return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: IEmployee) => response));
   }

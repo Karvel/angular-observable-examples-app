@@ -71,7 +71,7 @@ export class PitfallsSmartComponent implements OnInit {
 
   public toggleEmployeeState(employee: IEmployee): void {
     const payload = { ...employee };
-    payload.isFoo = !(payload.isFoo);
+    payload.isActive = !(payload.isActive);
     this.employeeService.updateEmployee(payload).subscribe();
   }
 
@@ -114,7 +114,7 @@ export class PitfallsSmartComponent implements OnInit {
   }
 
   private countActiveEmployees(employeeList: IEmployee[]): IEmployee[] {
-    const activeEmployees: IEmployee[] = employeeList.filter(employee => employee.isFoo);
+    const activeEmployees: IEmployee[] = employeeList.filter(employee => employee.isActive);
 
     return activeEmployees;
   }
