@@ -10,9 +10,9 @@ import {
 }                          from '@angular/forms';
 
 import {
+  from,
   Observable,
   Subscription,
-  from,
 }                          from 'rxjs';
 import {
   concatMap,
@@ -90,8 +90,8 @@ export class PitfallFixesSmartComponent implements OnInit {
   public toggleEmployeeState(employee: Employee): void {
     const payload = { ...employee };
     payload.isFoo = !(payload.isFoo);
-    const toggleEmployeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
-    this.subscriptions.push(toggleEmployeSubscription);
+    const toggleEmployeeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
+    this.subscriptions.push(toggleEmployeeSubscription);
   }
 
   private getCompanyList(): void {
@@ -131,16 +131,16 @@ export class PitfallFixesSmartComponent implements OnInit {
     });
   }
 
-  private checkNumberOfIsActive(employeeList: Employee[]): Employee[] {
-    const filteredEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
+  private countActiveEmployees(employeeList: Employee[]): Employee[] {
+    const activeEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
 
-    return filteredEmployees;
+    return activeEmployees;
   }
 
-  private displayActiveToast(isActiveAmount: number, companyName: string): void {
-    const description: string = (isActiveAmount > 1)
-      ? `There are ${isActiveAmount} active employees for ${companyName}.`
-      : `There is ${isActiveAmount} active employee for ${companyName}`;
+  private displayActiveToast(isActiveCount: number, companyName: string): void {
+    const description: string = (isActiveCount > 1)
+      ? `There are ${isActiveCount} active employees for ${companyName}.`
+      : `There is ${isActiveCount} active employee for ${companyName}`;
     const message = {
       header: 'Attention',
       description,
