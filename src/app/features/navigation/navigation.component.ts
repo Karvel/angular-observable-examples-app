@@ -22,7 +22,7 @@ export class NavigationComponent {
       route : '/resources',
     },
     {
-      name  : 'Populate Databases',
+      name  : 'Seed Databases',
       route : '/start',
     },
   ];
