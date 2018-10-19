@@ -7,8 +7,8 @@ import {
 }                       from '@angular/core';
 import { FormGroup }    from '@angular/forms';
 
-import { Company }      from 'src/app/core/models/company';
-import { Employee }     from '../../../core/models/employee';
+import { ICompany }     from 'src/app/core/models/company';
+import { IEmployee }    from '../../../core/models/employee';
 import { TableColumns } from '../../../core/models/table-columns';
 
 @Component({
@@ -18,15 +18,15 @@ import { TableColumns } from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallsPresentationComponent {
-  @Input() public companyList: Company[];
+  @Input() public companyList: ICompany[];
   @Input() public displayedColumns: TableColumns[];
-  @Input() public employeeList: Employee[];
+  @Input() public employeeList: IEmployee[];
   @Input() public form: FormGroup;
 
   @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitEmployee: EventEmitter<Employee> = new EventEmitter<Employee>();
+  @Output() public emitEmployee: EventEmitter<IEmployee> = new EventEmitter<IEmployee>();
 
-  public toggleEmployeeState(employee: Employee): void {
+  public toggleEmployeeState(employee: IEmployee): void {
     this.emitEmployee.emit(employee);
   }
 

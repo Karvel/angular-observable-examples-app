@@ -21,12 +21,11 @@ import {
   debounceTime,
   exhaustMap,
   mergeMap,
-  pairwise,
   switchMap,
   tap,
 }                           from 'rxjs/operators';
 
-import { Company }          from 'src/app/core/models/company';
+import { ICompany }         from 'src/app/core/models/company';
 import { CompanyService }   from 'src/app/core/services/company.service';
 import { OperatorsService } from '../../../core/services/operators.service';
 
@@ -37,9 +36,9 @@ import { OperatorsService } from '../../../core/services/operators.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
-  public companyListSwitch$: Observable<Company[]>;
+  public companyListSwitch$: Observable<ICompany[]>;
   public colorList$: Observable<string>;
-  public companyListExhaust$: Observable<Company[]>;
+  public companyListExhaust$: Observable<ICompany[]>;
   public form: FormGroup;
   public numberList$: Observable<string>;
 
@@ -73,14 +72,6 @@ export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
     const combineLatestExample$: Subscription = combineLatest(this.colorList$, this.numberList$)
       .subscribe(result => console.log('combineLatest result', result));
     this.subscriptions.push(combineLatestExample$);
-  }
-
-  public getPairwise(): void {
-    console.log('~~~getPairwise~~~');
-    const pairwiseExample$: Subscription = this.colorList$
-      .pipe(pairwise())
-      .subscribe(result => console.log('pairwise result', result));
-    this.subscriptions.push(pairwiseExample$);
   }
 
   public getConcatMap(): void {

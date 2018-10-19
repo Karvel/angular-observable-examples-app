@@ -1,28 +1,28 @@
-export interface Employee {
+export interface IEmployee {
   key?: string;
   companyKey?: string;
   companyName?: string;
   firstName: string;
   lastName: string;
   jobTitle: string;
-  isFoo?: boolean;
+  isActive?: boolean;
 }
 
-export class Employee {
+export class Employee implements IEmployee {
   key?: string;
   companyKey?: string;
   companyName?: string;
   firstName: string;
   lastName: string;
   jobTitle: string;
-  isFoo?: boolean;
+  isActive?: boolean;
 
   constructor() {
     this.companyName = '';
     this.firstName = '';
     this.lastName = '';
     this.jobTitle = '';
-    this.isFoo = false;
+    this.isActive = false;
   }
 }
 
@@ -30,4 +30,5 @@ export class Employee {
   This is an empty array in this commit for the purposes of resetting the employees for the tutorial.
   It references keys specific to my existing firebase collection and so was committed as a stub.
 */
-export const mockEmployeeList: Employee[] = [];
+
+export const mockEmployeeList: IEmployee[] = [];

@@ -6,7 +6,7 @@ import {
 }                     from 'rxjs';
 
 import { ApiService } from '../api/api.service';
-import { Company }    from '../models/company';
+import { ICompany }   from '../models/company';
 
 @Injectable()
 export class CompanyService {
@@ -14,25 +14,25 @@ export class CompanyService {
     private apiService: ApiService,
   ) { }
 
-  public getCompanyList(): Observable<Company[]> {
+  public getCompanyList(): Observable<ICompany[]> {
     return this.apiService.company.getCompanyList();
   }
 
-  public getCompanyByID(key: string): Observable<Company> {
+  public getCompanyByID(key: string): Observable<ICompany> {
     return this.apiService.company.getCompanyByID(key);
   }
 
-  public searchCompanyByName(companyName: string): Observable<Company[]> {
+  public searchCompanyByName(companyName: string): Observable<ICompany[]> {
     const payload: string = companyName.charAt(0).toUpperCase() + companyName.slice(1);
     return this.apiService.company.searchCompanyByName(payload).valueChanges();
   }
 
-  public searchCompanyByNameRestful(companyName: string): Observable<Company[] | null> {
+  public searchCompanyByNameRestful(companyName: string): Observable<ICompany[] | null> {
     const payload: string = companyName.charAt(0).toUpperCase() + companyName.slice(1);
     return (companyName) ? this.apiService.company.searchCompanyByNameRestful(payload) : observableOf(null);
   }
 
-  public updateCompany(company: Company): Observable<Company> {
+  public updateCompany(company: ICompany): Observable<ICompany> {
     return this.apiService.company.updateCompany(company);
   }
 }

@@ -13,9 +13,9 @@ import {
 import { from }            from 'rxjs';
 import { concatMap, map }  from 'rxjs/operators';
 
-import { Company }         from 'src/app/core/models/company';
+import { ICompany }        from 'src/app/core/models/company';
 import { CompanyService }  from 'src/app/core/services/company.service';
-import { Employee }        from '../../../core/models/employee';
+import { IEmployee }       from '../../../core/models/employee';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { ToastService }    from '../../../core/services/toast.service';
 import { TableColumns }    from '../../../core/models/table-columns';
@@ -27,7 +27,7 @@ import { TableColumns }    from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallsSmartComponent implements OnInit {
-  public companyList: Company[];
+  public companyList: ICompany[];
   public displayedColumns: TableColumns[] = [
     {
       columnId: 'firstName',
@@ -42,7 +42,7 @@ export class PitfallsSmartComponent implements OnInit {
       columnName: 'Job Title',
     },
   ];
-  public employeeList: Employee[] = [];
+  public employeeList: IEmployee[] = [];
   public form: FormGroup;
 
   constructor(
@@ -61,7 +61,7 @@ export class PitfallsSmartComponent implements OnInit {
 
   public updateCompanyConcat(): void {
     from(this.companyList)
-      .pipe(concatMap((company: Company) => {
+      .pipe(concatMap((company: ICompany) => {
         const payload = { ...company };
         payload.isSelected = !(payload.isSelected);
         return this.companyService.updateCompany(payload);
@@ -69,9 +69,9 @@ export class PitfallsSmartComponent implements OnInit {
       .subscribe();
   }
 
-  public toggleEmployeeState(employee: Employee): void {
+  public toggleEmployeeState(employee: IEmployee): void {
     const payload = { ...employee };
-    payload.isFoo = !(payload.isFoo);
+    payload.isActive = !(payload.isActive);
     this.employeeService.updateEmployee(payload).subscribe();
   }
 
@@ -86,11 +86,11 @@ export class PitfallsSmartComponent implements OnInit {
 
   private initializeFormSubscription(): void {
     this.selectedCompanyControl.valueChanges.subscribe((companyKey: string) => {
-      this.companyService.getCompanyList().subscribe((companyList: Company[]) => {
-        const company: Company = companyList.find(foundCompany => foundCompany.key === companyKey);
-        this.employeeService.getEmployeesByCompanyKey(companyKey).subscribe((employees: Employee[]) => {
+      this.companyService.getCompanyList().subscribe((companyList: ICompany[]) => {
+        const company: ICompany = companyList.find(foundCompany => foundCompany.key === companyKey);
+        this.employeeService.getEmployeesByCompanyKey(companyKey).subscribe((employees: IEmployee[]) => {
           this.employeeList = employees;
-          const employeeCount: number = this.checkNumberOfIsActive(employees).length;
+          const employeeCount: number = this.countActiveEmployees(employees).length;
           if (employeeCount) {
             this.updateCompanyAndToast(company, employeeCount);
           }
@@ -99,7 +99,7 @@ export class PitfallsSmartComponent implements OnInit {
     });
   }
 
-  private updateCompanyAndToast(company: Company, employeeCount: number): void {
+  private updateCompanyAndToast(company: ICompany, employeeCount: number): void {
     this.displayActiveToast(employeeCount, company.companyName);
     if (company && company.employeeCount !== employeeCount) {
       company.employeeCount = employeeCount;
@@ -113,16 +113,16 @@ export class PitfallsSmartComponent implements OnInit {
     });
   }
 
-  private checkNumberOfIsActive(employeeList: Employee[]): Employee[] {
-    const filteredEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
+  private countActiveEmployees(employeeList: IEmployee[]): IEmployee[] {
+    const activeEmployees: IEmployee[] = employeeList.filter(employee => employee.isActive);
 
-    return filteredEmployees;
+    return activeEmployees;
   }
 
-  private displayActiveToast(isActiveAmount: number, companyName: string): void {
-    const description: string = (isActiveAmount > 1)
-      ? `There are ${isActiveAmount} active employees for ${companyName}.`
-      : `There is ${isActiveAmount} active employee for ${companyName}`;
+  private displayActiveToast(isActiveCount: number, companyName: string): void {
+    const description: string = (isActiveCount > 1)
+      ? `There are ${isActiveCount} active employees for ${companyName}.`
+      : `There is ${isActiveCount} active employee for ${companyName}`;
     const message = {
       header: 'Attention',
       description,

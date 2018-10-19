@@ -35,7 +35,7 @@ export class TodoService {
 
   public getTodoByIDHot(id: number): Observable<Todo> {
     return this.apiService.todo.getTodoByID(id).pipe(
-      shareReplay(),
+      shareReplay(1),
       map((response: Todo) => response),
     );
   }

@@ -1,4 +1,4 @@
-export interface Company {
+export interface ICompany {
   key?: string;
   companyName: string;
   address: string;
@@ -7,7 +7,7 @@ export interface Company {
   employeeCount?: number;
 }
 
-export class Company implements Company {
+export class Company implements ICompany {
   key?: string;
   companyName: string;
   address: string;
@@ -28,4 +28,4 @@ export class Company implements Company {
   This is an empty array in this commit for the purposes of resetting the company for the tutorial.
   It references keys specific to my existing firebase collection and so was committed as a stub.
 */
-export const pristineCompanyList: Company[] = [];
+export const pristineCompanyList: ICompany[] = [];

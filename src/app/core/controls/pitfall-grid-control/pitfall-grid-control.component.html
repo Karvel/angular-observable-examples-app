@@ -7,11 +7,11 @@
 			<th mat-header-cell *matHeaderCellDef> {{ col.columnName }} </th>
    			<td mat-cell *matCellDef="let row"> {{ row[col.columnId] }} </td>
     </ng-container>
-    <ng-container matColumnDef="isFoo">
+    <ng-container matColumnDef="isActive">
       <th mat-header-cell *matHeaderCellDef>Active</th>
           <td mat-cell *matCellDef="let employee">
             <button mat-button (click)="toggleEmployeeState(employee)">
-              {{ checkIfActive(employee.isFoo) }}
+              {{ checkIfActive(employee.isActive) }}
             </button>
           </td>
     </ng-container>

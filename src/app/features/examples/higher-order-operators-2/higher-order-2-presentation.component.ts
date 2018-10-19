@@ -6,7 +6,7 @@ import {
   Output,
 }                       from '@angular/core';
 
-import { Company }      from 'src/app/core/models/company';
+import { ICompany }     from 'src/app/core/models/company';
 import { TableColumns } from 'src/app/core/models/table-columns';
 
 @Component({
@@ -17,7 +17,7 @@ import { TableColumns } from 'src/app/core/models/table-columns';
 })
 export class HigherOrderOperators2PresentationComponent {
   @Input() public columnIdList: string[];
-  @Input() public companyList: Company[];
+  @Input() public companyList: ICompany[];
   @Input() public displayedColumns: TableColumns[];
 
   @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();

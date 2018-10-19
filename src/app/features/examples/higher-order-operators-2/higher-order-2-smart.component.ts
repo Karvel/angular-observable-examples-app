@@ -18,7 +18,7 @@ import {
 
 import { CompanyService }   from 'src/app/core/services/company.service';
 import {
-  Company,
+  ICompany,
   pristineCompanyList,
 }                           from 'src/app/core/models/company';
 import { TableColumns }     from 'src/app/core/models/table-columns';
@@ -32,8 +32,8 @@ import { Utils }            from 'src/app/core/services/utils';
 })
 export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
   public columnIdList: string[] = [];
-  public companyList: Company[] = [];
-  public companyList$: Observable<Company[]>;
+  public companyList: ICompany[] = [];
+  public companyList$: Observable<ICompany[]>;
   public displayedColumns: TableColumns[] = [
     {
       columnId: 'companyName',
