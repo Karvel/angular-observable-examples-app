@@ -4,9 +4,9 @@ import {
   EventEmitter,
   Input,
   Output,
-}               from '@angular/core';
+}                from '@angular/core';
 
-import { Todo } from '../../../core/models/todo';
+import { ITodo } from '../../../core/models/todo';
 
 @Component({
   selector        : 'app-cold-example-2-presentation',
@@ -15,8 +15,8 @@ import { Todo } from '../../../core/models/todo';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class ColdExample2PresentationComponent {
-  @Input() public todo: Todo;
-  @Input() public todoList: Todo[];
+  @Input() public todo: ITodo;
+  @Input() public todoList: ITodo[];
 
   @Output() public emitGetTodos: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitGetTodoByID: EventEmitter<void> = new EventEmitter<void>();

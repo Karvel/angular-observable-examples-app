@@ -17,10 +17,7 @@ import {
 }                           from 'rxjs/operators';
 
 import { CompanyService }   from 'src/app/core/services/company.service';
-import {
-  ICompany,
-  pristineCompanyList,
-}                           from 'src/app/core/models/company';
+import { ICompany }         from 'src/app/core/models/company';
 import { TableColumns }     from 'src/app/core/models/table-columns';
 import { Utils }            from 'src/app/core/services/utils';
 
@@ -99,9 +96,14 @@ export class HigherOrderOperators2SmartComponent implements OnInit, OnDestroy {
     this.subscriptions.push(mergeMapControlSubscription);
   }
 
-  public resetCompanyNames(): void {
-    const companyNamesSubscription: Subscription = from(pristineCompanyList)
-      .pipe(mergeMap(company => this.companyService.updateCompany(company)))
+  public resetCompanies(): void {
+    const companyNamesSubscription: Subscription = from(this.companyList)
+      .pipe(mergeMap(company => {
+        const payload = { ...company };
+        payload.color = 'black';
+        payload.isSelected = false;
+        return this.companyService.updateCompany(payload);
+      }))
       .subscribe();
     this.subscriptions.push(companyNamesSubscription);
   }

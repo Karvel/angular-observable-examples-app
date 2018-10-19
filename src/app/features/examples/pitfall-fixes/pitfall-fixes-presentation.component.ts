@@ -23,14 +23,9 @@ export class PitfallFixesPresentationComponent {
   @Input() public employeeList: IEmployee[];
   @Input() public form: FormGroup;
 
-  @Output() public emitCompanyConcat: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitEmployee: EventEmitter<IEmployee> = new EventEmitter<IEmployee>();
 
   public toggleEmployeeState(employee: IEmployee): void {
     this.emitEmployee.emit(employee);
   }
-
-  public updateCompanyConcat(): void {
-    this.emitCompanyConcat.emit();
-  }
-  }
+}

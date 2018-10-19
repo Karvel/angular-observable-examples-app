@@ -32,7 +32,7 @@ export class HigherOrderOperators2PresentationComponent {
     this.emitCompanyMerge.emit();
   }
 
-  public resetCompanyNames(): void {
+  public resetCompanies(): void {
     this.emitReset.emit();
   }
 }

@@ -14,6 +14,10 @@ export class CompanyService {
     private apiService: ApiService,
   ) { }
 
+  public addCompany(company: ICompany): void {
+    this.apiService.company.addCompany(company);
+  }
+
   public getCompanyList(): Observable<ICompany[]> {
     return this.apiService.company.getCompanyList();
   }

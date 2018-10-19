@@ -128,5 +128,11 @@ export class ResourcesComponent {
       title : 'Rx Book',
     },
   ];
+  public miscLinks = [
+    {
+      path  : 'https://www.mockaroo.com/ - Random Data Generator and API Mocking Tool',
+      title : 'Mockaroo',
+    },
+  ];
   constructor() { }
 }
