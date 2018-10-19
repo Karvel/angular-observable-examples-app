@@ -21,10 +21,10 @@ import {
   switchMap,
 }                          from 'rxjs/operators';
 
-import { Company }         from '../../../core/models/company';
+import { ICompany }        from '../../../core/models/company';
 import { CompanyService }  from 'src/app/core/services/company.service';
 import {
-  Employee,
+  IEmployee,
   mockEmployeeList,
 }                          from '../../../core/models/employee';
 import { EmployeeService } from 'src/app/core/services/employee.service';
@@ -38,8 +38,8 @@ import { TableColumns }    from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallFixesSmartComponent implements OnInit {
-  public companyList: Company[];
-  public companyList$: Observable<Company[]>;
+  public companyList: ICompany[];
+  public companyList$: Observable<ICompany[]>;
   public displayedColumns: TableColumns[] = [
     {
       columnId: 'firstName',
@@ -58,7 +58,7 @@ export class PitfallFixesSmartComponent implements OnInit {
       columnName: 'Employed at',
     },
   ];
-  public employeeList$: Observable<Employee[]>;
+  public employeeList$: Observable<IEmployee[]>;
   public form: FormGroup;
 
   private subscriptions: Subscription[] = [];
@@ -78,7 +78,7 @@ export class PitfallFixesSmartComponent implements OnInit {
 
   public updateCompanyConcat(): void {
     const concatMapControlSubscription: Subscription = from(this.companyList)
-      .pipe(concatMap((company: Company) => {
+      .pipe(concatMap((company: ICompany) => {
         const payload = { ...company };
         payload.isSelected = !(payload.isSelected);
         return this.companyService.updateCompany(payload);
@@ -87,7 +87,7 @@ export class PitfallFixesSmartComponent implements OnInit {
     this.subscriptions.push(concatMapControlSubscription);
   }
 
-  public toggleEmployeeState(employee: Employee): void {
+  public toggleEmployeeState(employee: IEmployee): void {
     const payload = { ...employee };
     payload.isFoo = !(payload.isFoo);
     const toggleEmployeeSubscription: Subscription = this.employeeService.updateEmployee(payload).subscribe();
@@ -109,8 +109,8 @@ export class PitfallFixesSmartComponent implements OnInit {
           })
         );
       }),
-      mergeMap((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
-        const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
+      mergeMap((companyAndEmployees: { companyKey: string; employees: IEmployee[]; }) => {
+        const company: ICompany = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
         const employeeCount: number = this.countActiveEmployees(companyAndEmployees.employees).length;
         return this.updateCompanyAndToast(company, employeeCount).pipe(
           map(() => companyAndEmployees.employees));
@@ -118,7 +118,7 @@ export class PitfallFixesSmartComponent implements OnInit {
     );
   }
 
-  private updateCompanyAndToast(company: Company, employeeCount: number): Observable<Company> {
+  private updateCompanyAndToast(company: ICompany, employeeCount: number): Observable<ICompany> {
     this.displayActiveToast(employeeCount, company.companyName);
     company.employeeCount = employeeCount;
     return this.companyService.updateCompany(company);
@@ -130,8 +130,8 @@ export class PitfallFixesSmartComponent implements OnInit {
     });
   }
 
-  private countActiveEmployees(employeeList: Employee[]): Employee[] {
-    const activeEmployees: Employee[] = employeeList.filter(employee => employee.isFoo);
+  private countActiveEmployees(employeeList: IEmployee[]): IEmployee[] {
+    const activeEmployees: IEmployee[] = employeeList.filter(employee => employee.isFoo);
 
     return activeEmployees;
   }

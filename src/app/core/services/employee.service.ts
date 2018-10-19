@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from '../api/api.service';
-import { Employee }   from '../models/employee';
+import { IEmployee }  from '../models/employee';
 
 @Injectable()
 export class EmployeeService {
@@ -11,15 +11,15 @@ export class EmployeeService {
     private apiService: ApiService,
   ) { }
 
-  public getEmployees(): Observable<Employee[]> {
+  public getEmployees(): Observable<IEmployee[]> {
     return this.apiService.employee.getEmployees();
   }
 
-  public getEmployeesByCompanyKey(companyKey: string): Observable<Employee[]> {
+  public getEmployeesByCompanyKey(companyKey: string): Observable<IEmployee[]> {
     return this.apiService.employee.getEmployeesByCompanyKey(companyKey);
   }
 
-  public updateEmployee(employee: Employee): Observable<Employee> {
+  public updateEmployee(employee: IEmployee): Observable<IEmployee> {
     return this.apiService.employee.updateEmployee(employee);
   }
 }

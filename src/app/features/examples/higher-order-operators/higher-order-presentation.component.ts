@@ -7,7 +7,7 @@ import {
 }                    from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { Company }   from 'src/app/core/models/company';
+import { ICompany }  from 'src/app/core/models/company';
 
 @Component({
   selector        : 'app-higher-order-presentation',
@@ -16,8 +16,8 @@ import { Company }   from 'src/app/core/models/company';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperatorsPresentationComponent {
-  @Input() public companyListSwitch: Company[];
-  @Input() public companyListExhaust: Company[];
+  @Input() public companyListSwitch: ICompany[];
+  @Input() public companyListExhaust: ICompany[];
   @Input() public form: FormGroup;
 
   @Output() public emitForkJoin: EventEmitter<void> = new EventEmitter<void>();

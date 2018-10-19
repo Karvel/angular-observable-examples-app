@@ -10,13 +10,13 @@ import {
 import { Observable }  from 'rxjs';
 import { map }         from 'rxjs/operators';
 
-import { Employee }    from 'src/app/core/models/employee';
+import { IEmployee }   from 'src/app/core/models/employee';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiEmployeeService {
   private dbPath: string = '/employees';
-  public employeeRef: AngularFireList<Employee> = null;
+  public employeeRef: AngularFireList<IEmployee> = null;
 
   constructor(
     private httpClient: HttpClient,
@@ -25,25 +25,25 @@ export class ApiEmployeeService {
     this.employeeRef = rtdb.list(this.dbPath);
   }
 
-  public getEmployees(): Observable<Employee[]> {
+  public getEmployees(): Observable<IEmployee[]> {
     return this.employeeRef.snapshotChanges().pipe(
       map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
     );
   }
 
-  public getEmployeesByCompanyKey(companyKey: string): Observable<Employee[]> {
+  public getEmployeesByCompanyKey(companyKey: string): Observable<IEmployee[]> {
     return this.rtdb.list(this.dbPath, ref => ref
       .orderByChild('companyKey')
       .equalTo(`${companyKey}`))
       .snapshotChanges().pipe(
-        map((employee: AngularFireAction<DatabaseSnapshot<Employee>>[]) => employee),
+        map((employee: AngularFireAction<DatabaseSnapshot<IEmployee>>[]) => employee),
         map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
       );
   }
 
-  public updateEmployee(employee: Employee): Observable<Employee> {
+  public updateEmployee(employee: IEmployee): Observable<IEmployee> {
     const restfulDBPathWithQueries = `${environment.firebase.databaseURL}${this.dbPath}/${employee.key}.json`;
-    const payload: Employee = {
+    const payload: IEmployee = {
       companyName: employee.companyName,
       companyKey: employee.companyKey,
       firstName: employee.firstName,
@@ -51,6 +51,6 @@ export class ApiEmployeeService {
       jobTitle: employee.jobTitle,
       isFoo: employee.isFoo,
     };
-    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: Employee) => response));
+    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: IEmployee) => response));
   }
 }

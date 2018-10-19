@@ -26,7 +26,7 @@ import {
   tap,
 }                           from 'rxjs/operators';
 
-import { Company }          from 'src/app/core/models/company';
+import { ICompany }         from 'src/app/core/models/company';
 import { CompanyService }   from 'src/app/core/services/company.service';
 import { OperatorsService } from '../../../core/services/operators.service';
 
@@ -37,9 +37,9 @@ import { OperatorsService } from '../../../core/services/operators.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
-  public companyListSwitch$: Observable<Company[]>;
+  public companyListSwitch$: Observable<ICompany[]>;
   public colorList$: Observable<string>;
-  public companyListExhaust$: Observable<Company[]>;
+  public companyListExhaust$: Observable<ICompany[]>;
   public form: FormGroup;
   public numberList$: Observable<string>;
 
