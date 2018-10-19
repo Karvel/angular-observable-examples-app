@@ -21,7 +21,7 @@ export class ExamplesRouterComponent {
     },
     {
       path  : `${this.parentRoute}hot-1`,
-      label : 'Hot Observables 1',
+      label : 'Hot Observables',
     },
     {
       path  : `${this.parentRoute}higher-order`,
@@ -45,7 +45,7 @@ export class ExamplesRouterComponent {
     },
     {
       path  : `${this.parentRoute}dynamic-form`,
-      label : 'Dynamic Forms',
+      label : 'Dynamic Form',
     },
   ];
   constructor() { }
