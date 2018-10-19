@@ -26,4 +26,12 @@ export class Employee implements IEmployee {
   }
 }
 
-const mockEmployeeList: IEmployee[] = [];
+export const mockEmployeeList: IEmployee[] = [
+  {
+    companyName: 'Divavu',
+    firstName: 'Sara-ann',
+    lastName: 'Knoles',
+    jobTitle: 'Dental Hygienist',
+    isActive: false,
+  },
+];
