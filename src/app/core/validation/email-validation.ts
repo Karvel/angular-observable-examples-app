@@ -22,13 +22,13 @@ export class EmailValidation {
 
   static validEmailConfirm(emailControlName: string, confirmEmailControlName: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const emailValue: string = control.get(emailControlName).value;
-      const confirmEmailValue: string = control.get(confirmEmailControlName).value;
+      const emailValue: string = (control.get(emailControlName) as AbstractControl).value;
+      const confirmEmailValue: string = (control.get(confirmEmailControlName) as AbstractControl).value;
       if (!control.value) {
-        control.get(confirmEmailControlName).setErrors({'invalidEmail' : `Confirm Email is required.`});
+        (control.get(confirmEmailControlName) as AbstractControl).setErrors({'invalidEmail' : `Confirm Email is required.`});
       }
       if (emailValue !== confirmEmailValue) {
-        control.get(confirmEmailControlName).setErrors({'mismatchedEmail': 'Email addresses do not match.'});
+        (control.get(confirmEmailControlName) as AbstractControl).setErrors({'mismatchedEmail': 'Email addresses do not match.'});
       }
 
       return null;

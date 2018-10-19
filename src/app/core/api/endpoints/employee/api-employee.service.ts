@@ -3,8 +3,6 @@ import { HttpClient }  from '@angular/common/http';
 import {
   AngularFireDatabase,
   AngularFireList,
-  AngularFireAction,
-  DatabaseSnapshot,
 }                      from '@angular/fire/database';
 
 import { Observable }  from 'rxjs';
@@ -16,7 +14,7 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class ApiEmployeeService {
   private dbPath: string = '/employees';
-  public employeeRef: AngularFireList<IEmployee> = null;
+  public employeeRef: AngularFireList<IEmployee>;
 
   constructor(
     private httpClient: HttpClient,
@@ -32,6 +30,7 @@ export class ApiEmployeeService {
   public getEmployees(): Observable<IEmployee[]> {
     return this.employeeRef.snapshotChanges().pipe(
       map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
+      map(employeeList => employeeList as IEmployee[]),
     );
   }
 
@@ -40,8 +39,8 @@ export class ApiEmployeeService {
       .orderByChild('companyKey')
       .equalTo(`${companyKey}`))
       .snapshotChanges().pipe(
-        map((employee: AngularFireAction<DatabaseSnapshot<IEmployee>>[]) => employee),
         map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
+        map(employeeList => employeeList as IEmployee[]),
       );
   }
 
@@ -55,6 +54,6 @@ export class ApiEmployeeService {
       jobTitle: employee.jobTitle,
       isActive: employee.isActive,
     };
-    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: IEmployee) => response));
+    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map(response => response as IEmployee));
   }
 }

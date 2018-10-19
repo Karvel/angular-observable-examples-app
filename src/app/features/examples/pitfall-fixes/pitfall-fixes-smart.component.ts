@@ -10,12 +10,10 @@ import {
 }                          from '@angular/forms';
 
 import {
-  from,
   Observable,
   Subscription,
 }                          from 'rxjs';
 import {
-  concatMap,
   map,
   mergeMap,
   switchMap,
@@ -137,6 +135,6 @@ export class PitfallFixesSmartComponent implements OnInit {
   }
 
   private get selectedCompanyControl(): AbstractControl {
-    return this.form.get('selectedCompany');
+    return this.form.get('selectedCompany') as AbstractControl;
   }
 }

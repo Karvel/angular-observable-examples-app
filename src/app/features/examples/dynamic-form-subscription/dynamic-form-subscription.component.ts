@@ -55,27 +55,27 @@ export class DynamicFormSubscriptionComponent implements OnInit, OnDestroy {
   }
 
   public get email(): AbstractControl {
-    return this.registerForm.get('email');
+    return this.registerForm.get('email') as AbstractControl;
   }
 
   public get confirmEmail(): AbstractControl {
-    return this.registerForm.get('confirmEmail');
+    return this.registerForm.get('confirmEmail') as AbstractControl;
   }
 
   public get password(): AbstractControl {
-    return this.registerForm.get('password');
+    return this.registerForm.get('password') as AbstractControl;
   }
 
   public get passwordMin(): AbstractControl {
-    return this.registerForm.get('passwordMin');
+    return this.registerForm.get('passwordMin') as AbstractControl;
   }
 
   public get passwordDigit(): AbstractControl {
-    return this.registerForm.get('passwordDigit');
+    return this.registerForm.get('passwordDigit') as AbstractControl;
   }
 
   public get passwordSpecial(): AbstractControl {
-    return this.registerForm.get('passwordSpecial');
+    return this.registerForm.get('passwordSpecial') as AbstractControl;
   }
 
   private setupConditionalValidators(): void {

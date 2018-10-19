@@ -8,7 +8,7 @@ import {
 
 @Injectable()
 export class ApiScheduleService {
-  public scheduleRef: AngularFireList<string> = null;
+  public scheduleRef: AngularFireList<string>;
 
   private dbPath: string = '/schedule';
 
@@ -28,7 +28,7 @@ export class ApiScheduleService {
     return this.rtdb.object(itemPath);
   }
 
-  public addScheduleItem(event): void {
+  public addScheduleItem(event: any): void {
     this.scheduleRef.push(event);
   }
 }

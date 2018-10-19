@@ -71,7 +71,7 @@ export class ColdExample1Component {
   private getTodoTimeCreatedByID(): void {
     const payload: number = 1;
     this.todoTimeCreated$ = this.todoService.getTodoByID(payload).pipe(
-      map(response => response.timeCreated),
+      map(response => response.timeCreated as string),
     );
   }
 

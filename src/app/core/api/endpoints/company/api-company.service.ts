@@ -3,8 +3,6 @@ import { HttpClient }  from '@angular/common/http';
 import {
   AngularFireDatabase,
   AngularFireList,
-  AngularFireAction,
-  DatabaseSnapshot,
 }                      from '@angular/fire/database';
 
 import { Observable }  from 'rxjs';
@@ -17,7 +15,7 @@ import { Utils }       from 'src/app/core/services/utils';
 
 @Injectable()
 export class ApiCompanyService {
-  public companyRef: AngularFireList<ICompany> = null;
+  public companyRef: AngularFireList<ICompany>;
 
   private dbPath: string = '/company';
   private dbPath2: string = '/company2';
@@ -37,6 +35,7 @@ export class ApiCompanyService {
   public getCompanyList(): Observable<ICompany[]> {
     return this.companyRef.snapshotChanges().pipe(
       map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),
+      map(companyList => companyList as ICompany[]),
     );
   }
 
@@ -44,8 +43,8 @@ export class ApiCompanyService {
     const itemPath =  `${this.dbPath2}/${key}`;
 
     return this.rtdb.object(itemPath).snapshotChanges().pipe(
-      map((company: AngularFireAction<DatabaseSnapshot<ICompany>>) => company),
       map(change => ({ key: change.payload.key, ...change.payload.val() })),
+      map(company => company as ICompany),
     );
   }
 
@@ -60,7 +59,7 @@ export class ApiCompanyService {
     const path = `${this.restfulDB}?orderBy="companyName"&startAt="${companyName}"&endAt="${companyName}${CONSTANTS.terminatingCharacter}"`;
     return this.httpClient.get(path).pipe(
       map(response => Utils.convertFirebaseResponseToArray(response)),
-      map((response: ICompany[]) => response),
+      map(response => response as ICompany[]),
     );
   }
 
@@ -73,6 +72,7 @@ export class ApiCompanyService {
       color: company.color,
       employeeCount: company.employeeCount,
     };
-    return this.httpClient.patch(restfulDBPathWithQueries, payload).pipe(map((response: ICompany) => response));
+    return this.httpClient.patch(restfulDBPathWithQueries, payload)
+      .pipe(map(response => response as ICompany));
   }
 }

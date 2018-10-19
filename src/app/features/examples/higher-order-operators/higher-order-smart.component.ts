@@ -123,11 +123,11 @@ export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
   }
 
   private get switchMapControl(): AbstractControl {
-    return this.form.get('switchMap');
+    return this.form.get('switchMap') as AbstractControl;
   }
 
   private get exhaustMapControl(): AbstractControl {
-    return this.form.get('exhaustMap');
+    return this.form.get('exhaustMap') as AbstractControl;
   }
 
   private initializeFormSubscriptions(): void {

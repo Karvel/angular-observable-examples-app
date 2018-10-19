@@ -1,19 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable }  from '@angular/core';
 
 import {
   Observable,
   of as observableOf,
-}                     from 'rxjs';
-import {
-  map,
-  shareReplay,
-}                     from 'rxjs/operators';
+}                      from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
-import { ApiService } from '../api/api.service';
+import { ApiService }  from '../api/api.service';
 import {
   mockTodoList,
   ITodo,
-}                     from '../models/todo';
+}                      from '../models/todo';
 
 @Injectable()
 export class TodoService {
@@ -22,7 +19,7 @@ export class TodoService {
   ) { }
 
   public getTodos(): Observable<ITodo[]> {
-    return this.apiService.todo.getTodos().pipe(map((response: ITodo[]) => response));
+    return this.apiService.todo.getTodos();
   }
 
   public getTodosCreate(): Observable<ITodo[]> {
@@ -30,25 +27,22 @@ export class TodoService {
   }
 
   public getTodoByID(id: number): Observable<ITodo> {
-    return this.apiService.todo.getTodoByID(id).pipe(map((response: ITodo) => response));
+    return this.apiService.todo.getTodoByID(id);
   }
 
   public getTodoByIDHot(id: number): Observable<ITodo> {
-    return this.apiService.todo.getTodoByID(id).pipe(
-      shareReplay(1),
-      map((response: ITodo) => response),
-    );
+    return this.apiService.todo.getTodoByID(id).pipe(shareReplay(1));
   }
 
   public createTodo(payload: ITodo): Observable<ITodo> {
-    return this.apiService.todo.createTodo(payload).pipe(map((response: ITodo) => response));
+    return this.apiService.todo.createTodo(payload);
   }
 
   public updateTodo(id: number, todo: ITodo): Observable<void> {
-    return this.apiService.todo.updateTodo(id, todo).pipe(map((response: never) => response));
+    return this.apiService.todo.updateTodo(id, todo);
   }
 
   public deleteTodo(id: number): Observable<void> {
-    return this.apiService.todo.deleteTodo(id).pipe(map((response: never) => response));
+    return this.apiService.todo.deleteTodo(id);
   }
 }

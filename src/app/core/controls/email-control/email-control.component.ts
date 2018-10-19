@@ -4,7 +4,10 @@ import {
   Input,
   OnInit,
 }                          from '@angular/core';
-import { FormGroup }       from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+}                          from '@angular/forms';
 
 import { EmailValidation } from '../../validation/email-validation';
 
@@ -27,7 +30,9 @@ export class EmailControlComponent implements OnInit {
   }
 
   private createValidators(): void {
-    this.form.get(this.formControlTitle).setValidators([EmailValidation.validEmail(this.isRequired)]);
-    this.form.get(this.formControlTitle).updateValueAndValidity();
+    if (this.form) {
+      (this.form.get(this.formControlTitle) as AbstractControl).setValidators([EmailValidation.validEmail(this.isRequired)]);
+      (this.form.get(this.formControlTitle) as AbstractControl).updateValueAndValidity();
+    }
   }
 }
