@@ -9,7 +9,7 @@ import {
 }                      from 'rxjs';
 import { map }         from 'rxjs/operators';
 
-import { Todo }        from '../../../core/models/todo';
+import { ITodo }       from '../../../core/models/todo';
 import { TodoService } from '../../../core/services/todo.service';
 
 @Component({
@@ -19,8 +19,8 @@ import { TodoService } from '../../../core/services/todo.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class ColdExample1Component {
-  public todoList$: Observable<Todo[]>;
-  public todo$: Observable<Todo>;
+  public todoList$: Observable<ITodo[]>;
+  public todo$: Observable<ITodo>;
   public todoIsComplete$: Observable<{ 'isComplete': boolean; }>;
   public todoName$: Observable<string>;
   public todoTimeCreated$: Observable<string>;

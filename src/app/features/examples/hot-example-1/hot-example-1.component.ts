@@ -8,7 +8,7 @@ import {
   of as observableOf,
 }                      from 'rxjs';
 
-import { Todo }        from '../../../core/models/todo';
+import { ITodo }       from '../../../core/models/todo';
 import { TodoService } from '../../../core/services/todo.service';
 
 @Component({
@@ -18,8 +18,8 @@ import { TodoService } from '../../../core/services/todo.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HotExample1Component {
-  public todoList$: Observable<Todo[]>;
-  public todo$: Observable<Todo>;
+  public todoList$: Observable<ITodo[]>;
+  public todo$: Observable<ITodo>;
 
   constructor(
     private todoService: TodoService,

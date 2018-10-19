@@ -4,7 +4,7 @@ import { Injectable }  from '@angular/core';
 import { Observable }  from 'rxjs';
 
 import { environment } from '../../../../../environments/environment';
-import { Todo }        from '../../../models/todo';
+import { ITodo }       from '../../../models/todo';
 
 @Injectable()
 export class ApiTodoService {
@@ -22,11 +22,11 @@ export class ApiTodoService {
     return this.http.get(`${this.url}/todo/${id}`);
   }
 
-  public createTodo(todo: Todo): Observable<Object> {
+  public createTodo(todo: ITodo): Observable<Object> {
     return this.http.post(`${this.url}/todo/`, todo);
   }
 
-  public updateTodo(id: number, todo: Todo): Observable<Object> {
+  public updateTodo(id: number, todo: ITodo): Observable<Object> {
     return this.http.put(`${this.url}/todo/${id}`, todo);
   }
 

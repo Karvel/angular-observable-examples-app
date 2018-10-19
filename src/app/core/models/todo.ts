@@ -1,11 +1,11 @@
-export interface Todo {
+export interface ITodo {
   id?: number;
   name: string;
   isComplete: boolean;
   timeCreated?: string;
 }
 
-export const mockTodoList: Todo[] = [
+export const mockTodoList: ITodo[] = [
   {
     id: 1,
     name: 'Pickup groceries',
@@ -36,4 +36,4 @@ export const mockTodoList: Todo[] = [
     isComplete: true,
     timeCreated: '2018-10-19T21:23:59.0389719-07:00',
   },
-];
+];
