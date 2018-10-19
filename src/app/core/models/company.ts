@@ -26,8 +26,62 @@ export class Company implements ICompany {
 
 export const mockCompanyList: ICompany[] = [
   {
-    companyName: 'Quaxo',
-    address: '9989 Fulton Terrace',
+    companyName: 'Dabvine',
+    address: '3 Vidon Pass',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Feedfire',
+    address: '654 Oak Valley Circle',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Trupe',
+    address: '74403 Gina Point',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Oyondu',
+    address: '77 Darwin Terrace',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Skinte',
+    address: '8 Ilene Way',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Nozlet',
+    address: '196 Shoshone Street',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Bubbletube',
+    address: '811 Clemons Way',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Yamia',
+    address: '57854 Golden Leaf Way',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Jaxnation',
+    address: '32 Bunker Hill Crossing',
+    isSelected: false,
+    color: 'black',
+  },
+  {
+    companyName: 'Divavu',
+    address: '495 Grim Court',
     isSelected: false,
     color: 'black',
   },
