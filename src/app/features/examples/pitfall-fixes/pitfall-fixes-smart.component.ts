@@ -36,7 +36,7 @@ import { TableColumns }    from '../../../core/models/table-columns';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PitfallFixesSmartComponent implements OnInit {
-  public companyList: ICompany[];
+  public companyList: ICompany[] = [];
   public companyList$: Observable<ICompany[]>;
   public displayedColumns: TableColumns[] = [
     {

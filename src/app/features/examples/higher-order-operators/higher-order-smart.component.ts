@@ -36,9 +36,9 @@ import { OperatorsService } from '../../../core/services/operators.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
-  public companyListSwitch$: Observable<ICompany[]>;
+  public companyListSwitch$: Observable<ICompany[] | null>;
   public colorList$: Observable<string>;
-  public companyListExhaust$: Observable<ICompany[]>;
+  public companyListExhaust$: Observable<ICompany[] | null>;
   public form: FormGroup;
   public numberList$: Observable<string>;
 
