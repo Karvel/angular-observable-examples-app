@@ -22,7 +22,6 @@ export class HigherOrderOperatorsPresentationComponent {
 
   @Output() public emitForkJoin: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitCombineLatest: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public emitPairwise: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitConcatMap: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitMergeMap: EventEmitter<void> = new EventEmitter<void>();
   @Output() public emitSwitchMap: EventEmitter<void> = new EventEmitter<void>();
@@ -34,10 +33,6 @@ export class HigherOrderOperatorsPresentationComponent {
 
   public getCombineLatest(): void {
     this.emitCombineLatest.emit();
-  }
-
-  public getPairwise(): void {
-    this.emitPairwise.emit();
   }
 
   public getConcatMap(): void {

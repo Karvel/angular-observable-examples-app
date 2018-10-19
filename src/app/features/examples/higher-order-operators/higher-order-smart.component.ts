@@ -21,7 +21,6 @@ import {
   debounceTime,
   exhaustMap,
   mergeMap,
-  pairwise,
   switchMap,
   tap,
 }                           from 'rxjs/operators';
@@ -73,14 +72,6 @@ export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
     const combineLatestExample$: Subscription = combineLatest(this.colorList$, this.numberList$)
       .subscribe(result => console.log('combineLatest result', result));
     this.subscriptions.push(combineLatestExample$);
-  }
-
-  public getPairwise(): void {
-    console.log('~~~getPairwise~~~');
-    const pairwiseExample$: Subscription = this.colorList$
-      .pipe(pairwise())
-      .subscribe(result => console.log('pairwise result', result));
-    this.subscriptions.push(pairwiseExample$);
   }
 
   public getConcatMap(): void {
