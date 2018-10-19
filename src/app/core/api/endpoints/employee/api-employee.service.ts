@@ -25,6 +25,10 @@ export class ApiEmployeeService {
     this.employeeRef = rtdb.list(this.dbPath);
   }
 
+  public addEmployee(employee: IEmployee): void {
+    this.employeeRef.push(employee);
+  }
+
   public getEmployees(): Observable<IEmployee[]> {
     return this.employeeRef.snapshotChanges().pipe(
       map(changes => changes.map(change => ({ key: change.payload.key, ...change.payload.val() }))),

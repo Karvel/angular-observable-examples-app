@@ -11,6 +11,10 @@ export class EmployeeService {
     private apiService: ApiService,
   ) { }
 
+  public addEmployee(employee: IEmployee): void {
+    this.apiService.employee.addEmployee(employee);
+  }
+
   public getEmployees(): Observable<IEmployee[]> {
     return this.apiService.employee.getEmployees();
   }
