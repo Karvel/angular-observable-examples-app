@@ -2,6 +2,7 @@ import { HttpClient }  from '@angular/common/http';
 import { Injectable }  from '@angular/core';
 
 import { Observable }  from 'rxjs';
+import { map }         from 'rxjs/operators';
 
 import { environment } from '../../../../../environments/environment';
 import { ITodo }       from '../../../models/todo';
@@ -14,23 +15,23 @@ export class ApiTodoService {
     private http: HttpClient,
   ) { }
 
-  public getTodos(): Observable<Object> {
-    return this.http.get(`${this.url}/todo/`);
+  public getTodos(): Observable<ITodo[]> {
+    return this.http.get(`${this.url}/todo/`).pipe(map((response) => response as ITodo[]));
   }
 
-  public getTodoByID(id: number): Observable<Object> {
-    return this.http.get(`${this.url}/todo/${id}`);
+  public getTodoByID(id: number): Observable<ITodo> {
+    return this.http.get(`${this.url}/todo/${id}`).pipe(map((response) => response as ITodo));
   }
 
-  public createTodo(todo: ITodo): Observable<Object> {
-    return this.http.post(`${this.url}/todo/`, todo);
+  public createTodo(todo: ITodo): Observable<ITodo> {
+    return this.http.post(`${this.url}/todo/`, todo).pipe(map((response) => response as ITodo));
   }
 
-  public updateTodo(id: number, todo: ITodo): Observable<Object> {
-    return this.http.put(`${this.url}/todo/${id}`, todo);
+  public updateTodo(id: number, todo: ITodo): Observable<void> {
+    return this.http.put(`${this.url}/todo/${id}`, todo).pipe(map((response) => response as never));
   }
 
-  public deleteTodo(id: number): Observable<Object> {
-    return this.http.delete(`${this.url}/todo/${id}`);
+  public deleteTodo(id: number): Observable<void> {
+    return this.http.delete(`${this.url}/todo/${id}`).pipe(map((response) => response as never));
   }
 }

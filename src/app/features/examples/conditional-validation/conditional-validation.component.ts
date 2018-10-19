@@ -49,7 +49,7 @@ export class ConditionalValidationComponent implements OnInit, OnDestroy {
   }
 
   public get contactType(): AbstractControl {
-    return this.contactForm.get('contactType');
+    return this.contactForm.get('contactType') as AbstractControl;
   }
 
   public checkIfEmail(): boolean {
@@ -61,11 +61,11 @@ export class ConditionalValidationComponent implements OnInit, OnDestroy {
   }
 
   public get email(): AbstractControl {
-    return this.contactForm.get('email');
+    return this.contactForm.get('email') as AbstractControl;
   }
 
   public get phone(): AbstractControl {
-    return this.contactForm.get('phone');
+    return this.contactForm.get('phone') as AbstractControl;
   }
 
   private setupConditionalValidators(): void {

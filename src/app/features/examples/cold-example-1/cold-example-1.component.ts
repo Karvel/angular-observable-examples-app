@@ -19,9 +19,9 @@ import { TodoService } from '../../../core/services/todo.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class ColdExample1Component {
-  public todoList$: Observable<ITodo[]>;
-  public todo$: Observable<ITodo>;
-  public todoIsComplete$: Observable<{ 'isComplete': boolean; }>;
+  public todoList$: Observable<ITodo[] | null>;
+  public todo$: Observable<ITodo |null>;
+  public todoIsComplete$: Observable<{ 'isComplete': boolean; } | null>;
   public todoName$: Observable<string>;
   public todoTimeCreated$: Observable<string>;
 
@@ -71,7 +71,7 @@ export class ColdExample1Component {
   private getTodoTimeCreatedByID(): void {
     const payload: number = 1;
     this.todoTimeCreated$ = this.todoService.getTodoByID(payload).pipe(
-      map(response => response.timeCreated),
+      map(response => response.timeCreated as string),
     );
   }
 
@@ -79,7 +79,7 @@ export class ColdExample1Component {
     this.todoList$ = observableOf(null);
     this.todo$ = observableOf(null);
     this.todoIsComplete$ = observableOf(null);
-    this.todoName$ = observableOf(null);
-    this.todoTimeCreated$ = observableOf(null);
+    this.todoName$ = observableOf('');
+    this.todoTimeCreated$ = observableOf('');
   }
 }

@@ -4,7 +4,10 @@ import {
   Input,
   OnInit,
 }                             from '@angular/core';
-import { FormGroup }          from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+}                             from '@angular/forms';
 
 import { RequiredValidation } from '../../validation/required-validation';
 
@@ -26,7 +29,7 @@ export class RequiredInputComponent implements OnInit {
   }
 
   private createValidators(): void {
-    this.form.get(this.formControlTitle).setValidators([RequiredValidation.required(this.placeholder)]);
-    this.form.get(this.formControlTitle).updateValueAndValidity();
+    (this.form.get(this.formControlTitle) as AbstractControl).setValidators([RequiredValidation.required(this.placeholder)]);
+    (this.form.get(this.formControlTitle) as AbstractControl).updateValueAndValidity();
   }
 }

@@ -131,6 +131,6 @@ export class PitfallsSmartComponent implements OnInit {
   }
 
   private get selectedCompanyControl(): AbstractControl {
-    return this.form.get('selectedCompany');
+    return this.form.get('selectedCompany') as AbstractControl;
   }
 }

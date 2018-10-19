@@ -4,7 +4,10 @@ import {
   Input,
   OnInit,
 }                          from '@angular/core';
-import { FormGroup }       from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+}                          from '@angular/forms';
 
 import { PhoneValidation } from '../../validation/phone-validation';
 
@@ -27,7 +30,7 @@ export class PhoneControlComponent implements OnInit {
   }
 
   private createValidators(): void {
-    this.form.get(this.formControlTitle).setValidators([PhoneValidation.validPhone(this.isRequired)]);
-    this.form.get(this.formControlTitle).updateValueAndValidity();
+    (this.form.get(this.formControlTitle) as AbstractControl).setValidators([PhoneValidation.validPhone(this.isRequired)]);
+    (this.form.get(this.formControlTitle) as AbstractControl).updateValueAndValidity();
   }
 }

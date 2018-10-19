@@ -18,8 +18,8 @@ import { TodoService } from '../../../core/services/todo.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HotExample1Component {
-  public todoList$: Observable<ITodo[]>;
-  public todo$: Observable<ITodo>;
+  public todoList$: Observable<ITodo[] | null>;
+  public todo$: Observable<ITodo | null>;
 
   constructor(
     private todoService: TodoService,

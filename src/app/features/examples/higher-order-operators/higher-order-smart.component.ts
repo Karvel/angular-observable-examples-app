@@ -36,9 +36,9 @@ import { OperatorsService } from '../../../core/services/operators.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
-  public companyListSwitch$: Observable<ICompany[]>;
+  public companyListSwitch$: Observable<ICompany[] | null>;
   public colorList$: Observable<string>;
-  public companyListExhaust$: Observable<ICompany[]>;
+  public companyListExhaust$: Observable<ICompany[] | null>;
   public form: FormGroup;
   public numberList$: Observable<string>;
 
@@ -123,11 +123,11 @@ export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
   }
 
   private get switchMapControl(): AbstractControl {
-    return this.form.get('switchMap');
+    return this.form.get('switchMap') as AbstractControl;
   }
 
   private get exhaustMapControl(): AbstractControl {
-    return this.form.get('exhaustMap');
+    return this.form.get('exhaustMap') as AbstractControl;
   }
 
   private initializeFormSubscriptions(): void {

@@ -41,17 +41,17 @@ const routes: Routes = [
     {
       path      : 'hot-1',
       component : HotExample1Component,
-      data      : { title: 'Hot Example 1' },
+      data      : { title: 'Hot Example' },
     },
     {
       path      : 'higher-order',
       component : HigherOrderOperatorsSmartComponent,
-      data      : { title: 'Higher Order Operators' },
+      data      : { title: 'Higher Order' },
     },
     {
       path      : 'higher-order-2',
       component : HigherOrderOperators2SmartComponent,
-      data      : { title: 'Higher Order Operators 2' },
+      data      : { title: 'Higher Order 2' },
     },
     {
       path      : 'conditional-validation',
