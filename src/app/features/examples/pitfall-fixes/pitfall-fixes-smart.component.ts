@@ -109,20 +109,19 @@ export class PitfallFixesSmartComponent implements OnInit {
           })
         );
       }),
-      map((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
+      mergeMap((companyAndEmployees: { companyKey: string; employees: Employee[]; }) => {
         const company: Company = this.companyList.find(foundCompany => foundCompany.key === companyAndEmployees.companyKey);
-        const employeeCount: number = this.checkNumberOfIsActive(companyAndEmployees.employees).length;
-        if (employeeCount) {
-          this.displayActiveToast(employeeCount, company.companyName);
-          if (company && company.employeeCount !== employeeCount) {
-            company.employeeCount = employeeCount;
-            const updateCompanySubscription: Subscription = this.companyService.updateCompany(company).subscribe();
-            this.subscriptions.push(updateCompanySubscription);
-          }
-        }
-        return companyAndEmployees.employees;
+        const employeeCount: number = this.countActiveEmployees(companyAndEmployees.employees).length;
+        return this.updateCompanyAndToast(company, employeeCount).pipe(
+          map(() => companyAndEmployees.employees));
       }),
     );
+  }
+
+  private updateCompanyAndToast(company: Company, employeeCount: number): Observable<Company> {
+    this.displayActiveToast(employeeCount, company.companyName);
+    company.employeeCount = employeeCount;
+    return this.companyService.updateCompany(company);
   }
 
   private buildForm(): void {
