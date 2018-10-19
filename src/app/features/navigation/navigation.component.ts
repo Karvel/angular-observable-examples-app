@@ -21,6 +21,10 @@ export class NavigationComponent {
       name  : 'Resources',
       route : '/resources',
     },
+    {
+      name  : 'Populate Databases',
+      route : '/start',
+    },
   ];
 
   constructor() { }

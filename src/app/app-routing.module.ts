@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent }    from './features/not-found/not-found.component';
 import { ResourcesComponent }   from './features/resources/resources.component';
+import { StartComponent } from './features/start/start.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
    path      : 'resources',
    component : ResourcesComponent,
    data      : { title: 'Resources' },
+  },
+  {
+   path      : 'start',
+   component : StartComponent,
+   data      : { title: 'Start' },
   },
   {
    path      : '**',
@@ -31,4 +37,5 @@ export class AppRoutingModule {}
 export const routedComponents = [
   NotFoundComponent,
   ResourcesComponent,
+  StartComponent
 ];
