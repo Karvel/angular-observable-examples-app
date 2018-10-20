@@ -21,10 +21,7 @@ import {
 
 import { ICompany }        from '../../../core/models/company';
 import { CompanyService }  from 'src/app/core/services/company.service';
-import {
-  IEmployee,
-  mockEmployeeList,
-}                          from '../../../core/models/employee';
+import { IEmployee }       from '../../../core/models/employee';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { ToastService }    from '../../../core/services/toast.service';
 import { TableColumns }    from '../../../core/models/table-columns';
