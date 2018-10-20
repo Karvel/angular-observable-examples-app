@@ -5,6 +5,7 @@ export class Utils {
       return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1);
   }
 
+  /** A Firebase collection response is an object, not an array. This method maps that object to an array. */
   public static convertFirebaseResponseToArray<T>(firebaseResponse: T): object {
     const array: object[] = Object.entries(firebaseResponse).map(entry => Object.assign(entry[1], { id: entry[0] }));
     return array;

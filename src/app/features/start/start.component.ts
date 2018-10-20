@@ -55,6 +55,7 @@ export class StartComponent implements OnDestroy {
     mockTodoList.forEach(todoItem => this.todoService.createTodo(todoItem).subscribe());
   }
 
+  /** Assigns random company names and keys to every employee.*/
   public assignEmployeesToCompanies(): void {
     const mapCompaniesToEmployeesSubscription = this.companyService.getCompanyList()
       .pipe(

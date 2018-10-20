@@ -10,8 +10,7 @@ import {
   AbstractControl,
 }                          from '@angular/forms';
 
-import { from }            from 'rxjs';
-import { concatMap, map }  from 'rxjs/operators';
+import { map }             from 'rxjs/operators';
 
 import { ICompany }        from 'src/app/core/models/company';
 import { CompanyService }  from 'src/app/core/services/company.service';
@@ -57,16 +56,6 @@ export class PitfallsSmartComponent implements OnInit {
     this.buildForm();
     this.initializeFormSubscription();
     this.getCompanyList();
-  }
-
-  public updateCompanyConcat(): void {
-    from(this.companyList)
-      .pipe(concatMap((company: ICompany) => {
-        const payload = { ...company };
-        payload.isSelected = !(payload.isSelected);
-        return this.companyService.updateCompany(payload);
-      }))
-      .subscribe();
   }
 
   public toggleEmployeeState(employee: IEmployee): void {
@@ -127,7 +116,7 @@ export class PitfallsSmartComponent implements OnInit {
       header: 'Attention',
       description,
     };
-    this.toastService.showToastInfo(message);
+    this.toastService.showToastWarning(message);
   }
 
   private get selectedCompanyControl(): AbstractControl {
