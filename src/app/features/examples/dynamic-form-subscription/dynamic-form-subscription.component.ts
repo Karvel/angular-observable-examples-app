@@ -78,6 +78,7 @@ export class DynamicFormSubscriptionComponent implements OnInit, OnDestroy {
     return this.registerForm.get('passwordSpecial') as AbstractControl;
   }
 
+  /** Listens to the password input in the form and updates the requirements list. */
   private setupConditionalValidators(): void {
     const passwordControlSubscription: Subscription = this.password.valueChanges.subscribe((controlValue: string) => {
       (controlValue.length >= 8)

@@ -68,6 +68,7 @@ export class ConditionalValidationComponent implements OnInit, OnDestroy {
     return this.contactForm.get('phone') as AbstractControl;
   }
 
+  /** Listens to the form and updates the validation. */
   private setupConditionalValidators(): void {
     const contactFormSubscription: Subscription = this.contactForm.valueChanges.subscribe(form => {
       if (form.contactType === 'email') {
