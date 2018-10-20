@@ -116,7 +116,7 @@ export class PitfallsSmartComponent implements OnInit {
       header: 'Attention',
       description,
     };
-    this.toastService.showToastInfo(message);
+    this.toastService.showToastWarning(message);
   }
 
   private get selectedCompanyControl(): AbstractControl {
