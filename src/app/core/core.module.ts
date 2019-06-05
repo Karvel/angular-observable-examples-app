@@ -9,9 +9,10 @@ import { ApiModule }            from './api/api.module';
 import { CompanyService }       from './services/company.service';
 import { EmployeeService }      from './services/employee.service';
 import { FormService }          from './services/form.service';
+import { MaskService }          from './services/mask.service';
 import { PipeModule }           from './pipes/pipe.module';
-import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
 import { OperatorsService }     from './services/operators.service';
+import { throwIfAlreadyLoaded } from './guards/module-import-guard.service';
 import { ToastService }         from './services/toast.service';
 import { TodoService }          from './services/todo.service';
 
@@ -25,6 +26,7 @@ import { TodoService }          from './services/todo.service';
     CompanyService,
     EmployeeService,
     FormService,
+    MaskService,
     OperatorsService,
     ToastService,
     TodoService,
