@@ -5,6 +5,9 @@
       matInput
       [formControlName]="formControlTitle"
       [placeholder]="placeholder"
+      [appMask]="'phone'"
+      [maskForm]="form"
+      [maskFormControlName]="formControlTitle"
       [required]="isRequired"
     >
     <mat-error *ngIf="form.get(formControlTitle).errors">
