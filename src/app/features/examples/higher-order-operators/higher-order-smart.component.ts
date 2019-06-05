@@ -110,7 +110,7 @@ export class HigherOrderOperatorsSmartComponent implements OnInit, OnDestroy {
     this.colorList$ = this.operatorsService.getExample$(['Red', 'Blue', 'Green'], 3000).pipe(
       tap(response => console.log(`~~~ ${response} ~~~`)),
     );
-    this.numberList$ = this.operatorsService.getExample$(['One', 'Two', 'Three'], 4000).pipe(
+    this.numberList$ = this.operatorsService.getExample$(['1', '2', '3'], 4000).pipe(
       tap(response => console.log(`~~~ ${response} ~~~`)),
     );
   }
