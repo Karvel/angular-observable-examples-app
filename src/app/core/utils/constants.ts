@@ -4,6 +4,7 @@ interface Constants {
   readonly EMAIL_REGEX: RegExp;
   readonly NON_DECIMAL_DIGITS: RegExp;
   readonly PHONE_REGEX: RegExp;
+  readonly PHONE_REGEX_MASK: RegExp;
   readonly SYMBOL_REGEX: RegExp;
   readonly terminatingCharacter: string;
 }
@@ -14,6 +15,7 @@ export const CONSTANTS: Constants = {
   EMAIL_REGEX          : /^(?!\.)(?!.*?\.(\.|@))[\w\d.!#$%&'*+\-\/=?^_`{|}~]+@[\w\d.-]+\.[\w\d]{2,}$/,
   NON_DECIMAL_DIGITS   : /\D/g,
   PHONE_REGEX          : /(^\d{10}$)/,
+  PHONE_REGEX_MASK     : /(\d{0,3})(\d{0,3})(\d{0,4})/,
   SYMBOL_REGEX         : /[-+_!@#$%^&*,.?]/,
   terminatingCharacter : '\uf8ff',
 };
